@@ -18,7 +18,7 @@ const Page404 = () => (
           {`THE PAGE YOU WERE LOOKING FOR DOESN'T EXIST.`}{' '}
         </span>
         <div className="pt-8">
-          <ButtonPrimary href="/"> Home Page</ButtonPrimary>
+          <ButtonPrimary href="/">Izhar ul haq Home Page</ButtonPrimary>
         </div>
       </header>
     </div>
