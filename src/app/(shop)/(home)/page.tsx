@@ -12,8 +12,7 @@ import SectionPromo1 from '@/components/SectionPromo1'
 import SectionPromo2 from '@/components/SectionPromo2'
 import SectionSliderLargeProduct from '@/components/SectionSliderLargeProduct'
 import SectionSliderProductCard from '@/components/SectionSliderProductCard'
-import SectionMagazine5 from '@/components/blog/SectionMagazine5'
-import { getBlogPosts, getCollections, getGroupCollections, getProducts } from '@/data/data'
+ import { getBlogPosts, getCollections, getGroupCollections, getProducts } from '@/data/data'
 import { Button } from '@/shared/Button/Button'
 import { ArrowRightIcon } from '@heroicons/react/24/solid'
 import { Metadata } from 'next'
@@ -65,8 +64,7 @@ async function PageHome() {
         <Divider />
         <div>
           <Heading headingDim="From the Ciseco blog">The latest news</Heading>
-          <SectionMagazine5 posts={blogPosts} />
-          <div className="mt-20 flex justify-center">
+           <div className="mt-20 flex justify-center"> 
             <Button href="/blog" outline>
               Show all blog articles
               <ArrowRightIcon className="h-4 w-4" />

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 import { EmblaCarouselType } from 'embla-carousel'
 import { useCallback, useEffect, useState } from 'react'
 
