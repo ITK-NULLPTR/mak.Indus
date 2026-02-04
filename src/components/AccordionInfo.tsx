@@ -8,7 +8,7 @@ const DEMO_DATA = [
   {
     name: 'Description',
     content:
-      'Fashion is a form of self-expression and autonomy at a particular period and place and in a specific context, of clothing, footwear, lifestyle, accessories, makeup, hairstyle, and body posture.',
+      'Correct the padding from left and right for the mega menu. The text is going to edge. Leave some room to breath in there guys.',
   },
   {
     name: 'Fabric + Care',
