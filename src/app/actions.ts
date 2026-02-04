@@ -6,3 +6,4 @@ export async function addToCart(formData: FormData) {
   console.log('Add to cart submitted:', formObjectEntries)
   // You can add your cart logic here, such as updating the cart state or making an API call
 }
+//udhdjnd
