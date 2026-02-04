@@ -31,7 +31,7 @@ export default function AvatarDropdown({ className }: Props) {
 
               <div className="grow">
                 <h4 className="font-semibold">Eden Smith</h4>
-                <p className="mt-0.5 text-xs">Los Angeles, CA</p>
+                <p className="mt-0.5 text-xs"> Angeles, CA</p>
               </div>
             </div>
 
