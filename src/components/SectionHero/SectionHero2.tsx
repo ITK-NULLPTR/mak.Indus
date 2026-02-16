@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/immutability */
 'use client'
 
 import backgroundLineSvg from '@/images/Moon.svg'
@@ -180,7 +181,7 @@ const SectionHero2: FC<Props> = ({ className = '' }) => {
         <div className="relative -z-10 flex-1/2 lg:pr-10">
           <Image
             sizes="(max-width: 768px) 100vw, 60vw"
-            className="h-auto w-full max-w-[40rem] object-contain fade--animation__image select-none"
+            className="h-auto w-full max-w-160 object-contain fade--animation__image select-none"
             src={item.imageUrl}
             alt={item.heading}
             width={790}
@@ -193,7 +194,7 @@ const SectionHero2: FC<Props> = ({ className = '' }) => {
   }
 
   return (
-    <div className={clsx('relative z-[1]', className)} {...handlers}>
+    <div className={clsx('relative z-1', className)} {...handlers}>
       {data.map((_, index) => renderItem(index))}
 
       <button
