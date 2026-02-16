@@ -36,8 +36,6 @@ export default function AvatarDropdown({ className }: Props) {
             </div>
 
             <Divider />
-
-            {/* ------------------ 1 --------------------- */}
             <Link
               href={'/account'}
               className="-m-3 flex items-center rounded-lg p-2 transition duration-150 ease-in-out hover:bg-neutral-100 focus:outline-hidden focus-visible:ring-3 focus-visible:ring-orange-500/50 dark:hover:bg-neutral-700"
@@ -65,7 +63,6 @@ export default function AvatarDropdown({ className }: Props) {
               </div>
             </Link>
 
-            {/* ------------------ 2 --------------------- */}
             <Link
               href={'/orders'}
               className="-m-3 flex items-center rounded-lg p-2 transition duration-150 ease-in-out hover:bg-neutral-100 focus:outline-hidden focus-visible:ring-3 focus-visible:ring-orange-500/50 dark:hover:bg-neutral-700"
@@ -111,7 +108,6 @@ export default function AvatarDropdown({ className }: Props) {
               </div>
             </Link>
 
-            {/* ------------------ 2 --------------------- */}
             <Link
               href={'/account-wishlists'}
               className="-m-3 flex items-center rounded-lg p-2 transition duration-150 ease-in-out hover:bg-neutral-100 focus:outline-hidden focus-visible:ring-3 focus-visible:ring-orange-500/50 dark:hover:bg-neutral-700"
@@ -134,7 +130,6 @@ export default function AvatarDropdown({ className }: Props) {
 
             <Divider />
 
-            {/* ------------------ 2 --------------------- */}
             <Link
               href={'#'}
               className="-m-3 flex items-center rounded-lg p-2 transition duration-150 ease-in-out hover:bg-neutral-100 focus:outline-hidden focus-visible:ring-3 focus-visible:ring-orange-500/50 dark:hover:bg-neutral-700"
@@ -190,7 +185,6 @@ export default function AvatarDropdown({ className }: Props) {
               </div>
             </Link>
 
-            {/* ------------------ 2 --------------------- */}
             <Link
               href={'#'}
               className="-m-3 flex items-center rounded-lg p-2 transition duration-150 ease-in-out hover:bg-neutral-100 focus:outline-hidden focus-visible:ring-3 focus-visible:ring-orange-500/50 dark:hover:bg-neutral-700"
