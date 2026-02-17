@@ -16,10 +16,11 @@ const SectionPromo1: FC<SectionPromo1Props> = ({ className = '' }) => {
       <div className="relative mb-16 shrink-0 lg:mr-10 lg:mb-0 lg:w-2/5">
         <Logo className="w-28" />
         <h2 className="mt-6 text-3xl leading-[1.2]! font-semibold tracking-tight sm:mt-10 sm:text-4xl xl:text-5xl 2xl:text-6xl">
-          Earn free money <br /> with Ciseco.
+          Premium Gardening and<br />Kitchen Tools 
         </h2>
         <span className="mt-6 block text-neutral-500 dark:text-neutral-400">
-          With Ciseco you will get freeship & savings combo.
+          Mak.Indus Premium Delivery & Savings
+
         </span>
         <div className="mt-6 flex flex-wrap gap-2 sm:mt-12 sm:gap-x-5">
           <ButtonPrimary href="/collection">Savings combo</ButtonPrimary>

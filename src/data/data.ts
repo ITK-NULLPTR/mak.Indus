@@ -672,112 +672,97 @@ export function getCart(id: string) {
 // ------------------------  DATA ------------------------
 export async function getCollections() {
   return [
-    // default collections 1 - 7
+    // default collections 1 - 6
     {
-      id: 'gid://1',
-      title: 'Jackets',
-      handle: 'jackets',
-      description: 'Explore our collection of trendy jackets that elevate your outfit.',
-      sortDescription: 'Newest arrivals',
-      color: 'bg-indigo-50',
-      count: 77,
-      image: {
-        src: collectionImage1.src,
-        width: collectionImage1.width,
-        height: collectionImage1.height,
-        alt: 'Explore new arrivals',
-      },
-    },
-    {
-      id: 'gid://2',
-      title: 'T-Shirts',
-      handle: 't-shirts',
-      sortDescription: 'Best sellers',
-      description: 'Casual t-shirts for everyday wear, combining comfort and style effortlessly. ',
-      image: {
-        src: collectionImage2.src,
-        width: collectionImage2.width,
-        height: collectionImage2.height,
-        alt: 'Explore new arrivals',
-      },
-      color: 'bg-indigo-50',
-      count: 155,
-    },
-    {
-      id: 'gid://3',
-      title: 'Jeans',
-      handle: 'jeans',
-      sortDescription: 'Best sellers',
-      description: 'Trendy jeans for a casual yet stylish look. Perfect for any occasion. ',
-      image: {
-        src: collectionImage3.src,
-        width: collectionImage3.width,
-        height: collectionImage3.height,
-        alt: 'Explore new arrivals',
-      },
-      color: 'bg-indigo-50',
-      count: 35,
-    },
-    {
-      id: 'gid://4',
-      title: 'Coats',
-      handle: 'coats',
-      sortDescription: 'Best seasonal',
-      description: 'Elegant coats for every season, combining warmth and style. Find your perfect outerwear.',
-      image: {
-        src: collectionImage4.src,
-        width: collectionImage4.width,
-        height: collectionImage4.height,
-        alt: 'Explore new arrivals',
-      },
-      color: 'bg-indigo-50',
-      count: 87,
-    },
-    {
-      id: 'gid://5',
-      title: 'Shoes',
-      handle: 'shoes',
-      sortDescription: 'Top rated',
-      description: 'Trendy shoes for every occasion, from casual to formal. ',
-      image: {
-        src: collectionImage5.src,
-        width: collectionImage5.width,
-        height: collectionImage5.height,
-        alt: 'Explore new arrivals',
-      },
-      color: 'bg-indigo-50',
-      count: 114,
-    },
-    {
-      id: 'gid://6',
-      title: 'Accessories',
-      handle: 'accessories',
-      sortDescription: 'Top transparent',
-      description: 'Stylish accessories to complete your look. Explore our collection of trendy accessories.',
-      image: {
-        src: collectionImage6.src,
-        width: collectionImage6.width,
-        height: collectionImage6.height,
-        alt: 'Explore new arrivals',
-      },
-      color: 'bg-indigo-50',
-      count: 55,
-    },
-    {
-      id: 'gid://7',
-      title: 'Bags',
-      handle: 'bags',
-      sortDescription: 'Best trends',
-      description: 'Stylish bags for every occasion, from casual to formal. Find your perfect bag.',
-      image: {
-        src: collectionImage7.src,
-        width: collectionImage7.width,
-        height: collectionImage7.height,
-        alt: 'Explore new arrivals',
-      },
-      color: 'bg-indigo-50',
-      count: 55,
-    },
+  id: 'gid://1',
+  title: 'Gardening Tools',
+  handle: 'gardening-tools',
+  sortDescription: 'Best sellers',
+  description: 'Durable gardening tools designed for planting, pruning, and maintaining healthy outdoor spaces.',
+  color: 'bg-green-50',
+  count: 48,
+  image: {
+    src: collectionImage1.src,
+    width: collectionImage1.width,
+    height: collectionImage1.height,
+    alt: 'Gardening tools collection',
+  },
+},
+{
+  id: 'gid://2',
+  title: 'Kitchen Tools',
+  handle: 'kitchen-tools',
+  sortDescription: 'Top rated',
+  description: 'Essential kitchen tools crafted for cooking, baking, and everyday meal preparation.',
+  image: {
+    src: collectionImage2.src,
+    width: collectionImage2.width,
+    height: collectionImage2.height,
+    alt: 'Kitchen tools collection',
+  },
+  color: 'bg-yellow-50',
+  count: 92,
+},
+{
+  id: 'gid://3',
+  title: 'Cookware',
+  handle: 'cookware',
+  sortDescription: 'Best sellers',
+  description: 'High-quality cookware built for even heating, durability, and effortless cooking.',
+  image: {
+    src: collectionImage3.src,
+    width: collectionImage3.width,
+    height: collectionImage3.height,
+    alt: 'Cookware collection',
+  },
+  color: 'bg-orange-50',
+  count: 36,
+},
+{
+  id: 'gid://4',
+  title: 'Garden Accessories',
+  handle: 'garden-accessories',
+  sortDescription: 'Seasonal picks',
+  description: 'Practical garden accessories to support plant care, storage, and outdoor organization.',
+  image: {
+    src: collectionImage4.src,
+    width: collectionImage4.width,
+    height: collectionImage4.height,
+    alt: 'Garden accessories collection',
+  },
+  color: 'bg-green-100',
+  count: 61,
+},
+{
+  id: 'gid://5',
+  title: 'Kitchen Accessories',
+  handle: 'kitchen-accessories',
+  sortDescription: 'Top rated',
+  description: 'Functional kitchen accessories that add convenience and efficiency to your cooking space.',
+  image: {
+    src: collectionImage5.src,
+    width: collectionImage5.width,
+    height: collectionImage5.height,
+    alt: 'Kitchen accessories collection',
+  },
+  color: 'bg-amber-50',
+  count: 79,
+},
+{
+  id: 'gid://6',
+  title: 'Storage & Organization',
+  handle: 'storage-organization',
+  sortDescription: 'Most popular',
+  description: 'Smart storage and organization solutions for kitchens and garden tools.',
+  image: {
+    src: collectionImage6.src,
+    width: collectionImage6.width,
+    height: collectionImage6.height,
+    alt: 'Storage and organization collection',
+  },
+  color: 'bg-slate-50',
+  count: 54,
+},
 
     //  Featured collections 8 - 11
     {
@@ -915,84 +900,89 @@ export async function getCollections() {
 
 export async function getGroupCollections() {
   const allCollections = await getCollections()
-  const collections = allCollections.slice(0, 6)
+  const collections = allCollections.slice(0, 7) // adjust if needed
+
   return [
     {
       id: '1',
-      title: 'Women',
-      handle: 'women',
-      description: 'lorem ipsum',
+      title: 'Gardening Tools',
+      handle: 'gardening-tools',
+      description: 'Durable gardening tools designed for planting, pruning, and maintaining healthy outdoor spaces',
       iconSvg: `<svg class="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 16C15.866 16 19 12.866 19 9C19 5.13401 15.866 2 12 2C8.13401 2 5 5.13401 5 9C5 12.866 8.13401 16 12 16Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M12 16V22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M15 19H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>`,
+                <path d="M12 2L15 8H9L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 22V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>`,
       collections,
     },
     {
       id: '2',
-      title: 'Man',
-      handle: 'man',
-      description: 'lorem ipsum',
+      title: 'Kitchen Tools',
+      handle: 'kitchen-tools',
+      description: 'Essential kitchen tools crafted for cooking, baking, and everyday meal preparation',
       iconSvg: `<svg class="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M10.25 21.5C14.5302 21.5 18 18.0302 18 13.75C18 9.46979 14.5302 6 10.25 6C5.96979 6 2.5 9.46979 2.5 13.75C2.5 18.0302 5.96979 21.5 10.25 21.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M21.5 2.5L16 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M15 2.5H21.5V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>`,
+                <path d="M3 6H21V18H3V6Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M3 10H21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>`,
       collections: shuffleArray(collections),
     },
     {
       id: '3',
-      title: 'Accessories',
-      handle: 'accessories',
-      description: 'lorem ipsum',
+      title: 'Cookware',
+      handle: 'cookware',
+      description: 'High-quality cookware built for even heating, durability, and effortless cooking',
       iconSvg: `<svg class="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M21.08 8.58003V15.42C21.08 16.54 20.48 17.58 19.51 18.15L13.57 21.58C12.6 22.14 11.4 22.14 10.42 21.58L4.48003 18.15C3.51003 17.59 2.91003 16.55 2.91003 15.42V8.58003C2.91003 7.46003 3.51003 6.41999 4.48003 5.84999L10.42 2.42C11.39 1.86 12.59 1.86 13.57 2.42L19.51 5.84999C20.48 6.41999 21.08 7.45003 21.08 8.58003Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M12 11.0001C13.2869 11.0001 14.33 9.95687 14.33 8.67004C14.33 7.38322 13.2869 6.34009 12 6.34009C10.7132 6.34009 9.67004 7.38322 9.67004 8.67004C9.67004 9.95687 10.7132 11.0001 12 11.0001Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M16 16.6601C16 14.8601 14.21 13.4001 12 13.4001C9.79 13.4001 8 14.8601 8 16.6601" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>`,
+                <path d="M4 12H20V16H4V12Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8 16V18H16V16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>`,
       collections: shuffleArray(collections),
     },
     {
       id: '4',
-      title: 'Footwear',
-      handle: 'footwear',
-      description: 'lorem ipsum',
+      title: 'Garden Accessories',
+      handle: 'garden-accessories',
+      description: 'Practical garden accessories to support plant care, storage, and outdoor organization',
       iconSvg: `<svg class="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M17.1801 18C19.5801 18 20.1801 16.65 20.1801 15V9C20.1801 7.35 19.5801 6 17.1801 6C14.7801 6 14.1801 7.35 14.1801 9V15C14.1801 16.65 14.7801 18 17.1801 18Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M6.81995 18C4.41995 18 3.81995 16.65 3.81995 15V9C3.81995 7.35 4.41995 6 6.81995 6C9.21995 6 9.81995 7.35 9.81995 9V15C9.81995 16.65 9.21995 18 6.81995 18Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M9.81995 12H14.1799" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M22.5 14.5V9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M1.5 14.5V9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>`,
+                <path d="M12 2C15.866 2 19 5.134 19 9C19 12.866 15.866 16 12 16C8.134 16 5 12.866 5 9C5 5.134 8.134 2 12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 16V22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>`,
       collections: shuffleArray(collections),
     },
     {
       id: '5',
-      title: 'Jewelry',
-      handle: 'jewelry',
-      description: 'lorem ipsum',
+      title: 'Kitchen Accessories',
+      handle: 'kitchen-accessories',
+      description: 'Functional kitchen accessories that add convenience and efficiency to your cooking space',
       iconSvg: `<svg class="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M16.7 18.98H7.30002C6.88002 18.98 6.41002 18.65 6.27002 18.25L2.13002 6.66999C1.54002 5.00999 2.23002 4.49999 3.65002 5.51999L7.55002 8.30999C8.20002 8.75999 8.94002 8.52999 9.22002 7.79999L10.98 3.10999C11.54 1.60999 12.47 1.60999 13.03 3.10999L14.79 7.79999C15.07 8.52999 15.81 8.75999 16.45 8.30999L20.11 5.69999C21.67 4.57999 22.42 5.14999 21.78 6.95999L17.74 18.27C17.59 18.65 17.12 18.98 16.7 18.98Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M6.5 22H17.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M9.5 14H14.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>`,
+                <path d="M4 4H20V20H4V4Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M4 10H20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>`,
       collections: shuffleArray(collections),
     },
     {
       id: '6',
-      title: 'Beauty',
-      handle: 'beauty',
-      description: 'lorem ipsum',
+      title: 'Storage & Organization',
+      handle: 'storage-organization',
+      description: 'Smart storage and organization solutions for kitchens and garden tools',
       iconSvg: `<svg class="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M16.7 18.98H7.30002C6.88002 18.98 6.41002 18.65 6.27002 18.25L2.13002 6.66999C1.54002 5.00999 2.23002 4.49999 3.65002 5.51999L7.55002 8.30999C8.20002 8.75999 8.94002 8.52999 9.22002 7.79999L10.98 3.10999C11.54 1.60999 12.47 1.60999 13.03 3.10999L14.79 7.79999C15.07 8.52999 15.81 8.75999 16.45 8.30999L20.11 5.69999C21.67 4.57999 22.42 5.14999 21.78 6.95999L17.74 18.27C17.59 18.65 17.12 18.98 16.7 18.98Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M6.5 22H17.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M9.5 14H14.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>`,
+                <path d="M3 6H21V18H3V6Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 6V18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>`,
+      collections: shuffleArray(collections),
+    },
+    {
+      id: '7',
+      title: 'Outdoor Essentials',
+      handle: 'outdoor-essentials',
+      description: 'Essential outdoor tools and supplies to keep your garden functional and well maintained',
+      iconSvg: `<svg class="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 12H22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 2V22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>`,
       collections: shuffleArray(collections),
     },
   ]
 }
+
 
 export async function getCollectionByHandle(handle: string) {
   // lowercase handle

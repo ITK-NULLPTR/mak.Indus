@@ -177,7 +177,7 @@ export const FiltersMenuTabs = ({
                     className="absolute -start-5 top-full z-50 mt-3 w-sm transition data-closed:translate-y-1 data-closed:opacity-0"
                   >
                     <div className="rounded-2xl border border-neutral-200 bg-white shadow-xl dark:border-neutral-700 dark:bg-neutral-900">
-                      <div className="hidden-scrollbar max-h-[28rem] overflow-y-auto px-5 py-6">
+                      <div className="hidden-scrollbar max-h-28rem overflow-y-auto px-5 py-6">
                         {filterOption.type === 'checkbox' && (
                           <CheckboxGroup>
                             {filterOption.options?.map((option, i) => {

@@ -22,11 +22,10 @@ const SectionPromo2: FC<SectionPromo2Props> = ({ className }) => {
         <div className="relative max-w-lg lg:w-[45%]">
           <Logo className="w-28" />
           <h2 className="mt-6 text-3xl leading-[1.13]! font-semibold tracking-tight sm:mt-10 sm:text-4xl xl:text-5xl 2xl:text-6xl">
-            Special offer <br />
-            in kids products
+            Advanced Tools<br /> for Gardening 
           </h2>
           <span className="mt-6 block text-neutral-500 dark:text-neutral-400">
-            Fashion is a form of self-expression and autonomy at a particular period and place.
+            Gardening tools support efficient, mindful, and productive gardening.
           </span>
           <div className="mt-6 flex space-x-2 sm:mt-12 sm:space-x-5">
             <ButtonPrimary href="/search">Discover more</ButtonPrimary>

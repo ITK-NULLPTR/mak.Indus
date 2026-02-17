@@ -8,16 +8,11 @@ interface Props {
 }
 
 const LikeButton: React.FC<Props> = ({ className = '', liked = false }) => {
-  const [isLiked, setIsLiked] = useState(liked)
-
-  // make random for demo
-  useEffect(() => {
-    setIsLiked(Math.random() > 0.5)
-  }, [])
+  const [isLiked, setIsLiked] = useState(() => Math.random() > 0.5)
 
   return (
     <button
-      className={`flex h-9 w-9 items-center justify-center rounded-full bg-white text-neutral-700 nc-shadow-lg dark:bg-neutral-900 dark:text-neutral-200 ${className}`}
+      className={`flex h-9 w-9 items-center cursor-pointer justify-center rounded-full bg-white text-neutral-700 nc-shadow-lg dark:bg-neutral-900 dark:text-neutral-200 ${className}`}
       onClick={() => setIsLiked(!isLiked)}
     >
       <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none">

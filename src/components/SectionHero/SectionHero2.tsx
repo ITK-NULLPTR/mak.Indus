@@ -2,9 +2,6 @@
 'use client'
 
 import backgroundLineSvg from '@/images/Moon.svg'
-import heroImage1 from '@/images/hero-right-1.png'
-import heroImage2 from '@/images/hero-right-2.png'
-import heroImage3 from '@/images/hero-right-3.png'
 import ButtonPrimary from '@/shared/Button/ButtonPrimary'
 import { Search01Icon } from '@hugeicons/core-free-icons'
 import { HugeiconsIcon } from '@hugeicons/react'
@@ -13,31 +10,35 @@ import Image from 'next/image'
 import { FC, useEffect, useState } from 'react'
 import { useSwipeable } from 'react-swipeable'
 import { useInterval } from 'react-use'
+import gardening1 from '@/images/gardening1.webp'
+import gardening2 from '@/images/gardening2.webp'
+import kitchen3 from '@/images/kitchen3.webp'
+
 
 // DEMO DATA
 const data = [
   {
     id: 1,
-    imageUrl: heroImage1.src,
+    imageUrl: gardening1.src,
     heading: 'Exclusive collection <br /> for everyone',
-    subHeading: 'In this season, find the best 🔥',
-    btnText: 'Explore shop now',
+    subHeading: 'Grow smarter, cook better this season 🌱🍳',
+    btnText: 'Start shopping now',
     btnHref: '/collections/all',
   },
   {
     id: 2,
-    imageUrl: heroImage2.src,
+    imageUrl: gardening2.src,
     heading: 'Exclusive collection <br /> for everyone',
-    subHeading: 'In this season, find the best 🔥',
-    btnText: 'Explore shop now',
+    subHeading: 'Grow smarter, cook better this season 🌱🍳',
+    btnText: 'Start shopping now',
     btnHref: '/collections/all',
   },
   {
     id: 3,
-    imageUrl: heroImage3.src,
+    imageUrl: kitchen3.src,
     heading: 'Exclusive collection <br /> for everyone',
-    subHeading: 'In this season, find the best 🔥',
-    btnText: 'Explore shop now',
+    subHeading: 'Grow smarter, cook better this season 🌱🍳',
+    btnText: 'Start shopping now',
     btnHref: '/collections/all',
   },
 ]
@@ -181,7 +182,7 @@ const SectionHero2: FC<Props> = ({ className = '' }) => {
         <div className="relative -z-10 flex-1/2 lg:pr-10">
           <Image
             sizes="(max-width: 768px) 100vw, 60vw"
-            className="h-auto w-full max-w-160 object-contain fade--animation__image select-none"
+            className="h-auto w-full max-w-160 rounded-2xl object-contain fade--animation__image select-none"
             src={item.imageUrl}
             alt={item.heading}
             width={790}

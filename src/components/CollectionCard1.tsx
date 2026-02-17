@@ -40,7 +40,7 @@ const CollectionCard1: FC<Props> = ({ className = '', size = 'normal', collectio
         <span
           className={`${
             size === 'large' ? 'text-sm' : 'text-xs'
-          } mt-[2px] block text-neutral-500 dark:text-neutral-400`}
+          } mt-2px block text-neutral-500 dark:text-neutral-400`}
         >
           {collection.sortDescription}
         </span>

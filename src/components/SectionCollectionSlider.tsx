@@ -18,7 +18,7 @@ interface Props {
 const SectionCollectionSlider = ({
   className,
   collections,
-  headingDim = 'Good things are waiting for you',
+  headingDim = 'Quality tools are waiting for you',
   heading = 'Discover more',
   emblaOptions = {
     slidesToScroll: 'auto',
