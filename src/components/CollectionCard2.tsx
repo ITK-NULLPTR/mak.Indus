@@ -15,7 +15,7 @@ const CollectionCard2: FC<Props> = ({ className, ratioClass = 'aspect-square', c
     return null
   }
   return (
-    <Link href={'/collections/' + collection.handle} className={clsx(className, 'block')}>
+    <Link href={collection.href || '/collections/' + collection.handle} className={clsx(className, 'block')}>
       <div className={clsx('group relative w-full overflow-hidden rounded-2xl', ratioClass, collection.color)}>
         {collection.image && (
           <div className="absolute inset-5 xl:inset-14">

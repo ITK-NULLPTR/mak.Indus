@@ -1,3 +1,5 @@
+
+'use client'
 import { TCollection } from '@/data/data'
 import { Button } from '@/shared/Button/Button'
 import Image from 'next/image'
@@ -56,7 +58,7 @@ const CollectionCard3: FC<Props> = ({ className = '', collection }) => {
         </div>
       </div>
 
-      <Link href={'/collections/' + collection.handle} className="absolute inset-0" />
+      <Link href={collection.href || '/collections/' + collection.handle} className="absolute inset-0" />
     </div>
   )
 }

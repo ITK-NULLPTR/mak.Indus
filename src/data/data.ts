@@ -672,101 +672,12 @@ export function getCart(id: string) {
 // ------------------------  DATA ------------------------
 export async function getCollections() {
   return [
-    // default collections 1 - 6
-    {
-  id: 'gid://1',
-  title: 'Gardening Tools',
-  handle: 'gardening-tools',
-  sortDescription: 'Best sellers',
-  description: 'Durable gardening tools designed for planting, pruning, and maintaining healthy outdoor spaces.',
-  color: 'bg-green-50',
-  count: 48,
-  image: {
-    src: collectionImage1.src,
-    width: collectionImage1.width,
-    height: collectionImage1.height,
-    alt: 'Gardening tools collection',
-  },
-},
-{
-  id: 'gid://2',
-  title: 'Kitchen Tools',
-  handle: 'kitchen-tools',
-  sortDescription: 'Top rated',
-  description: 'Essential kitchen tools crafted for cooking, baking, and everyday meal preparation.',
-  image: {
-    src: collectionImage2.src,
-    width: collectionImage2.width,
-    height: collectionImage2.height,
-    alt: 'Kitchen tools collection',
-  },
-  color: 'bg-yellow-50',
-  count: 92,
-},
-{
-  id: 'gid://3',
-  title: 'Cookware',
-  handle: 'cookware',
-  sortDescription: 'Best sellers',
-  description: 'High-quality cookware built for even heating, durability, and effortless cooking.',
-  image: {
-    src: collectionImage3.src,
-    width: collectionImage3.width,
-    height: collectionImage3.height,
-    alt: 'Cookware collection',
-  },
-  color: 'bg-orange-50',
-  count: 36,
-},
-{
-  id: 'gid://4',
-  title: 'Garden Accessories',
-  handle: 'garden-accessories',
-  sortDescription: 'Seasonal picks',
-  description: 'Practical garden accessories to support plant care, storage, and outdoor organization.',
-  image: {
-    src: collectionImage4.src,
-    width: collectionImage4.width,
-    height: collectionImage4.height,
-    alt: 'Garden accessories collection',
-  },
-  color: 'bg-green-100',
-  count: 61,
-},
-{
-  id: 'gid://5',
-  title: 'Kitchen Accessories',
-  handle: 'kitchen-accessories',
-  sortDescription: 'Top rated',
-  description: 'Functional kitchen accessories that add convenience and efficiency to your cooking space.',
-  image: {
-    src: collectionImage5.src,
-    width: collectionImage5.width,
-    height: collectionImage5.height,
-    alt: 'Kitchen accessories collection',
-  },
-  color: 'bg-amber-50',
-  count: 79,
-},
-{
-  id: 'gid://6',
-  title: 'Storage & Organization',
-  handle: 'storage-organization',
-  sortDescription: 'Most popular',
-  description: 'Smart storage and organization solutions for kitchens and garden tools.',
-  image: {
-    src: collectionImage6.src,
-    width: collectionImage6.width,
-    height: collectionImage6.height,
-    alt: 'Storage and organization collection',
-  },
-  color: 'bg-slate-50',
-  count: 54,
-},
 
-    //  Featured collections 8 - 11
+
+
+    // Featured collections 1 - 8
     {
-      id: 'gid://8',
+      id: 'gid://1',
       title: 'Explore new arrivals',
       handle: 'explore-new-arrivals',
       sortDescription: 'Shop the latest <br /> from top brands',
@@ -782,7 +693,7 @@ export async function getCollections() {
       },
     },
     {
-      id: 'gid://9',
+      id: 'gid://2',
       title: 'Sale collection',
       handle: 'sale-collection',
       sortDescription: 'Up to <br /> 80% off retail',
@@ -798,7 +709,7 @@ export async function getCollections() {
       },
     },
     {
-      id: 'gid://10',
+      id: 'gid://3',
       title: 'Sale collection',
       handle: 'sale-collection-2',
       sortDescription: 'Up to <br /> 90% off retail',
@@ -814,87 +725,84 @@ export async function getCollections() {
       },
     },
     {
-      id: 'gid://11',
-      title: 'Digital gift cards',
-      handle: 'digital-gift-cards',
-      sortDescription: 'Give the gift <br /> of choice',
-      description:
-        'Excoolent new arrivals for every occasion, from casual to formal. Explore our collection of trendy jackets that elevate your outfit.',
-      color: 'bg-red-50',
-      count: 112,
+      id: 'gid://4',
+      title: 'Gardening Tools',
+      handle: 'gardening-tools',
+      href: '/gardening',
+      sortDescription: 'Best sellers',
+      description: 'Durable gardening tools designed for planting, pruning, and maintaining healthy outdoor spaces.',
+      color: 'bg-green-50',
+      count: 48,
+      image: {
+        src: collectionImage1.src,
+        width: collectionImage1.width,
+        height: collectionImage1.height,
+        alt: 'Gardening tools collection',
+      },
+    },
+    {
+      id: 'gid://5',
+      title: 'Kitchen Tools',
+      handle: 'kitchen-tools',
+      href: '/kitchen',
+      sortDescription: 'Top rated',
+      description: 'Essential kitchen tools crafted for cooking, baking, and everyday meal preparation.',
       image: {
         src: collectionImage2.src,
         width: collectionImage2.width,
         height: collectionImage2.height,
-        alt: 'Explore new arrivals',
+        alt: 'Kitchen tools collection',
       },
+      color: 'bg-yellow-50',
+      count: 92,
+    },
+    {
+      id: 'gid://6',
+      title: 'Cookware',
+      handle: 'cookware',
+      sortDescription: 'Best sellers',
+      description: 'High-quality cookware built for even heating, durability, and effortless cooking.',
+      image: {
+        src: collectionImage3.src,
+        width: collectionImage3.width,
+        height: collectionImage3.height,
+        alt: 'Cookware collection',
+      },
+      color: 'bg-orange-50',
+      count: 36,
+    },
+    {
+      id: 'gid://7',
+      title: 'Garden Accessories',
+      handle: 'garden-accessories',
+      sortDescription: 'Seasonal picks',
+      description: 'Practical garden accessories to support plant care, storage, and outdoor organization.',
+      image: {
+        src: collectionImage4.src,
+        width: collectionImage4.width,
+        height: collectionImage4.height,
+        alt: 'Garden accessories collection',
+      },
+      color: 'bg-green-100',
+      count: 61,
+    },
+    {
+      id: 'gid://8',
+      title: 'Kitchen Accessories',
+      handle: 'kitchen',
+      sortDescription: 'Top rated',
+      description: 'Functional kitchen accessories that add convenience and efficiency to your cooking space.',
+      image: {
+        src: collectionImage5.src,
+        width: collectionImage5.width,
+        height: collectionImage5.height,
+        alt: 'Kitchen accessories collection',
+      },
+      color: 'bg-amber-50',
+      count: 79,
     },
 
-    // Brands collections 12 - 15
-    {
-      id: 'gid://12',
-      title: 'Sport Kits',
-      handle: 'sport-kits',
-      sortDescription: '20+ categories',
-      description:
-        'Excoolent new arrivals for every occasion, from casual to formal. Explore our collection of trendy jackets that elevate your outfit.',
-      color: 'bg-neutral-100',
-      count: 77,
-      image: {
-        src: boothImage1.src,
-        width: boothImage1.width,
-        height: boothImage1.height,
-        alt: 'Explore new arrivals',
-      },
-    },
-    {
-      id: 'gid://13',
-      title: 'Beauty Products',
-      handle: 'beauty-products',
-      color: 'bg-neutral-100',
-      sortDescription: '20+ categories',
-      description:
-        'Excoolent new arrivals for every occasion, from casual to formal. Explore our collection of trendy jackets that elevate your outfit.',
-      count: 77,
-      image: {
-        src: boothImage2.src,
-        width: boothImage2.width,
-        height: boothImage2.height,
-        alt: 'Explore new arrivals',
-      },
-    },
-    {
-      id: 'gid://14',
-      title: 'Travel Kits',
-      handle: 'travel-kits',
-      sortDescription: '20+ categories',
-      description:
-        'Excoolent new arrivals for every occasion, from casual to formal. Explore our collection of trendy jackets that elevate your outfit.',
-      color: 'bg-neutral-100',
-      count: 77,
-      image: {
-        src: boothImage3.src,
-        width: boothImage3.width,
-        height: boothImage3.height,
-        alt: 'Explore new arrivals',
-      },
-    },
-    {
-      id: 'gid://15',
-      title: 'Pets Food',
-      handle: 'pets-food',
-      sortDescription: '44+ categories',
-      description:
-        'Excoolent new arrivals for every occasion, from casual to formal. Explore our collection of trendy jackets that elevate your outfit.',
-      color: 'bg-neutral-100',
-      count: 99,
-      image: {
-        src: boothImage4.src,
-        width: boothImage4.width,
-        height: boothImage4.height,
-        alt: 'Explore new arrivals',
-      },
-    },
+
   ]
 }
 
@@ -1909,7 +1817,7 @@ export async function getProductDetailByHandle(handle: string) {
 }
 
 // COMMON Types ------------------------------------------------------------------------
-export type TCollection = Partial<Awaited<ReturnType<typeof getCollections>>[number]>
+export type TCollection = Partial<Awaited<ReturnType<typeof getCollections>>[number]> & { href?: string }
 export type TProductItem = Partial<Awaited<ReturnType<typeof getProducts>>[number]>
 export type TProductDetail = Partial<Awaited<ReturnType<typeof getProductDetailByHandle>>>
 export type TCardProduct = Partial<Awaited<ReturnType<typeof getCart>['lines'][number]>>

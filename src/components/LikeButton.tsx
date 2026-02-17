@@ -8,7 +8,7 @@ interface Props {
 }
 
 const LikeButton: React.FC<Props> = ({ className = '', liked = false }) => {
-  const [isLiked, setIsLiked] = useState(() => Math.random() > 0.5)
+  const [isLiked, setIsLiked] = useState(liked)
 
   return (
     <button

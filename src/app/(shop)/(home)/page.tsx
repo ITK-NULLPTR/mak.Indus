@@ -12,7 +12,7 @@ import SectionPromo1 from '@/components/SectionPromo1'
 import SectionPromo2 from '@/components/SectionPromo2'
 import SectionSliderLargeProduct from '@/components/SectionSliderLargeProduct'
 import SectionSliderProductCard from '@/components/SectionSliderProductCard'
- import { getBlogPosts, getCollections, getGroupCollections, getProducts } from '@/data/data'
+import { getBlogPosts, getCollections, getGroupCollections, getProducts } from '@/data/data'
 import { Button } from '@/shared/Button/Button'
 import { ArrowRightIcon } from '@heroicons/react/24/solid'
 import { Metadata } from 'next'
@@ -26,8 +26,8 @@ export const metadata: Metadata = {
 
 async function PageHome() {
   const allCollections = await getCollections()
-  const departmentCollections = allCollections.slice(11, 15)
-  const featuredCollections = allCollections.slice(7, 11)
+  const departmentCollections = allCollections.slice(0, 4)
+  const featuredCollections = allCollections.slice(3, 8)
   const groupCollections = await getGroupCollections()
   const products = await getProducts()
   const carouselProducts1 = products.slice(0, 5)
@@ -43,9 +43,9 @@ async function PageHome() {
       <div className="relative container my-24 flex flex-col gap-y-24 lg:my-32 lg:gap-y-32">
         <SectionSliderProductCard data={carouselProducts1} />
         <Divider />
-        <div className="pb-16">
+        {/* <div className="pb-16">
           <SectionHowItWork />
-        </div>
+        </div> */}
         <SectionPromo1 />
         <div className="relative pt-24 pb-20 lg:pt-28">
           <BackgroundSection />
@@ -64,7 +64,7 @@ async function PageHome() {
         <Divider />
         <div>
           <Heading headingDim="From the Ciseco blog">The latest news</Heading>
-           <div className="mt-20 flex justify-center"> 
+          <div className="mt-20 flex justify-center">
             <Button href="/blog" outline>
               Show all blog articles
               <ArrowRightIcon className="h-4 w-4" />
