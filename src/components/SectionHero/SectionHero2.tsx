@@ -13,6 +13,8 @@ import gardening1 from '@/images/gardening1.webp'
 import gardening2 from '@/images/gardening2.webp'
 import kitchen3 from '@/images/kitchen3.webp'
 
+
+// DEMO DATA
 const data = [
   {
     id: 1,
@@ -20,7 +22,7 @@ const data = [
     heading: 'Exclusive collection <br /> for everyone',
     subHeading: 'Grow smarter, cook better this season 🌱🍳',
     btnText: 'Start shopping now',
-    btnHref: '/collections/all',
+    btnHref: '/gardening',
   },
   {
     id: 2,
@@ -28,7 +30,7 @@ const data = [
     heading: 'Exclusive collection <br /> for everyone',
     subHeading: 'Grow smarter, cook better this season 🌱🍳',
     btnText: 'Start shopping now',
-    btnHref: '/collections/all',
+    btnHref: '/gardening',
   },
   {
     id: 3,
@@ -36,7 +38,7 @@ const data = [
     heading: 'Exclusive collection <br /> for everyone',
     subHeading: 'Grow smarter, cook better this season 🌱🍳',
     btnText: 'Start shopping now',
-    btnHref: '/collections/all',
+    btnHref: '/kitchen',
   },
 ]
 
@@ -197,7 +199,7 @@ const SectionHero2: FC<Props> = ({ className = '' }) => {
 
       <button
         type="button"
-        className="absolute inset-y-px cursor-pointer end-4 z-20 flex items-center justify-center pointer-events-none group"
+        className="absolute inset-y-px end-0 z-10 hidden items-center justify-center px-10 text-neutral-700 lg:flex"
         onClick={handleClickNext}
       >
         <div className="pointer-events-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 dark:bg-black/20 backdrop-blur-md border border-white/30 dark:border-white/10 text-neutral-800 dark:text-white transition-all hover:bg-primary-600 hover:text-white hover:scale-110">
@@ -215,7 +217,7 @@ const SectionHero2: FC<Props> = ({ className = '' }) => {
       </button>
       <button
         type="button"
-        className="absolute inset-y-px cursor-pointer start-0 z-20 flex items-center justify-center pointer-events-none group"
+        className="absolute inset-y-px start-0 z-10 hidden items-center justify-center px-10 text-neutral-700 lg:flex"
         onClick={handleClickPrev}
       >
         <div className="pointer-events-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 dark:bg-black/20 backdrop-blur-md border border-white/30 dark:border-white/10 text-neutral-800 dark:text-white transition-all hover:bg-primary-600 hover:text-white hover:scale-110">
