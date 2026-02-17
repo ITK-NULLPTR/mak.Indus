@@ -29,7 +29,7 @@ const CollectionCard3: FC<Props> = ({ className = '', collection }) => {
                   alt={collection.image.alt || ''}
                   src={collection.image}
                   fill
-                  className="object-contain object-right ml-16 drop-shadow-xl"
+                  className="object-contain object-right ml-12 drop-shadow-xl"
                   sizes="300px"
                 />
               </div>
