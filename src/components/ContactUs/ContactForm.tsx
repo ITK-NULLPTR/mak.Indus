@@ -41,7 +41,7 @@ const ContactForm = () => {
     return (
         <div className="bg-white p-8 rounded-2xl shadow-xl border border-gray-100/50 backdrop-blur-sm">
             <h3 className="text-3xl font-bold text-gray-900 mb-2">Send us a Message</h3>
-            <p className="text-gray-500 mb-8">Fill out the form below and we'll reply within 24 hours.</p>
+            <p className="text-gray-500 mb-8">Fill out the form below and we&apos;ll reply within 24 hours.</p>
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
