@@ -46,7 +46,7 @@ const SectionCollectionSlider = ({
           {collections.map((collection) => (
             <div
               key={collection.id}
-              className="max-w-2xl embla__slide basis-11/12 ps-10 sm:basis-2/3 lg:basis-1/3 xl:basis-1/4 2xl:basis-[32.5%]"
+              className="max-w-2xl embla__slide basis-10/12 ps-10 sm:basis-1/2 lg:basis-1/3 xl:basis-1/4 2xl:basis-[30%]"
             >
               <CollectionCard3 collection={collection} />
             </div>

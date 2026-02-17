@@ -24,12 +24,12 @@ const CollectionCard3: FC<Props> = ({ className = '', collection }) => {
         <div>
           <div className="absolute inset-5 sm:inset-8">
             {collection.image && (
-              <div className="absolute end-0 h-full w-full max-w-52">
+              <div className="absolute end-0 h-full w-full">
                 <Image
                   alt={collection.image.alt || ''}
                   src={collection.image}
                   fill
-                  className="object-contain object-center drop-shadow-xl"
+                  className="object-contain object-right ml-16 drop-shadow-xl"
                   sizes="300px"
                 />
               </div>
