@@ -15,7 +15,7 @@ import gardening2 from '@/images/gardening2.webp'
 import kitchen3 from '@/images/kitchen3.webp'
 
 
-// DEMO DATA
+
 const data = [
   {
     id: 1,
@@ -23,7 +23,7 @@ const data = [
     heading: 'Exclusive collection <br /> for everyone',
     subHeading: 'Grow smarter, cook better this season 🌱🍳',
     btnText: 'Start shopping now',
-    btnHref: '/collections/all',
+    btnHref: '/gardening',
   },
   {
     id: 2,
@@ -31,7 +31,7 @@ const data = [
     heading: 'Exclusive collection <br /> for everyone',
     subHeading: 'Grow smarter, cook better this season 🌱🍳',
     btnText: 'Start shopping now',
-    btnHref: '/collections/all',
+    btnHref: '/gardening',
   },
   {
     id: 3,
@@ -39,7 +39,7 @@ const data = [
     heading: 'Exclusive collection <br /> for everyone',
     subHeading: 'Grow smarter, cook better this season 🌱🍳',
     btnText: 'Start shopping now',
-    btnHref: '/collections/all',
+    btnHref: '/kitchen',
   },
 ]
 
@@ -200,7 +200,7 @@ const SectionHero2: FC<Props> = ({ className = '' }) => {
 
       <button
         type="button"
-        className="absolute inset-y-px end-0 z-10 hidden items-center justify-center px-10 text-neutral-700 lg:flex"
+        className="absolute inset-y-px end-0 z-10 hidden items-center justify-center px-0 text-neutral-700 lg:flex"
         onClick={handleClickNext}
       >
         <svg
@@ -216,7 +216,7 @@ const SectionHero2: FC<Props> = ({ className = '' }) => {
       </button>
       <button
         type="button"
-        className="absolute inset-y-px start-0 z-10 hidden items-center justify-center px-10 text-neutral-700 lg:flex"
+        className="absolute inset-y-px start-0 z-10 hidden items-center justify-center px-0 text-neutral-700 lg:flex"
         onClick={handleClickPrev}
       >
         <svg
