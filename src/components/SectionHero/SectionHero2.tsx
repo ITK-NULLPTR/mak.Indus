@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/immutability */
 'use client'
 
 import backgroundLineSvg from '@/images/Moon.svg'
@@ -14,8 +13,6 @@ import gardening1 from '@/images/gardening1.webp'
 import gardening2 from '@/images/gardening2.webp'
 import kitchen3 from '@/images/kitchen3.webp'
 
-
-// DEMO DATA
 const data = [
   {
     id: 1,
@@ -144,7 +141,7 @@ const SectionHero2: FC<Props> = ({ className = '' }) => {
         </div>
 
         {/* DOTS */}
-        <div className="absolute start-1/2 bottom-4 flex -translate-x-1/2 justify-center rtl:translate-x-1/2">
+        <div className="absolute start-1/2 bottom-4 flex -translate-x-1/2 justify-center rtl:translate-x-1/2 z-20">
           {data.map((_, index) => {
             const isActive = indexActive === index
             return (
@@ -195,43 +192,49 @@ const SectionHero2: FC<Props> = ({ className = '' }) => {
   }
 
   return (
-    <div className={clsx('relative z-1', className)} {...handlers}>
+    <div className={clsx('relative z-1 overflow-hidden', className)} {...handlers}>
       {data.map((_, index) => renderItem(index))}
 
       <button
         type="button"
-        className="absolute inset-y-px end-0 z-10 hidden items-center justify-center px-10 text-neutral-700 lg:flex"
+        className="absolute inset-y-px cursor-pointer end-4 z-20 flex items-center justify-center pointer-events-none group"
         onClick={handleClickNext}
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={0.6}
-          stroke="currentColor"
-          className="h-12 w-12"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-        </svg>
+        <div className="pointer-events-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 dark:bg-black/20 backdrop-blur-md border border-white/30 dark:border-white/10 text-neutral-800 dark:text-white transition-all hover:bg-primary-600 hover:text-white hover:scale-110">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="h-6 w-6"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+          </svg>
+        </div>
       </button>
       <button
         type="button"
-        className="absolute inset-y-px start-0 z-10 hidden items-center justify-center px-10 text-neutral-700 lg:flex"
+        className="absolute inset-y-px cursor-pointer start-0 z-20 flex items-center justify-center pointer-events-none group"
         onClick={handleClickPrev}
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={0.6}
-          stroke="currentColor"
-          className="h-12 w-12"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-        </svg>
+        <div className="pointer-events-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 dark:bg-black/20 backdrop-blur-md border border-white/30 dark:border-white/10 text-neutral-800 dark:text-white transition-all hover:bg-primary-600 hover:text-white hover:scale-110">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="h-6 w-6"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+          </svg>
+        </div>
       </button>
     </div>
   )
 }
 
 export default SectionHero2
+
+
