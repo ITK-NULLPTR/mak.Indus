@@ -3,11 +3,8 @@ import { Divider } from '@/components/Divider'
 import Heading from '@/components/Heading/Heading'
 import SectionClientSay from '@/components/SectionClientSay'
 import SectionCollectionSlider from '@/components/SectionCollectionSlider'
-import SectionCollectionSlider2 from '@/components/SectionCollectionSlider2'
-import SectionGridFeatureItems from '@/components/SectionGridFeatureItems'
 import SectionGridMoreExplore from '@/components/SectionGridMoreExplore/SectionGridMoreExplore'
 import SectionHero2 from '@/components/SectionHero/SectionHero2'
-import SectionHowItWork from '@/components/SectionHowItWork/SectionHowItWork'
 import SectionPromo1 from '@/components/SectionPromo1'
 import SectionPromo2 from '@/components/SectionPromo2'
 import SectionSliderLargeProduct from '@/components/SectionSliderLargeProduct'
@@ -43,9 +40,6 @@ async function PageHome() {
       <div className="relative container my-24 flex flex-col gap-y-24 lg:my-32 lg:gap-y-32">
         <SectionSliderProductCard data={carouselProducts1} />
         <Divider />
-        {/* <div className="pb-16">
-          <SectionHowItWork />
-        </div> */}
         <SectionPromo1 />
         <div className="relative pt-24 pb-20 lg:pt-28">
           <BackgroundSection />
@@ -58,9 +52,7 @@ async function PageHome() {
         />
         <SectionPromo2 />
         <SectionSliderLargeProduct products={carouselProducts3} />
-        {/* <SectionGridFeatureItems data={products} /> */}
-        {/* <Divider /> */}
-        {/* <SectionCollectionSlider2 collections={departmentCollections} /> */}
+
         <Divider />
         <div>
           <Heading headingDim="From the Ciseco blog">The latest news</Heading>
