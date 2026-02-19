@@ -39,31 +39,13 @@ async function PageHome() {
 
       <div className="relative container my-24 flex flex-col gap-y-24 lg:my-32 lg:gap-y-32">
         <SectionSliderProductCard data={carouselProducts1} />
-        <Divider />
-        <SectionPromo1 />
         <div className="relative pt-24 pb-20 lg:pt-28">
           <BackgroundSection />
           <SectionGridMoreExplore groupCollections={groupCollections} />
         </div>
-        <SectionSliderProductCard
-          data={carouselProducts2}
-          heading="Best Sellers"
-          subHeading="Best selling of the month"
-        />
+        <SectionSliderProductCard data={carouselProducts2} heading="Best Sellers" subHeading="Best selling of the month" />
         <SectionPromo2 />
         <SectionSliderLargeProduct products={carouselProducts3} />
-
-        <Divider />
-        <div>
-          <Heading headingDim="From the Ciseco blog">The latest news</Heading>
-          <div className="mt-20 flex justify-center">
-            <Button href="/blog" outline>
-              Show all blog articles
-              <ArrowRightIcon className="h-4 w-4" />
-            </Button>
-          </div>
-        </div>
-
         <Divider />
         <SectionClientSay />
       </div>
