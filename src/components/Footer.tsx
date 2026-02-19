@@ -17,7 +17,7 @@ const Footer: React.FC = () => {
               <h4 className="text-sm font-bold uppercase tracking-wider text-neutral-900 dark:text-neutral-100">
                 Follow Us
               </h4>
-              <SocialsList1 className="!flex-row !gap-x-2" />
+              <SocialsList1 className="flex-row gap-x-2" />
             </div>
           </div>
 
