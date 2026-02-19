@@ -58,9 +58,9 @@ async function PageHome() {
         />
         <SectionPromo2 />
         <SectionSliderLargeProduct products={carouselProducts3} />
-        <SectionGridFeatureItems data={products} />
-        <Divider />
-        <SectionCollectionSlider2 collections={departmentCollections} />
+        {/* <SectionGridFeatureItems data={products} /> */}
+        {/* <Divider /> */}
+        {/* <SectionCollectionSlider2 collections={departmentCollections} /> */}
         <Divider />
         <div>
           <Heading headingDim="From the Ciseco blog">The latest news</Heading>

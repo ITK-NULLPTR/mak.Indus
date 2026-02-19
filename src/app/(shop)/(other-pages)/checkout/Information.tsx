@@ -17,16 +17,19 @@ import {
   Tick02Icon,
   UserCircle02Icon,
   Wallet03Icon,
+  Money03Icon,
 } from '@hugeicons/core-free-icons'
 import { HugeiconsIcon, IconSvgElement } from '@hugeicons/react'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { useState } from 'react'
+import { useCheckout } from './CheckoutContext'
 
 type Tab = 'ContactInfo' | 'ShippingAddress' | 'PaymentMethod'
 
 const Information = () => {
   const [tabActive, setTabActive] = useState<Tab>('ShippingAddress')
+  const { data } = useCheckout()
 
   const handleScrollToEl = (id: string) => {
     const element = document.getElementById(id)
@@ -41,7 +44,7 @@ const Information = () => {
         <TabHeader
           title="Contact information"
           icon={UserCircle02Icon}
-          value="Enrico Smith / +855-666-7744"
+          value={data.contactInfo.email ? `${data.contactInfo.email} / ${data.contactInfo.phone}` : 'Enter contact info'}
           onClickChange={() => {
             setTabActive('ContactInfo')
             handleScrollToEl('ContactInfo')
@@ -61,7 +64,7 @@ const Information = () => {
         <TabHeader
           title="Shipping address"
           icon={Route02Icon}
-          value="St. Paul's Road, Norris, SD 57560, Dakota, USA"
+          value={data.shippingAddress.address ? `${data.shippingAddress.address}, ${data.shippingAddress.city}` : 'Enter shipping address'}
           onClickChange={() => {
             setTabActive('ShippingAddress')
             handleScrollToEl('ShippingAddress')
@@ -81,7 +84,7 @@ const Information = () => {
         <TabHeader
           title="Payment method"
           icon={CreditCardPosIcon}
-          value="Credit Card / xxx-xxx-xx55"
+          value={data.paymentMethod}
           onClickChange={() => {
             setTabActive('PaymentMethod')
             handleScrollToEl('PaymentMethod')
@@ -90,8 +93,7 @@ const Information = () => {
         <div className={clsx('border-t px-4 py-7 sm:px-6', tabActive !== 'PaymentMethod' && 'invisible hidden')}>
           <PaymentMethod
             onClose={() => {
-              setTabActive('ShippingAddress')
-              handleScrollToEl('ShippingAddress')
+              handleScrollToEl('PayoutMethod')
             }}
           />
         </div>
@@ -133,14 +135,19 @@ const TabHeader = ({
 }
 
 const ContactInfo = ({ onClose }: { onClose: () => void }) => {
+  const { updateContactInfo, data } = useCheckout()
+
   return (
     <form
       action="#"
       method="POST"
       onSubmit={(e) => {
         e.preventDefault()
-        const formValues = Object.fromEntries(new FormData(e.target as HTMLFormElement))
-        console.log(formValues)
+        const formData = new FormData(e.target as HTMLFormElement)
+        updateContactInfo({
+          email: formData.get('email') as string,
+          phone: formData.get('phone') as string,
+        })
         onClose()
       }}
     >
@@ -157,11 +164,11 @@ const ContactInfo = ({ onClose }: { onClose: () => void }) => {
           </div>
           <Field className="max-w-lg">
             <Label>Your phone number</Label>
-            <Input defaultValue={'+808 xxx'} type="tel" name="phone" />
+            <Input defaultValue={data.contactInfo.phone || '+808 xxx'} type="tel" name="phone" required />
           </Field>
           <Field className="max-w-lg">
             <Label>Email address</Label>
-            <Input type="email" name="email" />
+            <Input defaultValue={data.contactInfo.email} type="email" name="email" required />
           </Field>
           <Field>
             <CheckboxField>
@@ -184,14 +191,25 @@ const ContactInfo = ({ onClose }: { onClose: () => void }) => {
 }
 
 const ShippingAddress = ({ onClose }: { onClose: () => void }) => {
+  const { updateShippingAddress, data } = useCheckout()
+
   return (
     <form
       action="#"
       method="POST"
       onSubmit={(e) => {
         e.preventDefault()
-        const formValues = Object.fromEntries(new FormData(e.target as HTMLFormElement))
-        console.log(formValues)
+        const formData = new FormData(e.target as HTMLFormElement)
+        updateShippingAddress({
+          firstName: formData.get('first-name') as string,
+          lastName: formData.get('last-name') as string,
+          address: formData.get('address') as string,
+          aptSuite: formData.get('apt-suite') as string,
+          city: formData.get('city') as string,
+          country: formData.get('country') as string,
+          state: formData.get('state-province') as string,
+          postalCode: formData.get('postal-code') as string,
+        })
         onClose()
       }}
     >
@@ -200,11 +218,11 @@ const ShippingAddress = ({ onClose }: { onClose: () => void }) => {
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-4">
             <Field>
               <Label>First name</Label>
-              <Input defaultValue="Cole" name="first-name" />
+              <Input defaultValue={data.shippingAddress.firstName} name="first-name" required />
             </Field>
             <Field>
               <Label>Last name</Label>
-              <Input defaultValue="Enrico" name="last-name" />
+              <Input defaultValue={data.shippingAddress.lastName} name="last-name" required />
             </Field>
           </div>
 
@@ -212,11 +230,11 @@ const ShippingAddress = ({ onClose }: { onClose: () => void }) => {
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-3 sm:gap-4">
             <Field className="sm:col-span-2">
               <Label>Address</Label>
-              <Input placeholder="" defaultValue={'123, Dream Avenue, USA'} type={'text'} name="address" />
+              <Input placeholder="Street address" defaultValue={data.shippingAddress.address} type={'text'} name="address" required />
             </Field>
             <Field>
               <Label>Apt, Suite *</Label>
-              <Input defaultValue="55U - DD5 " name="apt-suite" />
+              <Input placeholder="Apartment, suite, etc. (optional)" defaultValue={data.shippingAddress.aptSuite} name="apt-suite" />
             </Field>
           </div>
 
@@ -224,28 +242,33 @@ const ShippingAddress = ({ onClose }: { onClose: () => void }) => {
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-4">
             <Field>
               <Label>City</Label>
-              <Input defaultValue="Norris" name="city" />
+              <Input defaultValue={data.shippingAddress.city} name="city" required />
             </Field>
             <Field>
               <Label>Country</Label>
-              <Select defaultValue="United States " name="country">
+              <Select defaultValue={data.shippingAddress.country || "United States"} name="country">
                 <option value="United States">United States</option>
-                <option value="United States">Canada</option>
-                <option value="United States">Mexico</option>
-                <option value="United States">Israel</option>
-                <option value="United States">France</option>
-                <option value="United States">England</option>
-                <option value="United States">Laos</option>
-                <option value="United States">China</option>
+                <option value="United Kingdom">United Kingdom</option>
+                <option value="Canada">Canada</option>
+                <option value="Australia">Australia</option>
+                <option value="Germany">Germany</option>
+                <option value="France">France</option>
+                <option value="India">India</option>
+                <option value="Pakistan">Pakistan</option>
+                <option value="China">China</option>
+                <option value="Japan">Japan</option>
+                <option value="United Arab Emirates">United Arab Emirates</option>
+                <option value="Saudi Arabia">Saudi Arabia</option>
+                <option value="Other">Other</option>
               </Select>
             </Field>
             <Field>
               <Label>State/Province</Label>
-              <Input defaultValue="Texas" name="state-province" />
+              <Input defaultValue={data.shippingAddress.state} name="state-province" required />
             </Field>
             <Field>
               <Label>Postal code</Label>
-              <Input defaultValue="2500" name="postal-code" />
+              <Input defaultValue={data.shippingAddress.postalCode} name="postal-code" required />
             </Field>
           </div>
 
@@ -294,17 +317,18 @@ const ShippingAddress = ({ onClose }: { onClose: () => void }) => {
 }
 
 const PaymentMethod = ({ onClose }: { onClose: () => void }) => {
-  const [mothodActive, setMethodActive] = useState<'Credit-Card' | 'Internet-banking' | 'Wallet'>('Credit-Card')
+  const { updatePaymentMethod, data } = useCheckout()
+  const [methodActive, setMethodActive] = useState<'Credit-Card' | 'Internet-banking' | 'Wallet' | 'Cash-on-Delivery'>(data.paymentMethod as any || 'Credit-Card')
 
   const renderDebitCredit = () => {
-    const active = mothodActive === 'Credit-Card'
+    const active = methodActive === 'Credit-Card'
     return (
       <div>
         <RadioGroup
           name="payment-method"
           aria-label="Payment method"
           onChange={(e) => setMethodActive(e as any)}
-          value={mothodActive}
+          value={methodActive}
         >
           <RadioField className="sm:gap-x-6">
             <Radio className="pt-3" value="Credit-Card" defaultChecked={active} />
@@ -325,11 +349,11 @@ const PaymentMethod = ({ onClose }: { onClose: () => void }) => {
         <div className={clsx('space-y-5 py-6 sm:pl-10', active ? 'block' : 'hidden')}>
           <Field className="max-w-lg">
             <Label>Card number</Label>
-            <Input autoComplete="off" name="card-number" />
+            <Input autoComplete="off" name="card-number" placeholder="1234 5678 9101 1121" />
           </Field>
           <Field className="max-w-lg">
             <Label>Name on Card</Label>
-            <Input autoComplete="off" name="name-on-card" />
+            <Input autoComplete="off" name="name-on-card" placeholder="JOHN DOE" />
           </Field>
           <div className="flex flex-col gap-3 sm:flex-row">
             <Field className="flex-2/3">
@@ -338,7 +362,7 @@ const PaymentMethod = ({ onClose }: { onClose: () => void }) => {
             </Field>
             <Field className="flex-1/3">
               <Label>CVC</Label>
-              <Input autoComplete="off" placeholder="CVC" name="cvc" />
+              <Input autoComplete="off" placeholder="123" name="cvc" />
             </Field>
           </div>
         </div>
@@ -347,14 +371,14 @@ const PaymentMethod = ({ onClose }: { onClose: () => void }) => {
   }
 
   const renderInterNetBanking = () => {
-    const active = mothodActive === 'Internet-banking'
+    const active = methodActive === 'Internet-banking'
     return (
       <div>
         <RadioGroup
           name="payment-method"
           aria-label="Payment method"
           onChange={(e) => setMethodActive(e as any)}
-          value={mothodActive}
+          value={methodActive}
         >
           <RadioField className="sm:gap-x-6">
             <Radio className="pt-3" value="Internet-banking" defaultChecked={active} />
@@ -367,31 +391,19 @@ const PaymentMethod = ({ onClose }: { onClose: () => void }) => {
               >
                 <HugeiconsIcon icon={InternetIcon} size={24} />
               </div>
-              <p className="font-medium sm:text-base">Internet banking</p>
+              <p className="font-medium sm:text-base">Bank Transfer (SWIFT/IBAN)</p>
             </Label>
           </RadioField>
         </RadioGroup>
 
         <div className={clsx('py-6 sm:pl-10', active ? 'block' : 'hidden')}>
-          <Subheading>Your order will be delivered to you after you transfer to</Subheading>
+          <Subheading>Please confirm order to receive bank details via email.</Subheading>
           <DescriptionList className="mt-3.5">
-            <DescriptionTerm>Customer</DescriptionTerm>
-            <DescriptionDetails>BooliiTheme</DescriptionDetails>
+            <DescriptionTerm>Bank:</DescriptionTerm>
+            <DescriptionDetails>International Bank</DescriptionDetails>
 
-            <DescriptionTerm>Bank name</DescriptionTerm>
-            <DescriptionDetails>Example Bank Name</DescriptionDetails>
-
-            <DescriptionTerm>Account number</DescriptionTerm>
-            <DescriptionDetails>555 888 777</DescriptionDetails>
-
-            <DescriptionTerm>Sort code</DescriptionTerm>
-            <DescriptionDetails>999</DescriptionDetails>
-
-            <DescriptionTerm>IBAN</DescriptionTerm>
-            <DescriptionDetails>IBAN</DescriptionDetails>
-
-            <DescriptionTerm>BIC</DescriptionTerm>
-            <DescriptionDetails>BIC/Swift</DescriptionDetails>
+            <DescriptionTerm>Account:</DescriptionTerm>
+            <DescriptionDetails>XXXX-XXXX-XXXX-XXXX</DescriptionDetails>
           </DescriptionList>
         </div>
       </div>
@@ -399,13 +411,13 @@ const PaymentMethod = ({ onClose }: { onClose: () => void }) => {
   }
 
   const renderWallet = () => {
-    const active = mothodActive === 'Wallet'
+    const active = methodActive === 'Wallet'
     return (
       <div>
         <RadioGroup
           name="payment-method"
           aria-label="Payment method"
-          value={mothodActive}
+          value={methodActive}
           onChange={(e) => setMethodActive(e as any)}
         >
           <RadioField className="sm:gap-x-6">
@@ -419,15 +431,49 @@ const PaymentMethod = ({ onClose }: { onClose: () => void }) => {
               >
                 <HugeiconsIcon icon={Wallet03Icon} size={24} />
               </div>
-              <p className="font-medium sm:text-base">Google / Apple Wallet</p>
+              <p className="font-medium sm:text-base">Digital Wallets (PayPal, Apple Pay)</p>
             </Label>
           </RadioField>
         </RadioGroup>
 
         <div className={clsx('py-6 sm:pl-10', active ? 'block' : 'hidden')}>
           <p className="leading-relaxed text-neutral-600 dark:text-neutral-400">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque dolore quod quas fugit perspiciatis
-            architecto, temporibus quos ducimus libero explicabo?
+            Securely pay using your preferred digital wallet. You will be redirected to complete the payment.
+          </p>
+        </div>
+      </div>
+    )
+  }
+
+  const renderCashOnDelivery = () => {
+    const active = methodActive === 'Cash-on-Delivery'
+    return (
+      <div>
+        <RadioGroup
+          name="payment-method"
+          aria-label="Payment method"
+          value={methodActive}
+          onChange={(e) => setMethodActive(e as any)}
+        >
+          <RadioField className="sm:gap-x-6">
+            <Radio className="pt-3" value="Cash-on-Delivery" defaultChecked={active} />
+            <Label className="flex items-center gap-x-4 sm:gap-x-6">
+              <div
+                className={clsx(
+                  'rounded-xl border-2 border-neutral-600 p-2.5 dark:border-neutral-300',
+                  active ? 'opacity-100' : 'opacity-25'
+                )}
+              >
+                <HugeiconsIcon icon={Money03Icon} size={24} />
+              </div>
+              <p className="font-medium sm:text-base">Cash on Delivery</p>
+            </Label>
+          </RadioField>
+        </RadioGroup>
+
+        <div className={clsx('py-6 sm:pl-10', active ? 'block' : 'hidden')}>
+          <p className="leading-relaxed text-neutral-600 dark:text-neutral-400">
+            Pay with cash upon delivery.
           </p>
         </div>
       </div>
@@ -440,8 +486,7 @@ const PaymentMethod = ({ onClose }: { onClose: () => void }) => {
       method="POST"
       onSubmit={(e) => {
         e.preventDefault()
-        const formValues = Object.fromEntries(new FormData(e.target as HTMLFormElement))
-        console.log(formValues)
+        updatePaymentMethod(methodActive)
         onClose()
       }}
     >
@@ -450,10 +495,11 @@ const PaymentMethod = ({ onClose }: { onClose: () => void }) => {
           {renderDebitCredit()}
           {renderInterNetBanking()}
           {renderWallet()}
+          {renderCashOnDelivery()}
 
           <div className="flex flex-wrap gap-2.5 pt-4">
             <ButtonPrimary className="min-w-56" type="submit">
-              Confirm order
+              Save payment method
             </ButtonPrimary>
             <ButtonThird type="button" onClick={onClose}>
               Back to shipping address

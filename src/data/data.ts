@@ -729,7 +729,7 @@ export async function getCollections() {
       title: 'Garden Accessories',
       handle: 'garden-accessories',
       href: '/gardening',
-      sortDescription: 'Plant care accessories',
+      sortDescription: 'Plant care access',
       description: 'Practical garden accessories to support plant care, storage, and outdoor organization.',
       image: {
         src: collectionImage4.src,

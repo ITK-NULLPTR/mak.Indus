@@ -19,7 +19,7 @@ const CollectionCard3: FC<Props> = ({ className = '', collection }) => {
   return (
     <div className={`group/CollectionCard3 relative block ${className}`}>
       <div
-        className={`aspect-w-16 relative h-0 w-full overflow-hidden rounded-2xl aspect-h-11 sm:aspect-h-9 ${collection.color}`}
+        className={`aspect-w-16 relative overflow-hidden rounded-2xl aspect-h-14 sm:aspect-h-9 ${collection.color}`}
       >
         <div>
           <div className="absolute inset-5 sm:inset-8">
