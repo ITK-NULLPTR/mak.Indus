@@ -22,7 +22,6 @@ export async function POST(request: NextRequest) {
             shipping,
             tax,
             total,
-            paymentMethod,
         } = body
 
         // Validate required fields
@@ -56,7 +55,6 @@ export async function POST(request: NextRequest) {
                 shipping,
                 tax,
                 total,
-                paymentMethod: paymentMethod || 'Not specified',
             }
 
             // Generate email HTML

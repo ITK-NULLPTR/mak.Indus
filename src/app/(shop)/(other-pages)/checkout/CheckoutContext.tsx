@@ -17,15 +17,13 @@ interface CheckoutData {
         state: string
         postalCode: string
     }
-    paymentMethod: 'Credit-Card' | 'Internet-banking' | 'Wallet' | 'Cash-on-Delivery'
 }
 
 interface CheckoutContextType {
     data: CheckoutData
     updateContactInfo: (info: CheckoutData['contactInfo']) => void
     updateShippingAddress: (address: CheckoutData['shippingAddress']) => void
-    updatePaymentMethod: (method: CheckoutData['paymentMethod']) => void
-    isStepValid: (step: 'ContactInfo' | 'ShippingAddress' | 'PaymentMethod') => boolean
+    isStepValid: (step: 'ContactInfo' | 'ShippingAddress') => boolean
 }
 
 const defaultData: CheckoutData = {
@@ -40,7 +38,6 @@ const defaultData: CheckoutData = {
         state: '',
         postalCode: '',
     },
-    paymentMethod: 'Credit-Card',
 }
 
 const CheckoutContext = createContext<CheckoutContextType | undefined>(undefined)
@@ -56,18 +53,12 @@ export const CheckoutProvider = ({ children }: { children: React.ReactNode }) =>
         setData((prev) => ({ ...prev, shippingAddress: address }))
     }
 
-    const updatePaymentMethod = (method: CheckoutData['paymentMethod']) => {
-        setData((prev) => ({ ...prev, paymentMethod: method }))
-    }
-
-    const isStepValid = (step: 'ContactInfo' | 'ShippingAddress' | 'PaymentMethod') => {
+    const isStepValid = (step: 'ContactInfo' | 'ShippingAddress') => {
         switch (step) {
             case 'ContactInfo':
                 return !!data.contactInfo.email && !!data.contactInfo.phone
             case 'ShippingAddress':
                 return !!data.shippingAddress.address && !!data.shippingAddress.city
-            case 'PaymentMethod':
-                return !!data.paymentMethod
             default:
                 return false
         }
@@ -79,7 +70,6 @@ export const CheckoutProvider = ({ children }: { children: React.ReactNode }) =>
                 data,
                 updateContactInfo,
                 updateShippingAddress,
-                updatePaymentMethod,
                 isStepValid,
             }}
         >

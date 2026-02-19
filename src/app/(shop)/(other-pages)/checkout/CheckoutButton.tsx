@@ -4,6 +4,7 @@ import { TCardProduct } from '@/data/data'
 import ButtonPrimary from '@/shared/Button/ButtonPrimary'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
+import { useCheckout } from './CheckoutContext'
 
 interface CheckoutButtonProps {
     cart: {
@@ -19,24 +20,22 @@ interface CheckoutButtonProps {
 
 export default function CheckoutButton({ cart }: CheckoutButtonProps) {
     const [isLoading, setIsLoading] = useState(false)
+    const { data: checkoutData } = useCheckout()
 
     const handleCheckout = async () => {
         setIsLoading(true)
 
         try {
-            // Get form data from the page
-            // In a real implementation, you would collect this from the form
-            // For now, using placeholder data
             const orderData = {
-                customerName: 'Cole Enrico', // This should come from the form
-                customerEmail: 'customer@example.com', // This should come from the form
-                customerPhone: '+808 xxx', // This should come from the form
+                customerName: `${checkoutData.shippingAddress.firstName} ${checkoutData.shippingAddress.lastName}`,
+                customerEmail: checkoutData.contactInfo.email,
+                customerPhone: checkoutData.contactInfo.phone,
                 shippingAddress: {
-                    street: '123, Dream Avenue',
-                    city: 'Norris',
-                    state: 'Texas',
-                    postalCode: '2500',
-                    country: 'United States',
+                    street: `${checkoutData.shippingAddress.address}${checkoutData.shippingAddress.aptSuite ? ', ' + checkoutData.shippingAddress.aptSuite : ''}`,
+                    city: checkoutData.shippingAddress.city,
+                    state: checkoutData.shippingAddress.state,
+                    postalCode: checkoutData.shippingAddress.postalCode,
+                    country: checkoutData.shippingAddress.country,
                 },
                 items: cart.lines,
                 subtotal: cart.cost.subtotal,

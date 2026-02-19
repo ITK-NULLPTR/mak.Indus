@@ -36,8 +36,9 @@ export const PriceRangeSlider = ({
             defaultValue={[rangePrices?.[0] ?? 0, rangePrices?.[1] ?? 1000]}
             allowCross={false}
             onChange={(_input) => {
-              setRangePrices(_input as [number, number])
-              onChange?.(min, max)
+              const val = _input as [number, number]
+              setRangePrices(val)
+              onChange?.(val[0], val[1])
             }}
           />
         </div>
