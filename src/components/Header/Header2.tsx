@@ -13,6 +13,8 @@ export interface Props {
   hasBorder?: boolean
 }
 
+const NavigationComponent: any = Navigation
+
 const Header2: FC<Props> = async ({ hasBorder = true }) => {
   const navigationMenu = await getNavigation()
   const allCollections = await getCollections()
@@ -36,7 +38,7 @@ const Header2: FC<Props> = async ({ hasBorder = true }) => {
           </div>
 
           <div className="mx-4 hidden flex-2 justify-center lg:flex">
-            <Navigation navigationMenu={navigationMenu} featuredCollection={allCollections[10]} />
+            <NavigationComponent navigationMenu={navigationMenu} featuredCollection={allCollections[10]} />
           </div>
 
           <div className="flex flex-1 items-center justify-end gap-x-2.5 sm:gap-x-5">
