@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { HeartIcon, ShoppingBagIcon, ArrowsPointingOutIcon, StarIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
-import Navigation from '@/components/Header/Navigation/Navigation';
+import Footer from '@/components/Footer';
 
 import Img1 from '@/images/gardening/1.webp';
 import Img2 from '@/images/gardening/2.webp';
@@ -13,7 +13,7 @@ import Img5 from '@/images/gardening/5.webp';
 import Img6 from '@/images/gardening/6.webp';
 import Img7 from '@/images/gardening/7.webp';
 import Img8 from '@/images/gardening/8.webp';
-import Header2 from '@/components/Header/Header2';
+
 
 const kitchenImages = [Img1, Img2, Img3, Img4, Img5, Img6, Img7, Img8];
 
@@ -227,7 +227,7 @@ const ProductCard: React.FC<{ data: Product; isLiked?: boolean }> = ({ data, isL
 export default function GardeningPage() {
   return (
     <>
-    <Header2 />
+    
     <div className="min-h-screen bg-white py-12 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <h1 className="mb-3 text-5xl font-bold text-gray-900">
@@ -244,6 +244,7 @@ export default function GardeningPage() {
         </div>
       </div>
     </div>
+    <Footer />
     </>
   );
 }
