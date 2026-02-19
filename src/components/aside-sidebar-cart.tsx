@@ -1,9 +1,12 @@
-import { TCardProduct, getCart } from '@/data/data'
+'use client'
+
+import { useCartStore } from '@/store/cartStore'
 import ButtonPrimary from '@/shared/Button/ButtonPrimary'
 import ButtonSecondary from '@/shared/Button/ButtonSecondary'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import clsx from 'clsx'
 import Image from 'next/image'
+import { useEffect, useState } from 'react'
 import { Link } from './Link'
 import Prices from './Prices'
 import { Aside } from './aside/aside'
@@ -12,8 +15,26 @@ interface Props {
   className?: string
 }
 
-const AsideSidebarCart = async ({ className = '' }: Props) => {
-  const cart = await getCart('id://1')
+const AsideSidebarCart = ({ className = '' }: Props) => {
+  const { items, getTotalPrice } = useCartStore()
+  const [mounted, setMounted] = useState(false)
+
+  // Prevent hydration mismatch
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  const subtotal = getTotalPrice()
+
+  if (!mounted) {
+    return (
+      <Aside openFrom="right" type="cart" heading="Shopping Cart">
+        <div className="flex justify-center items-center h-full">
+          <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]" />
+        </div>
+      </Aside>
+    )
+  }
 
   return (
     <Aside openFrom="right" type="cart" heading="Shopping Cart">
@@ -22,11 +43,17 @@ const AsideSidebarCart = async ({ className = '' }: Props) => {
 
         <div className="hidden-scrollbar flex-1 overflow-x-hidden overflow-y-auto py-6">
           <div className="flow-root">
-            <ul role="list" className="-my-6 divide-y divide-neutral-900/10 dark:divide-neutral-100/10">
-              {cart.lines.map((product) => (
-                <CartProduct key={product.id} product={product} />
-              ))}
-            </ul>
+            {items.length === 0 ? (
+              <div className="flex flex-col items-center justify-center h-full text-center">
+                <p className="text-neutral-500">Your cart is empty</p>
+              </div>
+            ) : (
+              <ul role="list" className="-my-6 divide-y divide-neutral-900/10 dark:divide-neutral-100/10">
+                {items.map((product) => (
+                  <CartProduct key={product.id} product={product} />
+                ))}
+              </ul>
+            )}
           </div>
         </div>
 
@@ -41,7 +68,7 @@ const AsideSidebarCart = async ({ className = '' }: Props) => {
           <div>
             <div className="flex justify-between text-base font-medium text-gray-900 dark:text-neutral-100">
               <p className="font-medium">Subtotal</p>
-              <p className="font-medium">${cart.cost.subtotal}</p>
+              <p className="font-medium">${subtotal.toFixed(2)}</p>
             </div>
             <p className="mt-0.5 text-sm text-neutral-500 dark:text-neutral-400">
               Shipping and taxes calculated at checkout.
@@ -65,13 +92,14 @@ const AsideSidebarCart = async ({ className = '' }: Props) => {
   )
 }
 
-const CartProduct = ({ product }: { product: TCardProduct }) => {
-  const { name, price, image, size, color, quantity, handle } = product
+const CartProduct = ({ product }: { product: any }) => {
+  const { name, price, image, size, color, quantity, handle, id } = product
+  const { removeItem, updateQuantity } = useCartStore()
 
   return (
     <div className="flex py-5 last:pb-0">
       <div className="relative h-24 w-20 shrink-0 overflow-hidden rounded-xl bg-neutral-100">
-        {image?.src && <Image fill src={image} alt={image.alt} className="object-contain" sizes="200px" />}
+        {image?.src && <Image fill src={image.src} alt={image.alt || name} className="object-contain" sizes="200px" />}
         <Link className="absolute inset-0" href={'/products/' + handle} />
       </div>
 
@@ -88,25 +116,23 @@ const CartProduct = ({ product }: { product: TCardProduct }) => {
                 <span>{size}</span>
               </p>
             </div>
-            <Prices price={price || 0} className="mt-0.5" />
+            <Prices price={price * quantity || 0} className="mt-0.5" />
           </div>
         </div>
         <div className="flex flex-1 items-end justify-between text-sm">
           <div className="inline-grid w-full max-w-16 grid-cols-1">
             <select
-              name={`quantity-${product.id}`}
-              aria-label={`Quantity, ${product.name}`}
+              name={`quantity-${id}`}
+              aria-label={`Quantity, ${name}`}
               className="col-start-1 row-start-1 appearance-none rounded-md py-0.5 ps-3 pe-8 text-xs/6 outline-1 -outline-offset-1 outline-neutral-900/10 focus:outline-1 dark:outline-white/15"
-              defaultValue={quantity}
+              value={quantity}
+              onChange={(e) => updateQuantity(id, parseInt(e.target.value))}
             >
-              <option value={1}>1</option>
-              <option value={2}>2</option>
-              <option value={3}>3</option>
-              <option value={4}>4</option>
-              <option value={5}>5</option>
-              <option value={6}>6</option>
-              <option value={7}>7</option>
-              <option value={8}>8</option>
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
+                <option key={num} value={num}>
+                  {num}
+                </option>
+              ))}
             </select>
             <ChevronDownIcon
               aria-hidden="true"
@@ -115,7 +141,11 @@ const CartProduct = ({ product }: { product: TCardProduct }) => {
           </div>
 
           <div className="flex">
-            <button type="button" className="font-medium text-primary-600 dark:text-primary-500">
+            <button
+              type="button"
+              onClick={() => removeItem(id)}
+              className="font-medium text-primary-600 dark:text-primary-500"
+            >
               Remove
             </button>
           </div>
