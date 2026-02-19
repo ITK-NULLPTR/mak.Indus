@@ -10,7 +10,7 @@ import SectionPromo1 from '@/components/SectionPromo1'
 import SectionPromo3 from '@/components/SectionPromo3'
 import SectionSliderLargeProduct from '@/components/SectionSliderLargeProduct'
 import SectionSliderProductCard from '@/components/SectionSliderProductCard'
-import SectionMagazine5 from '@/components/blog/SectionMagazine5'
+// import SectionMagazine5 from '@/components/blog/SectionMagazine5'
 import { getBlogPosts, getCollections, getGroupCollections, getProducts } from '@/data/data'
 import ButtonSecondary from '@/shared/Button/ButtonSecondary'
 import { Metadata } from 'next'
@@ -56,7 +56,7 @@ async function PageHome2() {
         <Divider />
         <div>
           <Heading headingDim="From the Ciseco blog">The latest news</Heading>
-          <SectionMagazine5 posts={blogPosts} />
+          {/* <SectionMagazine5 posts={blogPosts} /> */}
           <div className="mt-20 flex justify-center">
             <ButtonSecondary href="/blog">Show all blog articles</ButtonSecondary>
           </div>
