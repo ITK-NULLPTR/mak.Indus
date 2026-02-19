@@ -46,14 +46,14 @@ const Navigation = () => {
         {open && (
           <div className="absolute top-full left-1/2 -translate-x-1/2 w-44 rounded-xl bg-white shadow-lg border border-neutral-200 overflow-hidden">
             <Link
-              href="/kitchen"
+              href="/collections/kitchen"
               className="block px-4 py-2.5 hover:bg-neutral-100 transition-colors"
             >
               Kitchen
             </Link>
 
             <Link
-              href="/gardening"
+              href="/collections/gardening"
               className="block px-4 py-2.5 hover:bg-neutral-100 transition-colors"
             >
               Gardening
