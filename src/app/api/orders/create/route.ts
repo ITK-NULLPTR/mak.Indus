@@ -62,16 +62,19 @@ export async function POST(request: NextRequest) {
 
             // Send email to store owner
             if (process.env.SMTP_USER && process.env.STORE_EMAIL) {
+                const storeName = process.env.NEXT_PUBLIC_STORE_NAME || 'Your Store';
+
+                // 1. Send Alert to Owner
                 await transporter.sendMail({
-                    from: `"Your Store" <${process.env.SMTP_USER}>`,
+                    from: `"${storeName}" <${process.env.SMTP_USER}>`,
                     to: process.env.STORE_EMAIL,
-                    subject: `🛒 New Order Received - ${orderNumber}`,
+                    subject: `🚨 NEW ORDER ALERT - ${orderNumber}`,
                     html: emailHTML,
                 })
 
-                // Send confirmation email to customer
+                // 2. Send Confirmation to Customer
                 await transporter.sendMail({
-                    from: `"Your Store" <${process.env.SMTP_USER}>`,
+                    from: `"${storeName}" <${process.env.SMTP_USER}>`,
                     to: customerEmail,
                     subject: `Order Confirmation - ${orderNumber}`,
                     html: emailHTML,
