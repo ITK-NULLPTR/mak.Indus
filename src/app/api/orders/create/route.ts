@@ -34,13 +34,14 @@ export async function POST(request: NextRequest) {
             console.log('📬 Starting email process...');
 
             const transportOptions: any = {
-                service: 'gmail', // Default to gmail for simplicity
+                service: 'gmail',
                 auth: {
                     user: process.env.SMTP_USER?.trim(),
                     pass: process.env.SMTP_PASS?.trim(),
+                    authMethod: 'LOGIN' // Force LOGIN method
                 },
-                logger: true, // Log to console
-                debug: true,  // Show debug output
+                logger: true,
+                debug: true,
             };
 
             if (process.env.SMTP_HOST && process.env.SMTP_HOST !== 'smtp.gmail.com') {
