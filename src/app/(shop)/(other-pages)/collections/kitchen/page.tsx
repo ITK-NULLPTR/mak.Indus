@@ -14,6 +14,7 @@ import Img5 from '@/images/kitchen/5.webp';
 import Img6 from '@/images/kitchen/6.webp';
 import Img7 from '@/images/kitchen/7.webp';
 import Img8 from '@/images/kitchen/8.webp';
+import HeroSection from './HeroSection';
 
 const kitchenImages = [Img1, Img2, Img3, Img4, Img5, Img6, Img7, Img8];
 
@@ -227,15 +228,11 @@ const ProductCard: React.FC<{ data: Product; isLiked?: boolean }> = ({ data, isL
 export default function KitchenPage() {
   return (
     <>
+       <HeroSection />
     
     <div className="min-h-screen bg-white py-12 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
-        <h1 className="mb-3 text-5xl font-bold text-gray-900">
-          Kitchen Essentials
-        </h1>
-        <p className="mb-12 text-lg text-gray-600">
-          Premium quality cookware and tools for your kitchen
-        </p>
+      
         
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {products.map((product) => (
