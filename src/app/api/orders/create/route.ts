@@ -30,32 +30,32 @@ export async function POST(request: NextRequest) {
         }
 
         // Create email transporter
-        // Note: You'll need to set these environment variables
         try {
-            const transporter = nodemailer.createTransport({
-                host: process.env.SMTP_HOST || 'smtp.gmail.com',
-                port: parseInt(process.env.SMTP_PORT || '587'),
-                secure: process.env.SMTP_SECURE === 'true', // true for 465, false for other ports
+            console.log('📬 Starting email process...');
+
+            const transportOptions: any = {
+                service: 'gmail', // Default to gmail for simplicity
                 auth: {
-                    user: process.env.SMTP_USER, // Your email
-                    pass: process.env.SMTP_PASS, // Your email password or app password
+                    user: process.env.SMTP_USER?.trim(),
+                    pass: process.env.SMTP_PASS?.trim(),
                 },
-            })
+                logger: true, // Log to console
+                debug: true,  // Show debug output
+            };
+
+            if (process.env.SMTP_HOST && process.env.SMTP_HOST !== 'smtp.gmail.com') {
+                delete transportOptions.service;
+                transportOptions.host = process.env.SMTP_HOST;
+                transportOptions.port = parseInt(process.env.SMTP_PORT || '587');
+                transportOptions.secure = process.env.SMTP_SECURE === 'true';
+            }
+
+            console.log('Sending from:', transportOptions.auth.user);
+            console.log('Password length:', transportOptions.auth.pass?.length);
+            const transporter = nodemailer.createTransport(transportOptions);
 
             // Prepare email data
-            const emailData = {
-                orderNumber,
-                orderDate,
-                customerName,
-                customerEmail,
-                customerPhone,
-                shippingAddress,
-                items,
-                subtotal,
-                shipping,
-                tax,
-                total,
-            }
+            const emailData = { orderNumber, orderDate, customerName, customerEmail, customerPhone, shippingAddress, items, subtotal, shipping, tax, total }
 
             // Generate email HTML
             const emailHTML = generateOrderEmailHTML(emailData)
@@ -64,6 +64,7 @@ export async function POST(request: NextRequest) {
             if (process.env.SMTP_USER && process.env.STORE_EMAIL) {
                 const storeName = process.env.NEXT_PUBLIC_STORE_NAME || 'Your Store';
 
+                console.log('📤 Sending alert to owner...');
                 // 1. Send Alert to Owner
                 await transporter.sendMail({
                     from: `"${storeName}" <${process.env.SMTP_USER}>`,
@@ -71,7 +72,9 @@ export async function POST(request: NextRequest) {
                     subject: `🚨 NEW ORDER ALERT - ${orderNumber}`,
                     html: emailHTML,
                 })
+                console.log('✅ Owner alert sent.');
 
+                console.log(`📤 Sending confirmation to customer (${customerEmail})...`);
                 // 2. Send Confirmation to Customer
                 await transporter.sendMail({
                     from: `"${storeName}" <${process.env.SMTP_USER}>`,
@@ -79,13 +82,14 @@ export async function POST(request: NextRequest) {
                     subject: `Order Confirmation - ${orderNumber}`,
                     html: emailHTML,
                 })
+                console.log('✅ Customer confirmation sent.');
             } else {
-                console.warn('⚠️ SMTP settings or STORE_EMAIL not found. Email notifications skipped.')
+                console.warn('⚠️ SMTP_USER or STORE_EMAIL missing in .env');
             }
 
-        } catch (emailError) {
+        } catch (emailError: any) {
             // Log email error but do NOT fail the order
-            console.error('❌ Failed to send email notifications:', emailError)
+            console.error('❌ EMAIL ERROR:', emailError.message || emailError)
         }
 
         // Return success response with order number

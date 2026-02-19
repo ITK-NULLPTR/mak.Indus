@@ -86,6 +86,32 @@ export default function CheckoutSummary() {
 
             if (response.ok) {
                 toast.success(`Order placed successfully! Order #${data.orderNumber}`)
+
+                // Store order details in session for the success page to show actual items
+                const lastOrder = {
+                    number: data.orderNumber,
+                    date: data.orderDate,
+                    products: items.map(item => ({
+                        id: item.id,
+                        title: item.name,
+                        handle: item.handle,
+                        price: item.price,
+                        quantity: item.quantity,
+                        color: item.color,
+                        size: item.size,
+                        featuredImage: item.image
+                    })),
+                    cost: {
+                        subtotal,
+                        shipping,
+                        tax,
+                        total
+                    },
+                    customerName: `${checkoutData.shippingAddress.firstName} ${checkoutData.shippingAddress.lastName}`,
+                    shippingAddress: checkoutData.shippingAddress
+                }
+                sessionStorage.setItem('lastOrder', JSON.stringify(lastOrder))
+
                 clearCart() // Clear the cart after successful order
                 window.location.href = `/order-successful?orderNumber=${data.orderNumber}`
             } else {
