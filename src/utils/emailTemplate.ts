@@ -18,7 +18,6 @@ interface OrderEmailData {
   shipping: number
   tax: number
   total: number
-  paymentMethod: string
 }
 
 export function generateOrderEmailHTML(data: OrderEmailData): string {
@@ -94,10 +93,6 @@ export function generateOrderEmailHTML(data: OrderEmailData): string {
                 <tr>
                   <td style="color: #6b7280; font-size: 14px;">Phone:</td>
                   <td style="color: #111827; font-size: 14px; font-weight: 600;">${data.customerPhone}</td>
-                </tr>
-                <tr>
-                  <td style="color: #6b7280; font-size: 14px;">Payment Method:</td>
-                  <td style="color: #111827; font-size: 14px; font-weight: 600;">${data.paymentMethod}</td>
                 </tr>
               </table>
 

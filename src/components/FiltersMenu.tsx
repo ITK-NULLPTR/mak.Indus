@@ -17,7 +17,8 @@ import {
 import { HugeiconsIcon, IconSvgElement } from '@hugeicons/react'
 import clsx from 'clsx'
 import Form from 'next/form'
-import { useState } from 'react'
+import { useSearchParams } from 'next/navigation'
+import { useEffect, useState } from 'react'
 import { PriceRangeSlider } from './PriceRangeSlider'
 
 type FilterOption = {
@@ -124,9 +125,42 @@ export const FiltersMenuTabs = ({
   filterOptions = demo_filters_options.filter((f) => f.type !== 'radio'),
   className,
 }: Props) => {
-  const handleFormSubmit = async (formData: FormData) => {
-    const formDataObject = Object.fromEntries(formData.entries())
-    console.log('Form submitted with data:', formDataObject)
+  const searchParams = useSearchParams()
+
+  const [selectedOptions, setSelectedOptions] = useState<Record<string, string[]>>({
+    categories: [],
+    colors: [],
+    sizes: [],
+    price: [],
+  })
+
+  useEffect(() => {
+    const cats = searchParams.getAll('categories[]')
+    const cols = searchParams.getAll('colors[]')
+    const sizs = searchParams.getAll('sizes[]')
+    const p_active = (searchParams.get('price_min') || searchParams.get('price_max')) ? ['active'] : []
+
+    setSelectedOptions({
+      categories: cats,
+      colors: cols,
+      sizes: sizs,
+      price: p_active,
+    })
+  }, [searchParams])
+
+  const handleCheckboxChange = (filterId: string, value: string, checked: boolean) => {
+    setSelectedOptions((prev) => {
+      const current = prev[filterId] || []
+      if (checked) {
+        return { ...prev, [filterId]: [...current, value] }
+      } else {
+        return { ...prev, [filterId]: current.filter((v) => v !== value) }
+      }
+    })
+  }
+
+  const handlePriceChange = () => {
+    setSelectedOptions((prev) => ({ ...prev, price: ['active'] }))
   }
 
   if (!filterOptions || filterOptions.length === 0) {
@@ -142,17 +176,17 @@ export const FiltersMenuTabs = ({
 
       {/* POPOVER FILTERS */}
       <div className="hidden md:block">
-        <Headless.PopoverGroup as={Form} action={handleFormSubmit}>
+        <Headless.PopoverGroup as={Form} action="">
           <fieldset className="flex flex-wrap gap-x-4 gap-y-2">
             {filterOptions.map((filterOption, index) => {
               if (!filterOption) {
                 return null
               }
 
-              const checkedNumber = index < 3 ? 2 : 0 // Example logic for checked number, replace with actual logic
+              const checkedNumber = selectedOptions[filterOption.id]?.length || 0
 
               return (
-                <Headless.Popover className="relative" key={index}>
+                <Headless.Popover className="group relative" key={index}>
                   <Headless.PopoverButton
                     className={clsx(
                       'relative flex items-center justify-center rounded-full px-4 py-2.5 text-sm select-none ring-inset group-data-open:ring-2 group-data-open:ring-black hover:bg-neutral-50 focus:outline-hidden dark:group-data-open:ring-white dark:hover:bg-neutral-900',
@@ -179,22 +213,36 @@ export const FiltersMenuTabs = ({
                     <div className="rounded-2xl border border-neutral-200 bg-white shadow-xl dark:border-neutral-700 dark:bg-neutral-900">
                       <div className="hidden-scrollbar max-h-28rem overflow-y-auto px-5 py-6">
                         {filterOption.type === 'checkbox' && (
-                          <CheckboxGroup>
-                            {filterOption.options?.map((option, i) => {
+                          <div className="space-y-4">
+                            {filterOption.options?.map((option) => {
                               if (!option) return null
-                              const isChecked = i < 2 // Example logic for checked state, replace with actual logic
+                              const isChecked = selectedOptions[filterOption.id]?.includes(option.value) || false
                               return (
-                                <CheckboxField key={option.name}>
-                                  <Checkbox
-                                    name={`${filterOption.id}[]`}
-                                    value={option.value}
-                                    defaultChecked={isChecked}
-                                  />
-                                  <Headless.Label className="text-sm/6">{option.name}</Headless.Label>
-                                </CheckboxField>
+                                <label key={option.name} className="flex items-center gap-3 cursor-pointer group">
+                                  <div className="relative isolate flex size-5 items-center justify-center rounded-[0.3125rem] border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-800 group-hover:border-neutral-400 dark:group-hover:border-neutral-600 transition-colors">
+                                    <input
+                                      type="checkbox"
+                                      name={`${filterOption.id}[]`}
+                                      value={option.value}
+                                      checked={isChecked}
+                                      onChange={(e) => handleCheckboxChange(filterOption.id, option.value, e.target.checked)}
+                                      className="absolute inset-0 z-10 opacity-0 cursor-pointer"
+                                    />
+                                    {isChecked && (
+                                      <div className="absolute inset-0 flex items-center justify-center bg-black dark:bg-white rounded-[0.3125rem]">
+                                        <svg className="size-3.5 text-white dark:text-black" viewBox="0 0 14 14" fill="none">
+                                          <path d="M3 8L6 11L11 3.5" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+                                        </svg>
+                                      </div>
+                                    )}
+                                  </div>
+                                  <span className="text-sm/6 text-neutral-900 dark:text-neutral-100 font-medium">
+                                    {option.name}
+                                  </span>
+                                </label>
                               )
                             })}
-                          </CheckboxGroup>
+                          </div>
                         )}
                         {filterOption.type === 'price-range' && (
                           <PriceRangeSlider
@@ -202,6 +250,7 @@ export const FiltersMenuTabs = ({
                             min={filterOption.min ?? 0}
                             max={filterOption.max ?? 1000}
                             name={filterOption.name}
+                            onChange={handlePriceChange}
                           />
                         )}
                         {filterOption.type === 'radio' && (
@@ -211,7 +260,7 @@ export const FiltersMenuTabs = ({
                               return (
                                 <RadioField key={option.value}>
                                   <Radio value={option.value} />
-                                  <Headless.Label className="text-sm/6">{option.name}</Headless.Label>
+                                  <Headless.Label className="text-sm/6 cursor-pointer">{option.name}</Headless.Label>
                                 </RadioField>
                               )
                             })}
@@ -240,9 +289,42 @@ export const FiltersMenuTabs = ({
 }
 
 export const FiltersMenuSidebar = ({ filterOptions = demo_filters_options, className }: Props) => {
-  const handleFormSubmit = async (formData: FormData) => {
-    const formDataObject = Object.fromEntries(formData.entries())
-    console.log('Form submitted with data:', formDataObject)
+  const searchParams = useSearchParams()
+
+  const [selectedOptions, setSelectedOptions] = useState<Record<string, string[]>>({
+    categories: [],
+    colors: [],
+    sizes: [],
+    price: [],
+  })
+
+  useEffect(() => {
+    const cats = searchParams.getAll('categories[]')
+    const cols = searchParams.getAll('colors[]')
+    const sizs = searchParams.getAll('sizes[]')
+    const p_active = (searchParams.get('price_min') || searchParams.get('price_max')) ? ['active'] : []
+
+    setSelectedOptions({
+      categories: cats,
+      colors: cols,
+      sizes: sizs,
+      price: p_active,
+    })
+  }, [searchParams])
+
+  const handleCheckboxChange = (filterId: string, value: string, checked: boolean) => {
+    setSelectedOptions((prev) => {
+      const current = prev[filterId] || []
+      if (checked) {
+        return { ...prev, [filterId]: [...current, value] }
+      } else {
+        return { ...prev, [filterId]: current.filter((v) => v !== value) }
+      }
+    })
+  }
+
+  const handlePriceChange = () => {
+    setSelectedOptions((prev) => ({ ...prev, price: ['active'] }))
   }
 
   if (!filterOptions || filterOptions.length === 0) {
@@ -252,13 +334,13 @@ export const FiltersMenuSidebar = ({ filterOptions = demo_filters_options, class
   return (
     <>
       {/* ALL FILTERS DIALOG */}
-      <div className="shrink-0 lg:hidden">
+      <div className="shrink-0 lg:hidden text-start">
         <FiltersMenuDialog filterOptions={filterOptions} />
       </div>
 
       {/* SIDEBAR FILTERS */}
-      <div className="hidden lg:block">
-        <Form action={handleFormSubmit}>
+      <div className="hidden lg:block text-start">
+        <Form action="">
           <fieldset className="w-full">
             <div className="divide-y divide-neutral-200 dark:divide-neutral-800">
               {filterOptions?.map((filterOption) => {
@@ -268,34 +350,53 @@ export const FiltersMenuSidebar = ({ filterOptions = demo_filters_options, class
                     <legend className="text-lg font-medium">{filterOption.name}</legend>
                     <div className="pt-7">
                       {filterOption.type === 'checkbox' && (
-                        <CheckboxGroup>
-                          {filterOption.options?.map((option, i) => {
+                        <div className="space-y-4">
+                          {filterOption.options?.map((option) => {
                             if (!option) return null
-                            const checked = i < 1 // Example logic for checked state, replace with actual logic
+                            const isChecked = selectedOptions[filterOption.id]?.includes(option.value) || false
                             return (
-                              <CheckboxField key={option.name}>
-                                <Checkbox name={`${filterOption.id}[]`} value={option.value} defaultChecked={checked} />
-                                <Headless.Label className="text-sm/6">{option.name}</Headless.Label>
-                              </CheckboxField>
+                              <label key={option.name} className="flex items-center gap-3 cursor-pointer group">
+                                <div className="relative isolate flex size-5 items-center justify-center rounded-[0.3125rem] border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-800 group-hover:border-neutral-400 dark:group-hover:border-neutral-600 transition-colors">
+                                  <input
+                                    type="checkbox"
+                                    name={`${filterOption.id}[]`}
+                                    value={option.value}
+                                    checked={isChecked}
+                                    onChange={(e) => handleCheckboxChange(filterOption.id, option.value, e.target.checked)}
+                                    className="absolute inset-0 z-10 opacity-0 cursor-pointer"
+                                  />
+                                  {isChecked && (
+                                    <div className="absolute inset-0 flex items-center justify-center bg-black dark:bg-white rounded-[0.3125rem]">
+                                      <svg className="size-3.5 text-white dark:text-black" viewBox="0 0 14 14" fill="none">
+                                        <path d="M3 8L6 11L11 3.5" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+                                      </svg>
+                                    </div>
+                                  )}
+                                </div>
+                                <span className="text-sm font-medium text-neutral-900 dark:text-neutral-100">
+                                  {option.name}
+                                </span>
+                              </label>
                             )
                           })}
-                        </CheckboxGroup>
+                        </div>
                       )}
                       {filterOption.type === 'price-range' && (
                         <PriceRangeSlider
                           min={filterOption.min ?? 0}
                           max={filterOption.max ?? 1000}
                           name={filterOption.name}
+                          onChange={handlePriceChange}
                         />
                       )}
                       {filterOption.type === 'radio' && (
                         <RadioGroup name={filterOption.id} defaultValue={filterOption.options?.[0]?.value}>
-                          {filterOption.options?.map((option, i) => {
+                          {filterOption.options?.map((option) => {
                             if (!option) return null
                             return (
                               <RadioField key={option.value}>
                                 <Radio value={option.value} />
-                                <Headless.Label className="text-sm/6">{option.name}</Headless.Label>
+                                <Headless.Label className="text-sm/6 cursor-pointer">{option.name}</Headless.Label>
                               </RadioField>
                             )
                           })}
@@ -315,28 +416,66 @@ export const FiltersMenuSidebar = ({ filterOptions = demo_filters_options, class
 
 export function FiltersMenuDialog({ className, filterOptions = demo_filters_options }: Props) {
   const [showAllFilter, setShowAllFilter] = useState(false)
+  const searchParams = useSearchParams()
+
+  const [selectedOptions, setSelectedOptions] = useState<Record<string, string[]>>({
+    categories: [],
+    colors: [],
+    sizes: [],
+    price: [],
+  })
+
+  useEffect(() => {
+    const cats = searchParams.getAll('categories[]')
+    const cols = searchParams.getAll('colors[]')
+    const sizs = searchParams.getAll('sizes[]')
+    const p_active = (searchParams.get('price_min') || searchParams.get('price_max')) ? ['active'] : []
+
+    setSelectedOptions({
+      categories: cats,
+      colors: cols,
+      sizes: sizs,
+      price: p_active,
+    })
+  }, [searchParams, showAllFilter])
 
   const handleFormSubmit = async (formData: FormData) => {
     const formDataObject = Object.fromEntries(formData.entries())
     console.log(formDataObject)
   }
 
+  const handlePriceChange = () => {
+    setSelectedOptions((prev) => ({ ...prev, price: ['active'] }))
+  }
+
+  const handleCheckboxChange = (filterId: string, value: string, checked: boolean) => {
+    setSelectedOptions((prev) => {
+      const current = prev[filterId] || []
+      if (checked) {
+        return { ...prev, [filterId]: [...current, value] }
+      } else {
+        return { ...prev, [filterId]: current.filter((v) => v !== value) }
+      }
+    })
+  }
+
   if (!filterOptions || filterOptions.length === 0) {
     return <div>No filter options available</div>
   }
 
-  const checkedNumber = 3 // Example logic for checked number, replace with actual logic
+  const checkedNumber = Object.values(selectedOptions).flat().length
+
   return (
     <div className={clsx('shrink-0', className)}>
       <Headless.Button
         className={clsx(
-          'relative flex items-center justify-center rounded-full px-4 py-2.5 text-sm select-none ring-inset group-data-open:ring-2 group-data-open:ring-black hover:bg-neutral-50 focus:outline-hidden dark:group-data-open:ring-white dark:hover:bg-neutral-900',
+          'relative flex items-center justify-center rounded-full px-4 py-2.5 text-sm select-none ring-inset hover:bg-neutral-50 focus:outline-hidden dark:hover:bg-neutral-900',
           checkedNumber ? 'ring-2 ring-black dark:ring-white' : 'ring-1 ring-neutral-300 dark:ring-neutral-700'
         )}
         onClick={() => setShowAllFilter(true)}
       >
         <HugeiconsIcon icon={FilterVerticalIcon} size={18} />
-        <span className="ms-2">All filters</span>
+        <span className="ms-2 font-medium">All filters</span>
         <ChevronDownIcon className="ms-3 size-4" />
         {checkedNumber ? (
           <span className="absolute top-0 -right-0.5 flex size-4.5 items-center justify-center rounded-full bg-black text-[0.65rem] font-semibold text-white ring-2 ring-white dark:bg-neutral-200 dark:text-neutral-900 dark:ring-neutral-900">
@@ -351,7 +490,7 @@ export function FiltersMenuDialog({ className, filterOptions = demo_filters_opti
           className="fixed inset-0 bg-black/50 duration-200 ease-out data-closed:opacity-0"
         />
         <Form
-          action={handleFormSubmit}
+          action=""
           className="fixed inset-0 flex max-h-screen w-screen items-center justify-center pt-3"
         >
           <Headless.DialogPanel
@@ -380,38 +519,53 @@ export function FiltersMenuDialog({ className, filterOptions = demo_filters_opti
                       <p className="text-lg font-medium">{filterOption.name}</p>
                       <div className="mt-6">
                         {filterOption.type === 'checkbox' && (
-                          <CheckboxGroup>
-                            {filterOption.options?.map((option, i) => {
+                          <div className="space-y-4">
+                            {filterOption.options?.map((option) => {
                               if (!option) return null
-                              const checked = i < 2 // Example logic for checked state, replace with actual logic
+                              const isChecked = selectedOptions[filterOption.id]?.includes(option.value) || false
                               return (
-                                <CheckboxField key={option.name}>
-                                  <Checkbox
-                                    name={`${filterOption.id}[]`}
-                                    value={option.value}
-                                    defaultChecked={checked}
-                                  />
-                                  <Headless.Label className="text-sm/6">{option.name}</Headless.Label>
-                                </CheckboxField>
+                                <label key={option.name} className="flex items-center gap-3 cursor-pointer group">
+                                  <div className="relative isolate flex size-5 items-center justify-center rounded-[0.3125rem] border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-800 group-hover:border-neutral-400 dark:group-hover:border-neutral-600 transition-colors">
+                                    <input
+                                      type="checkbox"
+                                      name={`${filterOption.id}[]`}
+                                      value={option.value}
+                                      checked={isChecked}
+                                      onChange={(e) => handleCheckboxChange(filterOption.id, option.value, e.target.checked)}
+                                      className="absolute inset-0 z-10 opacity-0 cursor-pointer"
+                                    />
+                                    {isChecked && (
+                                      <div className="absolute inset-0 flex items-center justify-center bg-black dark:bg-white rounded-[0.3125rem]">
+                                        <svg className="size-3.5 text-white dark:text-black" viewBox="0 0 14 14" fill="none">
+                                          <path d="M3 8L6 11L11 3.5" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+                                        </svg>
+                                      </div>
+                                    )}
+                                  </div>
+                                  <span className="text-sm font-medium text-neutral-900 dark:text-neutral-100">
+                                    {option.name}
+                                  </span>
+                                </label>
                               )
                             })}
-                          </CheckboxGroup>
+                          </div>
                         )}
                         {filterOption.type === 'price-range' && (
                           <PriceRangeSlider
                             min={filterOption.min ?? 0}
                             max={filterOption.max ?? 1000}
                             name={filterOption.name}
+                            onChange={handlePriceChange}
                           />
                         )}
                         {filterOption.type === 'radio' && (
                           <RadioGroup name={filterOption.id} defaultValue={filterOption.options?.[0]?.value}>
-                            {filterOption.options?.map((option, i) => {
+                            {filterOption.options?.map((option) => {
                               if (!option) return null
                               return (
                                 <RadioField key={option.value}>
                                   <Radio value={option.value} />
-                                  <Headless.Label className="text-sm/6">{option.name}</Headless.Label>
+                                  <Headless.Label className="text-sm/6 cursor-pointer">{option.name}</Headless.Label>
                                 </RadioField>
                               )
                             })}
