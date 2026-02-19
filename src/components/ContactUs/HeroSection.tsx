@@ -51,7 +51,7 @@ const HeroSection = () => {
 
             <div className="relative z-10 text-center px-4 max-w-4xl mx-auto text-white">
                 <h1 ref={titleRef} className="text-5xl md:text-7xl font-bold tracking-tight mb-6 drop-shadow-lg">
-                    We're Here for You
+                    We are Here for You
                 </h1>
                 <p ref={textRef} className="text-xl md:text-2xl font-light max-w-2xl mx-auto drop-shadow-md text-gray-100/90 leading-relaxed">
                     Have questions? Need support? Our team is ready to help you grow smarter and live better.

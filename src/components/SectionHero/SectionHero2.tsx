@@ -63,6 +63,14 @@ const SectionHero2: FC<Props> = ({ className = '' }) => {
     },
     trackMouse: true,
   })
+    const handleAutoNext = () => {
+    setIndexActive((state) => {
+      if (state >= data.length - 1) {
+        return 0
+      }
+      return state + 1
+    })
+  }
 
   useEffect(() => {
     if (isSlided || !indexActive) {
@@ -78,14 +86,6 @@ const SectionHero2: FC<Props> = ({ className = '' }) => {
     isRunning ? 5000 : 999999
   )
 
-  const handleAutoNext = () => {
-    setIndexActive((state) => {
-      if (state >= data.length - 1) {
-        return 0
-      }
-      return state + 1
-    })
-  }
 
   const handleClickNext = () => {
     setIndexActive((state) => {
@@ -201,6 +201,7 @@ const SectionHero2: FC<Props> = ({ className = '' }) => {
         type="button"
         className="absolute inset-y-px end-0 z-10 hidden items-center justify-center px-10 text-neutral-700 lg:flex"
         onClick={handleClickNext}
+        aria-label="Next slide"
       >
         <div className="pointer-events-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 dark:bg-black/20 backdrop-blur-md border border-white/30 dark:border-white/10 text-neutral-800 dark:text-white transition-all hover:bg-primary-600 hover:text-white hover:scale-110">
           <svg
@@ -219,6 +220,7 @@ const SectionHero2: FC<Props> = ({ className = '' }) => {
         type="button"
         className="absolute inset-y-px start-0 z-10 hidden items-center justify-center px-10 text-neutral-700 lg:flex"
         onClick={handleClickPrev}
+        aria-label="Previous slide"
       >
         <div className="pointer-events-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 dark:bg-black/20 backdrop-blur-md border border-white/30 dark:border-white/10 text-neutral-800 dark:text-white transition-all hover:bg-primary-600 hover:text-white hover:scale-110">
           <svg
