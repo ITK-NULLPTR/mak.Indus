@@ -1,7 +1,8 @@
 import { generateOrderEmailHTML } from '@/utils/emailTemplate'
 import { formatOrderDate, generateOrderNumber } from '@/utils/orderUtils'
 import { NextRequest, NextResponse } from 'next/server'
- 
+import nodemailer from 'nodemailer'
+
 export async function POST(request: NextRequest) {
     try {
         const body = await request.json()
