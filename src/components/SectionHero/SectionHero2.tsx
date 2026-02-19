@@ -14,7 +14,7 @@ import gardening2 from '@/images/gardening2.webp'
 import kitchen3 from '@/images/kitchen3.webp'
 
 
-// DEMO DATA
+
 const data = [
   {
     id: 1,
@@ -50,7 +50,6 @@ let TIME_OUT: NodeJS.Timeout | null = null
 const SectionHero2: FC<Props> = ({ className = '' }) => {
   // =================
 
-  const [isSlided, setIsSlided] = useState(false)
   const [indexActive, setIndexActive] = useState(0)
   const [isRunning, toggleIsRunning] = useState(true)
 
@@ -71,13 +70,6 @@ const SectionHero2: FC<Props> = ({ className = '' }) => {
       return state + 1
     })
   }
-
-  useEffect(() => {
-    if (isSlided || !indexActive) {
-      return
-    }
-    setIsSlided(true)
-  }, [indexActive, isSlided])
 
   useInterval(
     () => {
@@ -203,7 +195,7 @@ const SectionHero2: FC<Props> = ({ className = '' }) => {
         onClick={handleClickNext}
         aria-label="Next slide"
       >
-        <div className="pointer-events-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 dark:bg-black/20 backdrop-blur-md border border-white/30 dark:border-white/10 text-neutral-800 dark:text-white transition-all hover:bg-primary-600 hover:text-white hover:scale-110">
+        {/* <div className="pointer-events-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 dark:bg-black/20 backdrop-blur-md border border-white/30 dark:border-white/10 text-neutral-800 dark:text-white transition-all hover:bg-primary-600 hover:text-white hover:scale-110">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -214,7 +206,7 @@ const SectionHero2: FC<Props> = ({ className = '' }) => {
           >
             <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
           </svg>
-        </div>
+        </div> */}
       </button>
       <button
         type="button"
@@ -222,7 +214,7 @@ const SectionHero2: FC<Props> = ({ className = '' }) => {
         onClick={handleClickPrev}
         aria-label="Previous slide"
       >
-        <div className="pointer-events-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 dark:bg-black/20 backdrop-blur-md border border-white/30 dark:border-white/10 text-neutral-800 dark:text-white transition-all hover:bg-primary-600 hover:text-white hover:scale-110">
+        {/* <div className="pointer-events-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 dark:bg-black/20 backdrop-blur-md border border-white/30 dark:border-white/10 text-neutral-800 dark:text-white transition-all hover:bg-primary-600 hover:text-white hover:scale-110">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -233,7 +225,7 @@ const SectionHero2: FC<Props> = ({ className = '' }) => {
           >
             <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
           </svg>
-        </div>
+        </div> */}
       </button>
     </div>
   )

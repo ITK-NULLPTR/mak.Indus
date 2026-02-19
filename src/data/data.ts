@@ -3,12 +3,6 @@ import collectionImage2 from '@/images/collections/2.png'
 import collectionImage3 from '@/images/collections/3.png'
 import collectionImage4 from '@/images/collections/4.png'
 import collectionImage5 from '@/images/collections/5.png'
-import collectionImage6 from '@/images/collections/6.png'
-import collectionImage7 from '@/images/collections/7.png'
-import boothImage1 from '@/images/collections/booth1.png'
-import boothImage2 from '@/images/collections/booth2.png'
-import boothImage3 from '@/images/collections/booth3.png'
-import boothImage4 from '@/images/collections/booth4.png'
 import productImage1_1 from '@/images/products/p1-1.jpg'
 import productImage1_2 from '@/images/products/p1-2.jpg'
 import productImage1_3 from '@/images/products/p1-3.jpg'
@@ -756,7 +750,7 @@ export async function getCollections() {
       color: 'bg-amber-50',
       count: 79,
     },
-   
+
     {
       id: 'gid://6',
       title: 'Sale collection',
@@ -774,9 +768,9 @@ export async function getCollections() {
         alt: 'Explore new arrivals',
       },
     },
-    
-    
-    
+
+
+
 
 
   ]
@@ -918,6 +912,7 @@ export async function getProducts() {
         height: productImage1.height,
         alt: 'Leather Tote Bag',
       },
+      categories: ['backpacks', 'accessories'],
       images: [
         {
           src: productImage1.src,
@@ -979,6 +974,13 @@ export async function getProducts() {
               },
               name: 'Stone',
             },
+            {
+              swatch: {
+                color: '#F5F5DC',
+                image: null,
+              },
+              name: 'Beige',
+            },
           ],
         },
         {
@@ -1031,6 +1033,7 @@ export async function getProducts() {
         height: productImage2.height,
         alt: 'Silk Midi Dress',
       },
+      categories: ['new-arrivals'],
       images: [
         {
           src: productImage2.src,
@@ -1065,21 +1068,21 @@ export async function getProducts() {
           name: 'Color',
           optionValues: [
             {
-              name: 'Emerald Green',
+              name: 'Green',
               swatch: {
                 color: '#2E8B57',
                 image: null,
               },
             },
             {
-              name: 'Ivory',
+              name: 'Brown',
               swatch: {
                 color: 'oklch(84.1% 0.238 128.85)',
                 image: null,
               },
             },
             {
-              name: 'Navy Blue',
+              name: 'Blue',
               swatch: {
                 color: '#000080',
                 image: null,
@@ -1140,6 +1143,7 @@ export async function getProducts() {
         height: productImage3.height,
         alt: 'Denim Jacket',
       },
+      categories: ['hoodies'],
       images: [
         {
           src: productImage3.src,
@@ -1181,7 +1185,7 @@ export async function getProducts() {
               },
             },
             {
-              name: 'Dark Blue',
+              name: 'Deep Blue',
               swatch: {
                 color: '#00008B',
                 image: null,
@@ -1242,6 +1246,7 @@ export async function getProducts() {
         height: productImage4.height,
         alt: 'Cashmere Sweater',
       },
+      categories: ['hoodies', 'new-arrivals'],
       images: [
         {
           src: productImage4.src,
@@ -1323,7 +1328,7 @@ export async function getProducts() {
       selectedOptions: [
         {
           name: 'Color',
-          value: 'Cream',
+          value: 'Brown',
         },
         {
           name: 'Size',
@@ -1344,6 +1349,7 @@ export async function getProducts() {
         height: productImage5.height,
         alt: 'Linen Blazer',
       },
+      categories: ['new-arrivals', 'accessories'],
       images: [
         {
           src: productImage5.src,
@@ -1385,14 +1391,14 @@ export async function getProducts() {
               },
             },
             {
-              name: 'Navy',
+              name: 'Blue',
               swatch: {
                 color: '#000080',
                 image: null,
               },
             },
             {
-              name: 'Olive',
+              name: 'Green',
               swatch: {
                 color: '#808000',
                 image: null,
@@ -1442,6 +1448,7 @@ export async function getProducts() {
         height: productImage6.height,
         alt: 'Velvet Skirt',
       },
+      categories: ['accessories', 'new-arrivals'],
       images: [
         {
           src: productImage6.src,
@@ -1540,6 +1547,7 @@ export async function getProducts() {
         height: productImage7.height,
         alt: 'Wool Trench Coat',
       },
+      categories: ['new-arrivals', 'hoodies'],
       images: [
         {
           src: productImage7.src,
@@ -1642,6 +1650,7 @@ export async function getProducts() {
         height: productImage8.height,
         alt: 'Cotton Shirt',
       },
+      categories: ['tshirts', 'new-arrivals'],
       images: [
         {
           src: productImage8.src,

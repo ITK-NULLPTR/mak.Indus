@@ -5,7 +5,8 @@ import { CheckIcon, ChevronDownIcon } from '@heroicons/react/24/solid'
 import { ArrangeByLettersAZIcon } from '@hugeicons/core-free-icons'
 import { HugeiconsIcon } from '@hugeicons/react'
 import clsx from 'clsx'
-import { FC, Fragment, useState } from 'react'
+import { useRouter, usePathname, useSearchParams } from 'next/navigation'
+import { FC, Fragment, useMemo } from 'react'
 
 const sortByOptions = [
   { name: 'Newest', value: 'newest' },
@@ -22,11 +23,24 @@ type Props = {
 }
 
 export const FilterSortByMenuListBox: FC<Props> = ({ className, filterOptions = sortByOptions }) => {
-  const [selectedOption, setSelectedOption] = useState(filterOptions[0].value)
+  const router = useRouter()
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
+
+  const selectedOption = useMemo(() => {
+    return searchParams.get('sort') || filterOptions[0].value
+  }, [searchParams, filterOptions])
+
+  const handleSortChange = (value: string) => {
+    const params = new URLSearchParams(searchParams.toString())
+    params.set('sort', value)
+    params.set('page', '1')
+    router.push(`${pathname}?${params.toString()}`, { scroll: false })
+  }
 
   return (
     <div className={clsx('product-sort-by-list-box flex shrink-0', className)}>
-      <Listbox value={selectedOption} onChange={setSelectedOption}>
+      <Listbox value={selectedOption} onChange={handleSortChange}>
         <div className="relative">
           <ListboxButton
             className={clsx(

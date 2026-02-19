@@ -72,7 +72,6 @@ export default function CheckoutSummary() {
                 shipping,
                 tax,
                 total,
-                paymentMethod: checkoutData.paymentMethod
             }
 
             const response = await fetch('/api/orders/create', {
