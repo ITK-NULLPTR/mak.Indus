@@ -11,7 +11,7 @@ import SectionStatistic from './SectionStatistic'
 export const metadata: Metadata = {
   title: 'About Us',
   description:
-    'About Us. We’re impartial and independent, and every day we create distinctive, world-class programmes and content which inform, educate and entertain millions of people in the around the world.',
+    'Dedicated to providing premium kitchen and gardening tools. We curate high-quality equipment to help you create a beautiful home and a thriving garden.',
 }
 
 const PageAbout = () => {
@@ -23,7 +23,7 @@ const PageAbout = () => {
         <SectionHero
           rightImg={rightImg}
           heading="👋 About Us."
-          subHeading="We’re impartial and independent, and every day we create distinctive, world-class programmes and content which inform, educate and entertain millions of people in the around the world."
+          subHeading="We are dedicated to providing the finest kitchen and gardening tools. Our mission is to empower home cooks and garden enthusiasts with high-quality, durable equipment that makes every task a pleasure."
         />
         <SectionFounder />
         <Divider />

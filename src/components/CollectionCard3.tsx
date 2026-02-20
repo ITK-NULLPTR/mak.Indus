@@ -21,15 +21,15 @@ const CollectionCard3: FC<Props> = ({ className = '', collection }) => {
       <div
         className={`aspect-w-16 relative overflow-hidden rounded-2xl aspect-h-14 sm:aspect-h-9 ${collection.color}`}
       >
-        <div>
+        <div className="absolute inset-0 pointer-events-none">
           <div className="absolute inset-5 sm:inset-8">
             {collection.image && (
-              <div className="absolute end-0 h-full w-full">
+              <div className="absolute end-0 top-0 bottom-0 w-[55%]">
                 <Image
                   alt={collection.image.alt || ''}
                   src={collection.image}
                   fill
-                  className="object-contain object-right ml-12 drop-shadow-xl"
+                  className="object-contain object-right drop-shadow-xl"
                   sizes="300px"
                 />
               </div>
@@ -38,19 +38,19 @@ const CollectionCard3: FC<Props> = ({ className = '', collection }) => {
         </div>
         <span className="absolute inset-0 bg-black/10 opacity-0 transition-opacity group-hover/CollectionCard3:opacity-40"></span>
 
-        <div>
+        <div className="relative z-10 h-full">
           <div className="absolute inset-5 flex flex-col sm:inset-8">
-            <div className="max-w-xs">
-              <span className={`mb-2 block text-sm text-neutral-700`}>{collection.title}</span>
-              {collection.description && (
+            <div className="max-w-[45%]">
+              <span className={`mb-2 block text-sm text-neutral-700 font-medium`}>{collection.title}</span>
+              {collection.sortDescription && (
                 <h2
-                  className={`text-xl font-semibold text-neutral-900 md:text-2xl`}
+                  className={`text-xl font-bold text-neutral-900 md:text-2xl leading-tight drop-shadow-sm`}
                   dangerouslySetInnerHTML={{ __html: collection.sortDescription || '' }}
                 ></h2>
               )}
             </div>
-            <div className="mt-auto">
-              <Button color="light" className="[--btn-border:white]/0">
+            <div className="mt-10">
+              <Button color="light" size="smaller" className="shadow-sm border-neutral-200">
                 Show me all
               </Button>
             </div>

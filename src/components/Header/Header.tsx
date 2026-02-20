@@ -5,6 +5,7 @@ import { FC } from 'react'
 import CartBtn from './CartBtn'
 import HamburgerBtnMenu from './HamburgerBtnMenu'
 import Navigation from './Navigation/Navigation'
+import { Button } from '@/shared/Button/Button'
 
 export interface HeaderProps {
   hasBorderBottom?: boolean
@@ -31,11 +32,10 @@ const Header: FC<HeaderProps> = ({ hasBorderBottom = true }) => {
 
 
 
-          <div className="flex mr-4 font-medium hover:text-primary-600 border p-1 rounded-md border-black items-center gap-x-2.5 sm:gap-x-5">
-            <div className="block lg:hidden">
-              <HamburgerBtnMenu />
-            </div>
-            <Link href="/contact">Contact Us</Link>
+          <div className="hidden lg:flex mr-4 items-center gap-x-2.5 sm:gap-x-5">
+            <Button href="/contact" outline className="!rounded-full px-5 py-2 text-sm font-medium">
+              Contact Us
+            </Button>
           </div>
 
 

@@ -13,11 +13,6 @@ const Navigation = () => {
         Home
       </Link>
 
-      {/* About */}
-      <Link href="/aboutus" className="font-medium hover:text-primary-600">
-        About Us
-      </Link>
-
       {/* Shop Dropdown */}
       <div
         className="relative"
@@ -27,9 +22,8 @@ const Navigation = () => {
         <button className="font-medium hover:text-primary-600 flex items-center gap-1 cursor-pointer">
           Shop
           <svg
-            className={`w-4 h-4 transition-transform duration-200 ${
-              open ? 'rotate-180' : ''
-            }`}
+            className={`w-4 h-4 transition-transform duration-200 ${open ? 'rotate-180' : ''
+              }`}
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -44,23 +38,39 @@ const Navigation = () => {
         </button>
 
         {open && (
-          <div className="absolute top-full left-1/2 -translate-x-1/2 w-44 rounded-xl bg-white shadow-lg border border-neutral-200 overflow-hidden">
+          <div className="absolute top-full left-1/2 -translate-x-1/2 w-48 rounded-xl bg-white shadow-lg border border-neutral-200 overflow-hidden py-2 z-50">
             <Link
               href="/collections/kitchen"
-              className="block px-4 py-2.5 hover:bg-neutral-100 transition-colors"
+              className="block px-4 py-2 hover:bg-neutral-100 transition-colors"
             >
-              Kitchen
+              Kitchen Tools
             </Link>
-
             <Link
               href="/collections/gardening"
-              className="block px-4 py-2.5 hover:bg-neutral-100 transition-colors"
+              className="block px-4 py-2 hover:bg-neutral-100 transition-colors"
             >
-              Gardening
+              Gardening Tools
+            </Link>
+            <Link
+              href="/collections/cookware"
+              className="block px-4 py-2 hover:bg-neutral-100 transition-colors"
+            >
+              Cookware
+            </Link>
+            <Link
+              href="/collections/garden-accessories"
+              className="block px-4 py-2 hover:bg-neutral-100 transition-colors"
+            >
+              Garden Accessories
             </Link>
           </div>
         )}
       </div>
+
+      {/* About */}
+      <Link href="/about" className="font-medium hover:text-primary-600">
+        About Us
+      </Link>
     </nav>
   )
 }

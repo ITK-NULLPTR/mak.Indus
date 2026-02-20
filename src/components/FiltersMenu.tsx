@@ -33,39 +33,7 @@ type FilterOption = {
   max?: number
 }
 
-const demo_filters_options: FilterOption[] = [
-  {
-    id: 'categories',
-    name: 'Categories',
-    type: 'checkbox',
-    hugeIcon: Note01Icon,
-    options: [
-      {
-        name: 'New Arrivals',
-        value: 'new-arrivals',
-      },
-      {
-        name: 'Backpacks',
-        value: 'backpacks',
-      },
-      {
-        name: 'Travel Bags',
-        value: 'travel-bags',
-      },
-      {
-        name: 'Accessories',
-        value: 'accessories',
-      },
-      {
-        name: 'Tshirts',
-        value: 'tshirts',
-      },
-      {
-        name: 'Hoodies',
-        value: 'hoodies',
-      },
-    ],
-  },
+export const demo_filters_options: FilterOption[] = [
   {
     id: 'colors',
     name: 'Colors',

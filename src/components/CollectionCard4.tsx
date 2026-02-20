@@ -23,12 +23,12 @@ const CollectionCard4: FC<CollectionCard4Props> = ({ className, bgSvgUrl, collec
       )}
     >
       {bgSvgUrl && (
-        <div className="absolute end-0 bottom-0 size-52 sm:size-64 xl:size-72">
-          <Image src={bgSvgUrl} alt={'bgSVG'} fill className="object-contain object-bottom-right opacity-60" />
+        <div className="absolute end-0 bottom-0 size-40 sm:size-52 xl:size-60 select-none pointer-events-none">
+          <Image src={bgSvgUrl} alt={'bgSVG'} fill className="object-contain object-bottom-right opacity-30" />
         </div>
       )}
 
-      <div className="flex flex-col justify-between">
+      <div className="relative z-10 flex flex-col justify-between">
         <div className="flex items-center justify-between gap-x-2.5">
           {collection.image?.src && (
             <div className={clsx('relative size-20 overflow-hidden rounded-full', collection.color)}>
@@ -53,7 +53,7 @@ const CollectionCard4: FC<CollectionCard4Props> = ({ className, bgSvgUrl, collec
 
         <p className="mt-10 text-sm text-neutral-500 sm:mt-20 dark:text-neutral-400">{collection.count} products</p>
 
-        <Link href={'/collections/' + collection.handle} className="absolute inset-0"></Link>
+        <Link href={collection.href || '/collections/' + collection.handle} className="absolute inset-0"></Link>
       </div>
     </div>
   )

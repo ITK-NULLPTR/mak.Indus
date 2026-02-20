@@ -23,13 +23,12 @@ export const metadata: Metadata = {
 
 async function PageHome() {
   const allCollections = await getCollections()
-  const departmentCollections = allCollections.slice(0, 4)
-  const featuredCollections = allCollections.slice(3, 8)
+  const featuredCollections = allCollections.slice(0, 4)
   const groupCollections = await getGroupCollections()
   const products = await getProducts()
-  const carouselProducts1 = products.slice(0, 5)
-  const carouselProducts2 = products.slice(3, 10)
-  const carouselProducts3 = products.slice(1, 5)
+  const carouselProducts1 = products.slice(0, 8)
+  const carouselProducts2 = products.slice(0, 8)
+  const carouselProducts3 = products.slice(0, 8)
   const blogPosts = await getBlogPosts()
 
   return (

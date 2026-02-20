@@ -21,7 +21,7 @@ const ProductCardLarge: FC<Props> = ({ className, product }) => {
         {images?.[0] && (
           <NcImage
             containerClassName="aspect-8/5 bg-neutral-100 rounded-2xl overflow-hidden relative"
-            className="rounded-2xl object-contain"
+            className="rounded-2xl object-cover"
             fill
             src={images?.[0]}
             alt=""

@@ -21,12 +21,9 @@ export interface HeaderFilterSectionProps {
 
 const CATEGORIES = [
   { name: 'All items', value: '' },
-  { name: 'New Arrivals', value: 'new-arrivals' },
-  { name: 'Backpacks', value: 'backpacks' },
-  { name: 'Travel Bags', value: 'travel-bags' },
-  { name: 'Accessories', value: 'accessories' },
-  { name: 'Tshirts', value: 'tshirts' },
-  { name: 'Hoodies', value: 'hoodies' },
+  { name: 'Gardening', value: 'gardening' },
+  { name: 'Kitchen', value: 'kitchen' },
+  { name: 'Cookware', value: 'cookware' },
 ]
 
 const HeaderFilterSection: FC<HeaderFilterSectionProps> = ({ className = 'mb-12', heading }) => {
@@ -58,17 +55,7 @@ const HeaderFilterSection: FC<HeaderFilterSectionProps> = ({ className = 'mb-12'
     <div className={`relative flex flex-col ${className}`}>
       {heading && <Heading className="mb-12 text-neutral-900 dark:text-neutral-50">{heading}</Heading>}
       <div className="flex flex-col justify-between gap-y-6 lg:flex-row lg:items-center lg:gap-x-2 lg:gap-y-0">
-        <Nav className="sm:gap-x-2">
-          {CATEGORIES.map((item) => (
-            <NavItem
-              key={item.name}
-              isActive={currentCategory === item.value}
-              onClick={() => handleCategoryClick(item.value)}
-            >
-              {item.name}
-            </NavItem>
-          ))}
-        </Nav>
+        <div />
 
         <span className="hidden shrink-0 lg:block">
           <ButtonPrimary

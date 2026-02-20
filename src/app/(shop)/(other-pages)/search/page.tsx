@@ -59,12 +59,6 @@ const PageSearch = async ({
     // Search query match
     const matchesQuery = product.title.toLowerCase().includes(query.toLowerCase())
 
-    // Combine nav category and filter categories
-    const activeCategories = [...new Set([category, ...searchCategories])].filter(Boolean)
-    const matchesCategory =
-      activeCategories.length === 0 ||
-      product.categories.some((cat) => activeCategories.includes(cat))
-
     // Color match (case-insensitive)
     const matchesColor =
       colors.length === 0 ||
@@ -82,7 +76,7 @@ const PageSearch = async ({
     // Price match
     const matchesPrice = product.price >= priceMin && product.price <= priceMax
 
-    return matchesQuery && matchesCategory && matchesColor && matchesSize && matchesPrice
+    return matchesQuery && matchesColor && matchesSize && matchesPrice
   })
 
   // 2. SORT LOGIC

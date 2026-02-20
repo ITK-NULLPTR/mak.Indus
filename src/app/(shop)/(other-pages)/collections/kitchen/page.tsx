@@ -1,270 +1,77 @@
-'use client'
-
-import React, { useState } from 'react';
-import { HeartIcon, ShoppingBagIcon, ArrowsPointingOutIcon, StarIcon } from '@heroicons/react/24/outline';
-import Image from 'next/image';
-import Footer from '@/components/Footer';
-import AddToCardButton from '@/components/AddToCardButton';
-import { useAside } from '@/components/aside';
-
-
-import Img1 from '@/images/kitchen/1.webp';
-import Img2 from '@/images/kitchen/2.webp';
-import Img3 from '@/images/kitchen/3.webp';
-import Img4 from '@/images/kitchen/4.webp';
-import Img5 from '@/images/kitchen/5.webp';
-import Img6 from '@/images/kitchen/6.webp';
-import Img7 from '@/images/kitchen/7.webp';
-import Img8 from '@/images/kitchen/8.webp';
+import { FiltersMenuTabs } from '@/components/FiltersMenu';
+import { FilterSortByMenuListBox } from '@/components/FilterSortByMenu';
+import { Divider } from '@/components/Divider';
+import { getProducts } from '@/data/data';
 import HeroSection from './HeroSection';
+import ProductCard from '@/components/ProductCard';
 
-const kitchenImages = [Img1, Img2, Img3, Img4, Img5, Img6, Img7, Img8];
+export default async function KitchenPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}) {
+  const sParams = await searchParams;
+  const price_min = sParams.price_min as string | undefined;
+  const price_max = sParams.price_max as string | undefined;
+  const sort = (sParams.sort as string) || 'newest';
 
+  const allProducts = await getProducts();
+  // Strictly filter by kitchen category first
+  let filteredProducts = allProducts.filter(p => p.categories?.includes('kitchen'));
 
+  // Filter by price if search params are present
+  if (price_min || price_max) {
+    const min = price_min ? Number(price_min) : 0;
+    const max = price_max ? Number(price_max) : Infinity;
+    filteredProducts = filteredProducts.filter((p) => (p.price || 0) >= min && (p.price || 0) <= max);
+  }
 
-interface Product {
-  id: number;
-  title: string;
-  subtitle: string;
-  price: number;
-  rating: number;
-  reviewNumber: number;
-  image: string;
-  status?: 'new' | 'sale' | null;
-  handle: string;
-}
+  // Apply Sorting
+  filteredProducts.sort((a, b) => {
+    switch (sort) {
+      case 'price-low-to-high':
+        return (a.price || 0) - (b.price || 0);
+      case 'price-high-low':
+        return (b.price || 0) - (a.price || 0);
+      case 'a-to-z':
+        return (a.title || '').localeCompare(b.title || '');
+      case 'z-to-a':
+        return (b.title || '').localeCompare(a.title || '');
+      case 'best-rating':
+        return (b.rating || 0) - (a.rating || 0);
+      case 'newest':
+      default:
+        return (b.id || '').localeCompare(a.id || '');
+    }
+  });
 
-const products: Product[] = [
-  {
-    id: 1,
-    title: 'Professional Chef Knife',
-    subtitle: 'High-Carbon Steel',
-    price: 89.99,
-    rating: 4.8,
-    reviewNumber: 234,
-    image: kitchenImages[0].src,
-    status: 'new',
-    handle: 'professional-chef-knife'
-  },
-  {
-    id: 2,
-    title: 'Cast Iron Skillet',
-    subtitle: 'Pre-Seasoned 12"',
-    price: 64.99,
-    rating: 4.7,
-    reviewNumber: 189,
-    image: kitchenImages[1].src,
-    status: null,
-    handle: 'cast-iron-skillet'
-  },
-  {
-    id: 3,
-    title: 'Stand Mixer',
-    subtitle: '6-Quart Professional',
-    price: 299.99,
-    rating: 4.9,
-    reviewNumber: 456,
-    image: kitchenImages[2].src,
-    status: 'new',
-    handle: 'stand-mixer'
-  },
-  {
-    id: 4,
-    title: 'Espresso Machine',
-    subtitle: '15-Bar Italian Pump',
-    price: 449.99,
-    rating: 4.6,
-    reviewNumber: 312,
-    image: kitchenImages[3].src,
-    status: null,
-    handle: 'leather-tote-bag'
-  },
-  {
-    id: 5,
-    title: 'Blender Pro',
-    subtitle: '2000W Motor',
-    price: 199.99,
-    rating: 4.5,
-    reviewNumber: 278,
-    image: kitchenImages[4].src,
-    status: 'new',
-    handle: 'leather-tote-bag'
-  },
-  {
-    id: 6,
-    title: 'Wooden Cutting Board',
-    subtitle: 'Bamboo Construction',
-    price: 34.99,
-    rating: 4.4,
-    reviewNumber: 167,
-    image: kitchenImages[5].src,
-    status: null,
-    handle: 'silk-midi-dress'
-  },
-  {
-    id: 7,
-    title: 'Cookware Set',
-    subtitle: '10-Piece Tri-Ply',
-    price: 179.99,
-    rating: 4.7,
-    reviewNumber: 423,
-    image: kitchenImages[6].src,
-    status: 'sale',
-    handle: 'leather-tote-bag'
-  },
-  {
-    id: 8,
-    title: 'Digital Kitchen Scale',
-    subtitle: 'Precision 0.1g',
-    price: 24.99,
-    rating: 4.3,
-    reviewNumber: 198,
-    image: kitchenImages[7].src,
-    status: 'new',
-    handle: 'silk-midi-dress'
-  },
-];
-
-const ProductStatus: React.FC<{ status?: 'new' | 'sale' | null }> = ({ status }) => {
-  if (!status) return null;
-
-  return (
-    <div className="absolute left-3 top-3 z-10">
-      {status === 'new' && (
-        <div className="rounded-full bg-blue-500 px-2.5 py-1 text-xs font-medium text-white">
-          New in
-        </div>
-      )}
-      {status === 'sale' && (
-        <div className="rounded-full bg-red-500 px-2.5 py-1 text-xs font-medium text-white">
-          Sale
-        </div>
-      )}
-    </div>
-  );
-};
-
-const Prices: React.FC<{ price: number }> = ({ price }) => {
-  return (
-    <div className="text-2xl font-semibold text-green-600">
-      ${price.toFixed(2)}
-    </div>
-  );
-};
-
-const LikeButton: React.FC<{ liked?: boolean; className?: string; onClick?: () => void }> = ({
-  liked = false,
-  className = '',
-  onClick
-}) => {
-  return (
-    <button
-      onClick={onClick}
-      className={`z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 backdrop-blur-sm transition-all hover:scale-110 ${className}`}
-    >
-      <HeartIcon
-        className={`h-5 w-5 ${liked ? 'fill-red-500 text-red-500' : 'text-gray-600'}`}
-      />
-    </button>
-  );
-};
-
-const ProductCard: React.FC<{ data: Product; isLiked?: boolean }> = ({ data, isLiked = false }) => {
-  const [liked, setLiked] = useState(isLiked);
-  const { open: openAside, setProductQuickViewHandle } = useAside();
-  const { title, subtitle, price, rating, reviewNumber, image, status, handle } = data;
-
-  const handleQuickView = (e?: React.MouseEvent) => {
-    if (e) e.preventDefault();
-    setProductQuickViewHandle(handle);
-    openAside('product-quick-view');
-  };
-
-  const renderGroupButtons = () => {
-    return (
-      <div className="invisible absolute inset-x-1 bottom-0 flex justify-center gap-1.5 opacity-0 transition-all group-hover:visible group-hover:bottom-4 group-hover:opacity-100">
-        <AddToCardButton
-          as={'button'}
-          className="flex cursor-pointer items-center justify-center gap-2 rounded-full bg-neutral-900 px-4 py-2 text-xs text-white shadow-lg hover:bg-neutral-800"
-          title={title}
-          imageUrl={image}
-          price={price}
-          quantity={1}
-        >
-          <ShoppingBagIcon className="-ml-1 h-3.5 w-3.5" />
-          <span>Add to bag</span>
-        </AddToCardButton>
-
-        <button
-          className="flex cursor-pointer items-center justify-center gap-2 rounded-full bg-white px-4 py-2 text-xs text-neutral-950 shadow-lg hover:bg-neutral-50"
-          type="button"
-          onClick={handleQuickView}
-        >
-          <ArrowsPointingOutIcon className="-ml-1 h-3.5 w-3.5" />
-          <span>Quick view</span>
-        </button>
-      </div>
-    );
-  };
-
-  return (
-    <div className="product-card relative flex flex-col bg-transparent">
-      <div className="group relative z-1 shrink-0 overflow-hidden rounded-3xl bg-neutral-50">
-        <div className="relative aspect-11/12 w-full cursor-pointer" onClick={handleQuickView}>
-          <Image
-            src={image}
-            alt={title}
-            fill
-            className="h-full w-full object-cover"
-            sizes="(max-width: 640px) 100vw, (max-width: 1200px) 50vw, 40vw"
-          />
-        </div>
-        <ProductStatus status={status} />
-        <LikeButton
-          liked={liked}
-          className="absolute right-3 top-3"
-          onClick={() => setLiked(!liked)}
-        />
-        {renderGroupButtons()}
-      </div>
-
-      <div className="space-y-4 px-2.5 pt-5 pb-2.5">
-        <div>
-          <h2 className="text-base font-semibold transition-colors">{title}</h2>
-          <p className="mt-1 text-sm text-neutral-500">{subtitle}</p>
-        </div>
-
-        <div className="flex items-end justify-between">
-          <Prices price={price} />
-          <div className="mb-0.5 flex items-center">
-            <StarIcon className="h-5 w-5 fill-amber-400 text-amber-400" />
-            <span className="ml-1 text-sm text-neutral-500">
-              {rating} ({reviewNumber} reviews)
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default function KitchenPage() {
   return (
     <>
       <HeroSection />
 
       <div className="min-h-screen bg-white py-12 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-
-
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {products.map((product) => (
-              <ProductCard key={product.id} data={product} />
-            ))}
+          {/* TABS FILTER */}
+          <div className="flex flex-wrap items-center gap-2.5 mb-8 text-start">
+            <FiltersMenuTabs />
+            <FilterSortByMenuListBox className="ml-auto" />
           </div>
+
+          <Divider className="mb-10" />
+
+          {filteredProducts.length > 0 ? (
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {filteredProducts.map((product) => (
+                <ProductCard key={product.id} data={product} />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-20 bg-neutral-50 rounded-3xl border-2 border-dashed border-neutral-200">
+              <p className="text-neutral-500">No products found in this category.</p>
+            </div>
+          )}
         </div>
       </div>
-      <Footer />
     </>
   );
 }

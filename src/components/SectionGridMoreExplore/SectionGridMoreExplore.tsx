@@ -17,14 +17,12 @@ import NavItem2 from '@/shared/Nav/NavItem2'
 import { ArrowRightIcon } from '@heroicons/react/24/solid'
 import clsx from 'clsx'
 import React, { FC, useState } from 'react'
-import CollectionCard1 from '../CollectionCard1'
 import CollectionCard4 from '../CollectionCard4'
-import CollectionCard6 from '../CollectionCard6'
 
 export interface SectionGridMoreExploreProps {
   className?: string
   gridClassName?: string
-  boxCard?: 'box1' | 'box4' | 'box6'
+  boxCard?: 'box4'
   groupCollections: Awaited<ReturnType<typeof getGroupCollections>>
   heading?: string
 }
@@ -38,17 +36,10 @@ const SectionGridMoreExplore: FC<SectionGridMoreExploreProps> = ({
   groupCollections,
   heading = 'Start exploring.',
 }) => {
-  const [tabActive, setTabActive] = useState(groupCollections[1].id)
+  const [tabActive, setTabActive] = useState(groupCollections[0]?.id || '')
 
   const renderCollectionCard = (collection: TCollection, index: number) => {
-    switch (boxCard) {
-      case 'box1':
-        return <CollectionCard1 collection={collection} />
-      case 'box6':
-        return <CollectionCard6 bgSvgUrl={svgImages[index] || svgs1} collection={collection} />
-      default:
-        return <CollectionCard4 bgSvgUrl={svgImages[index] || svgs1} collection={collection} />
-    }
+    return <CollectionCard4 bgSvgUrl={svgImages[index] || svgs1} collection={collection} />
   }
 
   const groupSelected = groupCollections.find((group) => group.id === tabActive)

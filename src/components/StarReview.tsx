@@ -46,8 +46,6 @@ export default function StarReview({ onRatingChange, initialRating = 0, classNam
           </button>
         ))}
       </div>
-
-      {/* Hidden input to store the rating value */}
       <input type="hidden" name="rating" value={rating} />
     </div>
   )

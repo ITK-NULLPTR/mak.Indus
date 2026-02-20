@@ -38,11 +38,16 @@ export default async function Page({
     filteredProducts = filteredProducts.filter((p) => p.price >= min && p.price <= max)
   }
 
-  // Filter by categories
+  // Filter by categories or handle
   const selectedCategories = Array.isArray(categories) ? categories : categories ? [categories] : []
   if (selectedCategories.length > 0) {
     filteredProducts = filteredProducts.filter((p: any) =>
       p.categories && Array.isArray(p.categories) && p.categories.some((c: string) => selectedCategories.includes(c))
+    )
+  } else if (handle && handle !== 'all') {
+    // If no specific categories selected, filter by the collection handle itself
+    filteredProducts = filteredProducts.filter((p: any) =>
+      p.categories && Array.isArray(p.categories) && p.categories.includes(handle)
     )
   }
 

@@ -673,19 +673,15 @@ export function getCart(id: string) {
 // ------------------------  DATA ------------------------
 export async function getCollections() {
   return [
-
-
-
-    // Featured collections 1 - 8
     {
       id: 'gid://1',
       title: 'Gardening Tools',
       handle: 'gardening-tools',
-      href: '/gardening',
+      href: '/collections/gardening',
       sortDescription: 'Most popular tools',
       description: 'Durable gardening tools designed for planting, pruning, and maintaining healthy outdoor spaces.',
       color: 'bg-green-50',
-      count: 48,
+      count: 12,
       image: {
         src: collectionImage1.src,
         width: collectionImage1.width,
@@ -697,7 +693,7 @@ export async function getCollections() {
       id: 'gid://2',
       title: 'Kitchen Tools',
       handle: 'kitchen-tools',
-      href: '/kitchen',
+      href: '/collections/kitchen',
       sortDescription: 'Top kitchen tools',
       description: 'Essential kitchen tools crafted for cooking, baking, and everyday meal preparation.',
       image: {
@@ -707,13 +703,13 @@ export async function getCollections() {
         alt: 'Kitchen tools collection',
       },
       color: 'bg-yellow-50',
-      count: 92,
+      count: 15,
     },
     {
       id: 'gid://3',
       title: 'Cookware',
       handle: 'cookware',
-      href: '/kitchen',
+      href: '/collections/cookware',
       sortDescription: 'Premium cookware',
       description: 'High-quality cookware built for even heating, durability, and effortless cooking.',
       image: {
@@ -723,13 +719,13 @@ export async function getCollections() {
         alt: 'Cookware collection',
       },
       color: 'bg-orange-50',
-      count: 36,
+      count: 8,
     },
     {
       id: 'gid://4',
       title: 'Garden Accessories',
       handle: 'garden-accessories',
-      href: '/gardening',
+      href: '/collections/garden-accessories',
       sortDescription: 'Plant care access',
       description: 'Practical garden accessories to support plant care, storage, and outdoor organization.',
       image: {
@@ -739,131 +735,36 @@ export async function getCollections() {
         alt: 'Garden accessories collection',
       },
       color: 'bg-green-100',
-      count: 61,
+      count: 20,
     },
-    {
-      id: 'gid://5',
-      title: 'Kitchen Accessories',
-      handle: 'kitchen',
-      href: '/kitchen',
-      sortDescription: 'Everyday kitchen accessories',
-      description: 'Functional kitchen accessories that add convenience and efficiency to your cooking space.',
-      image: {
-        src: collectionImage5.src,
-        width: collectionImage5.width,
-        height: collectionImage5.height,
-        alt: 'Kitchen accessories collection',
-      },
-      color: 'bg-amber-50',
-      count: 79,
-    },
-
-    {
-      id: 'gid://6',
-      title: 'Sale collection',
-      handle: 'sale-collection',
-      href: '/sale',
-      sortDescription: 'Up to <br /> 80% off retail',
-      description:
-        'Excoolent new arrivals for every occasion, from casual to formal. Explore our collection of trendy jackets that elevate your outfit.',
-      color: 'bg-green-50',
-      count: 85,
-      image: {
-        src: collectionImage4.src,
-        width: collectionImage4.width,
-        height: collectionImage4.height,
-        alt: 'Explore new arrivals',
-      },
-    },
-
-
-
-
-
   ]
 }
 
 export async function getGroupCollections() {
   const allCollections = await getCollections()
-  const collections = allCollections.slice(0, 7) // adjust if needed
 
   return [
     {
       id: '1',
-      title: 'Gardening Tools',
-      handle: 'gardening-tools',
-      description: 'Durable gardening tools designed for planting, pruning, and maintaining healthy outdoor spaces',
+      title: 'Gardening',
+      handle: 'gardening',
+      description: 'Premium tools and accessories for your garden.',
       iconSvg: `<svg class="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 2L15 8H9L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M12 22V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>`,
-      collections,
+      collections: allCollections.filter(c => c.id === 'gid://1' || c.id === 'gid://4'),
     },
     {
       id: '2',
-      title: 'Kitchen Tools',
-      handle: 'kitchen-tools',
-      description: 'Essential kitchen tools crafted for cooking, baking, and everyday meal preparation',
+      title: 'Kitchen',
+      handle: 'kitchen',
+      description: 'Essential tools and cookware for your modern kitchen.',
       iconSvg: `<svg class="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M3 6H21V18H3V6Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M3 10H21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>`,
-      collections: shuffleArray(collections),
-    },
-    {
-      id: '3',
-      title: 'Cookware',
-      handle: 'cookware',
-      description: 'High-quality cookware built for even heating, durability, and effortless cooking',
-      iconSvg: `<svg class="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4 12H20V16H4V12Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M8 16V18H16V16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>`,
-      collections: shuffleArray(collections),
-    },
-    {
-      id: '4',
-      title: 'Garden Accessories',
-      handle: 'garden-accessories',
-      description: 'Practical garden accessories to support plant care, storage, and outdoor organization',
-      iconSvg: `<svg class="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2C15.866 2 19 5.134 19 9C19 12.866 15.866 16 12 16C8.134 16 5 12.866 5 9C5 5.134 8.134 2 12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M12 16V22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>`,
-      collections: shuffleArray(collections),
-    },
-    {
-      id: '5',
-      title: 'Kitchen Accessories',
-      handle: 'kitchen-accessories',
-      description: 'Functional kitchen accessories that add convenience and efficiency to your cooking space',
-      iconSvg: `<svg class="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4 4H20V20H4V4Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M4 10H20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>`,
-      collections: shuffleArray(collections),
-    },
-    {
-      id: '6',
-      title: 'Storage & Organization',
-      handle: 'storage-organization',
-      description: 'Smart storage and organization solutions for kitchens and garden tools',
-      iconSvg: `<svg class="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M3 6H21V18H3V6Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M12 6V18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>`,
-      collections: shuffleArray(collections),
-    },
-    {
-      id: '7',
-      title: 'Outdoor Essentials',
-      handle: 'outdoor-essentials',
-      description: 'Essential outdoor tools and supplies to keep your garden functional and well maintained',
-      iconSvg: `<svg class="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M2 12H22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M12 2V22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>`,
-      collections: shuffleArray(collections),
+      collections: allCollections.filter(c => c.id === 'gid://2' || c.id === 'gid://3'),
     },
   ]
 }
@@ -906,843 +807,6 @@ export async function getCollectionByHandle(handle: string) {
 
 export async function getProducts() {
   return [
-    {
-      id: 'gid://1001',
-      title: 'Leather Tote Bag',
-      handle: 'leather-tote-bag',
-      createdAt: '2025-05-06T10:00:00-04:00',
-      vendor: 'LuxCouture',
-      price: 85,
-      featuredImage: {
-        src: productImage1.src,
-        width: productImage1.width,
-        height: productImage1.height,
-        alt: 'Leather Tote Bag',
-      },
-      categories: ['backpacks', 'accessories'],
-      images: [
-        {
-          src: productImage1.src,
-          width: productImage1.width,
-          height: productImage1.height,
-          alt: 'Leather Tote Bag',
-        },
-        {
-          src: productImage1_1.src,
-          width: productImage1_1.width,
-          height: productImage1_1.height,
-          alt: 'Leather Tote Bag',
-        },
-        {
-          src: productImage1_2.src,
-          width: productImage1_2.width,
-          height: productImage1_2.height,
-          alt: 'Leather Tote Bag',
-        },
-        {
-          src: productImage1_3.src,
-          width: productImage1_3.width,
-          height: productImage1_3.height,
-          alt: 'Leather Tote Bag',
-        },
-      ],
-      reviewNumber: 87,
-      rating: 4.5,
-      status: 'New in',
-      options: [
-        {
-          name: 'Color',
-          optionValues: [
-            {
-              name: 'Black',
-              swatch: {
-                color: '#000000',
-                image: null,
-              },
-            },
-            {
-              swatch: {
-                color: 'oklch(42.1% 0.095 57.708)',
-                image: null,
-              },
-              name: 'Pink Yarrow',
-            },
-            {
-              swatch: {
-                color: '#D1C9C1',
-                image: null,
-              },
-              name: 'indigo',
-            },
-            {
-              swatch: {
-                color: '#f7e3d4',
-                image: null,
-              },
-              name: 'Stone',
-            },
-            {
-              swatch: {
-                color: '#F5F5DC',
-                image: null,
-              },
-              name: 'Beige',
-            },
-          ],
-        },
-        {
-          name: 'Size',
-          optionValues: [
-            {
-              swatch: null,
-              name: 'XXS',
-            },
-            {
-              swatch: null,
-              name: 'XS',
-            },
-            {
-              swatch: null,
-              name: 'M',
-            },
-            {
-              swatch: null,
-              name: 'L',
-            },
-            {
-              swatch: null,
-              name: 'XL',
-            },
-          ],
-        },
-      ],
-      selectedOptions: [
-        {
-          name: 'Color',
-          value: 'Pink Yarrow',
-        },
-        {
-          name: 'Size',
-          value: 'XS',
-        },
-      ],
-    },
-    {
-      id: 'gid://1002',
-      title: 'Silk Midi Dress',
-      handle: 'silk-midi-dress',
-      createdAt: '2025-05-07T09:30:00-04:00',
-      vendor: 'ChicElegance',
-      price: 120,
-      featuredImage: {
-        src: productImage2.src,
-        width: productImage2.width,
-        height: productImage2.height,
-        alt: 'Silk Midi Dress',
-      },
-      categories: ['new-arrivals'],
-      images: [
-        {
-          src: productImage2.src,
-          width: productImage2.width,
-          height: productImage2.height,
-          alt: 'Silk Midi Dress',
-        },
-        {
-          src: productImage2_1.src,
-          width: productImage2_1.width,
-          height: productImage2_1.height,
-          alt: 'Silk Midi Dress',
-        },
-        {
-          src: productImage2_2.src,
-          width: productImage2_2.width,
-          height: productImage2_2.height,
-          alt: 'Silk Midi Dress',
-        },
-        {
-          src: productImage2_3.src,
-          width: productImage2_3.width,
-          height: productImage2_3.height,
-          alt: 'Silk Midi Dress',
-        },
-      ],
-      reviewNumber: 95,
-      rating: 4.7,
-      status: 'Best Seller',
-      options: [
-        {
-          name: 'Color',
-          optionValues: [
-            {
-              name: 'Green',
-              swatch: {
-                color: '#2E8B57',
-                image: null,
-              },
-            },
-            {
-              name: 'Brown',
-              swatch: {
-                color: 'oklch(84.1% 0.238 128.85)',
-                image: null,
-              },
-            },
-            {
-              name: 'Blue',
-              swatch: {
-                color: '#000080',
-                image: null,
-              },
-            },
-            {
-              name: 'Coral',
-              swatch: {
-                color: '#FF7F50',
-                image: null,
-              },
-            },
-          ],
-        },
-        {
-          name: 'Size',
-          optionValues: [
-            {
-              swatch: null,
-              name: 'XS',
-            },
-            {
-              swatch: null,
-              name: 'S',
-            },
-            {
-              swatch: null,
-              name: 'M',
-            },
-            {
-              swatch: null,
-              name: 'L',
-            },
-          ],
-        },
-      ],
-      selectedOptions: [
-        {
-          name: 'Color',
-          value: 'Emerald Green',
-        },
-        {
-          name: 'Size',
-          value: 'S',
-        },
-      ],
-    },
-    {
-      id: 'gid://1003',
-      title: 'Denim Jacket',
-      handle: 'denim-jacket',
-      createdAt: '2025-05-08T11:15:00-04:00',
-      vendor: 'UrbanTrend',
-      price: 65,
-      featuredImage: {
-        src: productImage3.src,
-        width: productImage3.width,
-        height: productImage3.height,
-        alt: 'Denim Jacket',
-      },
-      categories: ['hoodies'],
-      images: [
-        {
-          src: productImage3.src,
-          width: productImage3.width,
-          height: productImage3.height,
-          alt: 'Denim Jacket',
-        },
-        {
-          src: productImage3_1.src,
-          width: productImage3_1.width,
-          height: productImage3_1.height,
-          alt: 'Denim Jacket',
-        },
-        {
-          src: productImage3_2.src,
-          width: productImage3_2.width,
-          height: productImage3_2.height,
-          alt: 'Denim Jacket',
-        },
-        {
-          src: productImage3_3.src,
-          width: productImage3_3.width,
-          height: productImage3_3.height,
-          alt: 'Denim Jacket',
-        },
-      ],
-      reviewNumber: 120,
-      rating: 4.3,
-      status: 'New in',
-      options: [
-        {
-          name: 'Color',
-          optionValues: [
-            {
-              name: 'Light Blue',
-              swatch: {
-                color: '#ADD8E6',
-                image: null,
-              },
-            },
-            {
-              name: 'Deep Blue',
-              swatch: {
-                color: '#00008B',
-                image: null,
-              },
-            },
-            {
-              name: 'Black',
-              swatch: {
-                color: '#000000',
-                image: null,
-              },
-            },
-          ],
-        },
-        {
-          name: 'Size',
-          optionValues: [
-            {
-              swatch: null,
-              name: 'S',
-            },
-            {
-              swatch: null,
-              name: 'M',
-            },
-            {
-              swatch: null,
-              name: 'L',
-            },
-            {
-              swatch: null,
-              name: 'XL',
-            },
-          ],
-        },
-      ],
-      selectedOptions: [
-        {
-          name: 'Color',
-          value: 'Light Blue',
-        },
-        {
-          name: 'Size',
-          value: 'M',
-        },
-      ],
-    },
-    {
-      id: 'gid://1004',
-      title: 'Cashmere Sweater',
-      handle: 'cashmere-sweater',
-      createdAt: '2025-05-09T14:20:00-04:00',
-      vendor: 'SoftLux',
-      price: 150,
-      featuredImage: {
-        src: productImage4.src,
-        width: productImage4.width,
-        height: productImage4.height,
-        alt: 'Cashmere Sweater',
-      },
-      categories: ['hoodies', 'new-arrivals'],
-      images: [
-        {
-          src: productImage4.src,
-          width: productImage4.width,
-          height: productImage4.height,
-          alt: 'Cashmere Sweater',
-        },
-        {
-          src: productImage4_1.src,
-          width: productImage4_1.width,
-          height: productImage4_1.height,
-          alt: 'Cashmere Sweater',
-        },
-        {
-          src: productImage4_2.src,
-          width: productImage4_2.width,
-          height: productImage4_2.height,
-          alt: 'Cashmere Sweater',
-        },
-        {
-          src: productImage4_3.src,
-          width: productImage4_3.width,
-          height: productImage4_3.height,
-          alt: 'Cashmere Sweater',
-        },
-      ],
-      reviewNumber: 75,
-      rating: 4.8,
-      status: 'Limited Edition',
-      options: [
-        {
-          name: 'Color',
-          optionValues: [
-            {
-              name: 'Charcoal',
-              swatch: {
-                color: '#36454F',
-                image: null,
-              },
-            },
-            {
-              name: 'Cream',
-              swatch: {
-                color: 'oklch(81% 0.117 11.638)',
-                image: null,
-              },
-            },
-            {
-              name: 'Burgundy',
-              swatch: {
-                color: '#800020',
-                image: null,
-              },
-            },
-          ],
-        },
-        {
-          name: 'Size',
-          optionValues: [
-            {
-              swatch: null,
-              name: 'XS',
-            },
-            {
-              swatch: null,
-              name: 'S',
-            },
-            {
-              swatch: null,
-              name: 'M',
-            },
-            {
-              swatch: null,
-              name: 'L',
-            },
-          ],
-        },
-      ],
-      selectedOptions: [
-        {
-          name: 'Color',
-          value: 'Brown',
-        },
-        {
-          name: 'Size',
-          value: 'M',
-        },
-      ],
-    },
-    {
-      id: 'gid://1005',
-      title: 'Linen Blazer',
-      handle: 'linen-blazer',
-      createdAt: '2025-05-10T08:45:00-04:00',
-      vendor: 'TailoredFit',
-      price: 95,
-      featuredImage: {
-        src: productImage5.src,
-        width: productImage5.width,
-        height: productImage5.height,
-        alt: 'Linen Blazer',
-      },
-      categories: ['new-arrivals', 'accessories'],
-      images: [
-        {
-          src: productImage5.src,
-          width: productImage5.width,
-          height: productImage5.height,
-          alt: 'Linen Blazer',
-        },
-        {
-          src: productImage5_1.src,
-          width: productImage5_1.width,
-          height: productImage5_1.height,
-          alt: 'Linen Blazer',
-        },
-        {
-          src: productImage5_2.src,
-          width: productImage5_2.width,
-          height: productImage5_2.height,
-          alt: 'Linen Blazer',
-        },
-        {
-          src: productImage5_3.src,
-          width: productImage5_3.width,
-          height: productImage5_3.height,
-          alt: 'Linen Blazer',
-        },
-      ],
-      reviewNumber: 60,
-      rating: 4.4,
-      status: 'New in',
-      options: [
-        {
-          name: 'Color',
-          optionValues: [
-            {
-              name: 'Beige',
-              swatch: {
-                color: '#F5F5DC',
-                image: null,
-              },
-            },
-            {
-              name: 'Blue',
-              swatch: {
-                color: '#000080',
-                image: null,
-              },
-            },
-            {
-              name: 'Green',
-              swatch: {
-                color: '#808000',
-                image: null,
-              },
-            },
-          ],
-        },
-        {
-          name: 'Size',
-          optionValues: [
-            {
-              swatch: null,
-              name: 'M',
-            },
-            {
-              swatch: null,
-              name: 'L',
-            },
-            {
-              swatch: null,
-              name: 'XL',
-            },
-          ],
-        },
-      ],
-      selectedOptions: [
-        {
-          name: 'Color',
-          value: 'Beige',
-        },
-        {
-          name: 'Size',
-          value: 'L',
-        },
-      ],
-    },
-    {
-      id: 'gid://1006',
-      title: 'Velvet Skirt',
-      handle: 'velvet-skirt',
-      createdAt: '2025-05-11T12:10:00-04:00',
-      vendor: 'GlamVibe',
-      price: 55,
-      featuredImage: {
-        src: productImage6.src,
-        width: productImage6.width,
-        height: productImage6.height,
-        alt: 'Velvet Skirt',
-      },
-      categories: ['accessories', 'new-arrivals'],
-      images: [
-        {
-          src: productImage6.src,
-          width: productImage6.width,
-          height: productImage6.height,
-          alt: 'Velvet Skirt',
-        },
-        {
-          src: productImage6_1.src,
-          width: productImage6_1.width,
-          height: productImage6_1.height,
-          alt: 'Velvet Skirt',
-        },
-        {
-          src: productImage6_2.src,
-          width: productImage6_2.width,
-          height: productImage6_2.height,
-          alt: 'Velvet Skirt',
-        },
-        {
-          src: productImage6_3.src,
-          width: productImage6_3.width,
-          height: productImage6_3.height,
-          alt: 'Velvet Skirt',
-        },
-      ],
-      reviewNumber: 45,
-      rating: 4.2,
-      status: 'Trending',
-      options: [
-        {
-          name: 'Color',
-          optionValues: [
-            {
-              name: 'Midnight Blue',
-              swatch: {
-                color: '#191970',
-                image: null,
-              },
-            },
-            {
-              name: 'Wine Red',
-              swatch: {
-                color: '#722F37',
-                image: null,
-              },
-            },
-            {
-              name: 'Emerald',
-              swatch: {
-                color: '#50C878',
-                image: null,
-              },
-            },
-          ],
-        },
-        {
-          name: 'Size',
-          optionValues: [
-            {
-              swatch: null,
-              name: 'XS',
-            },
-            {
-              swatch: null,
-              name: 'S',
-            },
-            {
-              swatch: null,
-              name: 'M',
-            },
-          ],
-        },
-      ],
-      selectedOptions: [
-        {
-          name: 'Color',
-          value: 'Wine Red',
-        },
-        {
-          name: 'Size',
-          value: 'S',
-        },
-      ],
-    },
-    {
-      id: 'gid://1007',
-      title: 'Wool Trench Coat',
-      handle: 'wool-trench-coat',
-      createdAt: '2025-05-12T10:25:00-04:00',
-      vendor: 'ClassicCharm',
-      price: 180,
-      featuredImage: {
-        src: productImage7.src,
-        width: productImage7.width,
-        height: productImage7.height,
-        alt: 'Wool Trench Coat',
-      },
-      categories: ['new-arrivals', 'hoodies'],
-      images: [
-        {
-          src: productImage7.src,
-          width: productImage7.width,
-          height: productImage7.height,
-          alt: 'Wool Trench Coat',
-        },
-        {
-          src: productImage7_1.src,
-          width: productImage7_1.width,
-          height: productImage7_1.height,
-          alt: 'Wool Trench Coat',
-        },
-        {
-          src: productImage7_2.src,
-          width: productImage7_2.width,
-          height: productImage7_2.height,
-          alt: 'Wool Trench Coat',
-        },
-        {
-          src: productImage7_3.src,
-          width: productImage7_3.width,
-          height: productImage7_3.height,
-          alt: 'Wool Trench Coat',
-        },
-      ],
-      reviewNumber: 80,
-      rating: 4.6,
-      status: 'New in',
-      options: [
-        {
-          name: 'Color',
-          optionValues: [
-            {
-              name: 'Camel',
-              swatch: {
-                color: '#C19A6B',
-                image: null,
-              },
-            },
-            {
-              name: 'Black',
-              swatch: {
-                color: '#000000',
-                image: null,
-              },
-            },
-            {
-              name: 'Grey',
-              swatch: {
-                color: '#808080',
-                image: null,
-              },
-            },
-          ],
-        },
-        {
-          name: 'Size',
-          optionValues: [
-            {
-              swatch: null,
-              name: 'S',
-            },
-            {
-              swatch: null,
-              name: 'M',
-            },
-            {
-              swatch: null,
-              name: 'L',
-            },
-            {
-              swatch: null,
-              name: 'XL',
-            },
-          ],
-        },
-      ],
-      selectedOptions: [
-        {
-          name: 'Color',
-          value: 'Camel',
-        },
-        {
-          name: 'Size',
-          value: 'M',
-        },
-      ],
-    },
-    {
-      id: 'gid://1008',
-      title: 'Cotton Shirt',
-      handle: 'cotton-shirt',
-      createdAt: '2025-05-13T09:00:00-04:00',
-      vendor: 'CasualVibe',
-      price: 45,
-      featuredImage: {
-        src: productImage8.src,
-        width: productImage8.width,
-        height: productImage8.height,
-        alt: 'Cotton Shirt',
-      },
-      categories: ['tshirts', 'new-arrivals'],
-      images: [
-        {
-          src: productImage8.src,
-          width: productImage8.width,
-          height: productImage8.height,
-          alt: 'Cotton Shirt',
-        },
-        {
-          src: productImage8_1.src,
-          width: productImage8_1.width,
-          height: productImage8_1.height,
-          alt: 'Cotton Shirt',
-        },
-        {
-          src: productImage8_2.src,
-          width: productImage8_2.width,
-          height: productImage8_2.height,
-          alt: 'Cotton Shirt',
-        },
-        {
-          src: productImage8_3.src,
-          width: productImage8_3.width,
-          height: productImage8_3.height,
-          alt: 'Cotton Shirt',
-        },
-      ],
-      reviewNumber: 110,
-      rating: 4.1,
-      status: 'Best Seller',
-      options: [
-        {
-          name: 'Color',
-          optionValues: [
-            {
-              name: 'White',
-              swatch: {
-                color: 'oklch(81% 0.117 11.638)',
-                image: null,
-              },
-            },
-            {
-              name: 'Light Blue',
-              swatch: {
-                color: '#ADD8E6',
-                image: null,
-              },
-            },
-            {
-              name: 'Pink',
-              swatch: {
-                color: '#FFC1CC',
-                image: null,
-              },
-            },
-          ],
-        },
-        {
-          name: 'Size',
-          optionValues: [
-            {
-              swatch: null,
-              name: 'S',
-            },
-            {
-              swatch: null,
-              name: 'M',
-            },
-            {
-              swatch: null,
-              name: 'L',
-            },
-          ],
-        },
-      ],
-      selectedOptions: [
-        {
-          name: 'Color',
-          value: 'White',
-        },
-        {
-          name: 'Size',
-          value: 'M',
-        },
-      ],
-    },
     {
       id: 'gid://2001',
       title: 'Professional Chef Knife',
@@ -1856,6 +920,121 @@ export async function getProducts() {
       status: '',
       options: [{ name: 'Size', optionValues: [{ name: 'Standard' }] }],
       selectedOptions: [{ name: 'Size', value: 'Standard' }],
+    },
+    {
+      id: 'gid://2004',
+      title: 'Stainless Steel Whisk',
+      handle: 'stainless-steel-whisk',
+      price: 14.99,
+      featuredImage: {
+        src: kitchenImage1.src,
+        width: kitchenImage1.width,
+        height: kitchenImage1.height,
+        alt: 'Stainless Steel Whisk',
+      },
+      categories: ['kitchen'],
+      images: [{ src: kitchenImage1.src, width: kitchenImage1.width, height: kitchenImage1.height, alt: 'Whisk' }],
+      reviewNumber: 89,
+      rating: 4.6,
+      status: 'Trending',
+      options: [{ name: 'Color', optionValues: [{ name: 'Silver' }] }],
+      selectedOptions: [{ name: 'Color', value: 'Silver' }],
+    },
+    {
+      id: 'gid://3004',
+      title: 'Garden Rake',
+      handle: 'garden-rake',
+      price: 34.99,
+      featuredImage: {
+        src: gardeningImage1.src,
+        width: gardeningImage1.width,
+        height: gardeningImage1.height,
+        alt: 'Garden Rake',
+      },
+      categories: ['gardening', 'garden-accessories'],
+      images: [
+        { src: gardeningImage1.src, width: gardeningImage1.width, height: gardeningImage1.height, alt: 'Rake' },
+        { src: gardeningImage2.src, width: gardeningImage2.width, height: gardeningImage2.height, alt: 'Rake detail' },
+        { src: gardeningImage3.src, width: gardeningImage3.width, height: gardeningImage3.height, alt: 'Rake use' },
+        { src: gardeningImage1.src, width: gardeningImage1.width, height: gardeningImage1.height, alt: 'Rake' },
+      ],
+      reviewNumber: 74,
+      rating: 4.4,
+      status: '',
+      options: [{ name: 'Size', optionValues: [{ name: 'Modern' }] }],
+      selectedOptions: [{ name: 'Size', value: 'Modern' }],
+    },
+    {
+      id: 'gid://2005',
+      title: 'Ceramic Bowl Set',
+      handle: 'ceramic-bowl-set',
+      price: 49.99,
+      featuredImage: {
+        src: kitchenImage2.src,
+        width: kitchenImage2.width,
+        height: kitchenImage2.height,
+        alt: 'Ceramic Bowl Set',
+      },
+      categories: ['kitchen', 'cookware'],
+      images: [
+        { src: kitchenImage2.src, width: kitchenImage2.width, height: kitchenImage2.height, alt: 'Bowl Set' },
+        { src: kitchenImage3.src, width: kitchenImage3.width, height: kitchenImage3.height, alt: 'Bowl Detail' },
+        { src: kitchenImage1.src, width: kitchenImage1.width, height: kitchenImage1.height, alt: 'Bowl Use' },
+        { src: kitchenImage2.src, width: kitchenImage2.width, height: kitchenImage2.height, alt: 'Bowl Set' },
+      ],
+      reviewNumber: 128,
+      rating: 4.9,
+      status: 'Popular',
+      options: [{ name: 'Color', optionValues: [{ name: 'White' }, { name: 'Grey' }] }],
+      selectedOptions: [{ name: 'Color', value: 'White' }],
+    },
+    {
+      id: 'gid://3005',
+      title: 'Garden Pruner',
+      handle: 'garden-pruner',
+      price: 29.99,
+      featuredImage: {
+        src: gardeningImage2.src,
+        width: gardeningImage2.width,
+        height: gardeningImage2.height,
+        alt: 'Garden Pruner',
+      },
+      categories: ['gardening', 'garden-accessories'],
+      images: [
+        { src: gardeningImage2.src, width: gardeningImage2.width, height: gardeningImage2.height, alt: 'Pruner' },
+        { src: gardeningImage1.src, width: gardeningImage1.width, height: gardeningImage1.height, alt: 'Pruner Detail' },
+        { src: gardeningImage3.src, width: gardeningImage3.width, height: gardeningImage3.height, alt: 'Pruner Use' },
+        { src: gardeningImage2.src, width: gardeningImage2.width, height: gardeningImage2.height, alt: 'Pruner' },
+      ],
+      reviewNumber: 92,
+      rating: 4.7,
+      status: 'Limited',
+      options: [{ name: 'Color', optionValues: [{ name: 'Black' }, { name: 'Red' }] }],
+      selectedOptions: [{ name: 'Color', value: 'Black' }],
+    },
+    {
+      id: 'gid://2006',
+      title: 'Vegetable Steamer',
+      handle: 'vegetable-steamer',
+      price: 39.99,
+      featuredImage: {
+        src: kitchenImage3.src,
+        width: kitchenImage3.width,
+        height: kitchenImage3.height,
+        alt: 'Vegetable Steamer',
+      },
+      categories: ['kitchen', 'cookware'],
+      images: [
+        { src: kitchenImage3.src, width: kitchenImage3.width, height: kitchenImage3.height, alt: 'Steamer' },
+        { src: kitchenImage1.src, width: kitchenImage1.width, height: kitchenImage1.height, alt: 'Steamer Detail' },
+        { src: kitchenImage2.src, width: kitchenImage2.width, height: kitchenImage2.height, alt: 'Steamer Use' },
+        { src: kitchenImage3.src, width: kitchenImage3.width, height: kitchenImage3.height, alt: 'Steamer' },
+      ],
+      reviewNumber: 56,
+      rating: 4.5,
+      status: 'New',
+      options: [{ name: 'Material', optionValues: [{ name: 'Stainless Steel' }] }],
+      selectedOptions: [{ name: 'Material', value: 'Stainless Steel' }],
     },
   ]
 }
