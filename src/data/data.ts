@@ -41,6 +41,13 @@ import avatarImage3 from '@/images/users/avatar3.jpg'
 import avatarImage4 from '@/images/users/avatar4.jpg'
 import { shuffleArray } from '@/utils/shuffleArray'
 
+import kitchenImage1 from '@/images/kitchen/1.webp'
+import kitchenImage2 from '@/images/kitchen/2.webp'
+import kitchenImage3 from '@/images/kitchen/3.webp'
+import gardeningImage1 from '@/images/gardening/1.webp'
+import gardeningImage2 from '@/images/gardening/2.webp'
+import gardeningImage3 from '@/images/gardening/3.webp'
+
 export async function getOrder(number: string) {
   const allOrders = await getOrders()
   let order = allOrders.find((order) => order.number.toString() === number)
@@ -1736,6 +1743,120 @@ export async function getProducts() {
         },
       ],
     },
+    {
+      id: 'gid://2001',
+      title: 'Professional Chef Knife',
+      handle: 'professional-chef-knife',
+      price: 89.99,
+      featuredImage: {
+        src: kitchenImage1.src,
+        width: kitchenImage1.width,
+        height: kitchenImage1.height,
+        alt: 'Professional Chef Knife',
+      },
+      categories: ['kitchen'],
+      images: [{ src: kitchenImage1.src, width: kitchenImage1.width, height: kitchenImage1.height, alt: 'Knife' }],
+      reviewNumber: 234,
+      rating: 4.8,
+      status: 'New in',
+      options: [{ name: 'Size', optionValues: [{ name: '8 inch' }, { name: '10 inch' }] }, { name: 'Color', optionValues: [{ name: 'Silver' }] }],
+      selectedOptions: [{ name: 'Size', value: '8 inch' }],
+    },
+    {
+      id: 'gid://2002',
+      title: 'Cast Iron Skillet',
+      handle: 'cast-iron-skillet',
+      price: 64.99,
+      featuredImage: {
+        src: kitchenImage2.src,
+        width: kitchenImage2.width,
+        height: kitchenImage2.height,
+        alt: 'Cast Iron Skillet',
+      },
+      categories: ['kitchen'],
+      images: [{ src: kitchenImage2.src, width: kitchenImage2.width, height: kitchenImage2.height, alt: 'Skillet' }],
+      reviewNumber: 189,
+      rating: 4.7,
+      status: '',
+      options: [{ name: 'Size', optionValues: [{ name: '12 inch' }] }, { name: 'Color', optionValues: [{ name: 'Black' }] }],
+      selectedOptions: [{ name: 'Size', value: '12 inch' }],
+    },
+    {
+      id: 'gid://2003',
+      title: 'Stand Mixer',
+      handle: 'stand-mixer',
+      price: 299.99,
+      featuredImage: {
+        src: kitchenImage3.src,
+        width: kitchenImage3.width,
+        height: kitchenImage3.height,
+        alt: 'Stand Mixer',
+      },
+      categories: ['kitchen'],
+      images: [{ src: kitchenImage3.src, width: kitchenImage3.width, height: kitchenImage3.height, alt: 'Mixer' }],
+      reviewNumber: 456,
+      rating: 4.9,
+      status: 'New in',
+      options: [{ name: 'Color', optionValues: [{ name: 'Red' }, { name: 'Silver' }] }],
+      selectedOptions: [{ name: 'Color', value: 'Red' }],
+    },
+    {
+      id: 'gid://3001',
+      title: 'Hand Trowel',
+      handle: 'hand-trowel',
+      price: 19.99,
+      featuredImage: {
+        src: gardeningImage1.src,
+        width: gardeningImage1.width,
+        height: gardeningImage1.height,
+        alt: 'Hand Trowel',
+      },
+      categories: ['gardening'],
+      images: [{ src: gardeningImage1.src, width: gardeningImage1.width, height: gardeningImage1.height, alt: 'Trowel' }],
+      reviewNumber: 156,
+      rating: 4.6,
+      status: 'New in',
+      options: [{ name: 'Size', optionValues: [{ name: 'Standard' }] }, { name: 'Color', optionValues: [{ name: 'Green' }] }],
+      selectedOptions: [{ name: 'Size', value: 'Standard' }],
+    },
+    {
+      id: 'gid://3002',
+      title: 'Pruning Shears',
+      handle: 'pruning-shears',
+      price: 24.99,
+      featuredImage: {
+        src: gardeningImage2.src,
+        width: gardeningImage2.width,
+        height: gardeningImage2.height,
+        alt: 'Pruning Shears',
+      },
+      categories: ['gardening'],
+      images: [{ src: gardeningImage2.src, width: gardeningImage2.width, height: gardeningImage2.height, alt: 'Shears' }],
+      reviewNumber: 210,
+      rating: 4.8,
+      status: '',
+      options: [{ name: 'Size', optionValues: [{ name: 'Large' }] }, { name: 'Color', optionValues: [{ name: 'Red' }] }],
+      selectedOptions: [{ name: 'Size', value: 'Large' }],
+    },
+    {
+      id: 'gid://3003',
+      title: 'Garden Hoe',
+      handle: 'garden-hoe',
+      price: 49.99,
+      featuredImage: {
+        src: gardeningImage3.src,
+        width: gardeningImage3.width,
+        height: gardeningImage3.height,
+        alt: 'Garden Hoe',
+      },
+      categories: ['gardening'],
+      images: [{ src: gardeningImage3.src, width: gardeningImage3.width, height: gardeningImage3.height, alt: 'Hoe' }],
+      reviewNumber: 120,
+      rating: 4.5,
+      status: '',
+      options: [{ name: 'Size', optionValues: [{ name: 'Standard' }] }],
+      selectedOptions: [{ name: 'Size', value: 'Standard' }],
+    },
   ]
 }
 
@@ -1781,11 +1902,11 @@ export async function getProductDetailByHandle(handle: string) {
     selectedOptions: [
       {
         name: 'Color',
-        value: product?.options.find((option) => option.name === 'Color')?.optionValues[1].name,
+        value: product?.options?.find((option) => option.name === 'Color')?.optionValues?.[0]?.name || '',
       },
       {
         name: 'Size',
-        value: product?.options.find((option) => option.name === 'Size')?.optionValues[0].name,
+        value: product?.options?.find((option) => option.name === 'Size')?.optionValues?.[0]?.name || '',
       },
     ],
     features: [

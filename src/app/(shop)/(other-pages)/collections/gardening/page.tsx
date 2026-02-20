@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import { HeartIcon, ShoppingBagIcon, ArrowsPointingOutIcon, StarIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import Footer from '@/components/Footer';
+import AddToCardButton from '@/components/AddToCardButton';
+import { useAside } from '@/components/aside';
 
 import Img1 from '@/images/gardening/1.webp';
 import Img2 from '@/images/gardening/2.webp';
@@ -16,7 +18,7 @@ import Img8 from '@/images/gardening/8.webp';
 import HeroSection from './HeroSection';
 
 
-const kitchenImages = [Img1, Img2, Img3, Img4, Img5, Img6, Img7, Img8];
+const gardeningImages = [Img1, Img2, Img3, Img4, Img5, Img6, Img7, Img8];
 
 
 
@@ -29,6 +31,7 @@ interface Product {
   reviewNumber: number;
   image: string;
   status?: 'new' | 'sale' | null;
+  handle: string;
 }
 
 const products: Product[] = [
@@ -39,8 +42,9 @@ const products: Product[] = [
     price: 89.99,
     rating: 4.8,
     reviewNumber: 234,
-    image: kitchenImages[0].src,
-    status: 'new'
+    image: gardeningImages[0].src,
+    status: 'new',
+    handle: 'hand-trowel'
   },
   {
     id: 2,
@@ -49,8 +53,9 @@ const products: Product[] = [
     price: 64.99,
     rating: 4.7,
     reviewNumber: 189,
-    image: kitchenImages[1].src,
-    status: null
+    image: gardeningImages[1].src,
+    status: null,
+    handle: 'pruning-shears'
   },
   {
     id: 3,
@@ -59,8 +64,9 @@ const products: Product[] = [
     price: 299.99,
     rating: 4.9,
     reviewNumber: 456,
-    image: kitchenImages[2].src,
-    status: 'new'
+    image: gardeningImages[2].src,
+    status: 'new',
+    handle: 'garden-hoe'
   },
   {
     id: 4,
@@ -69,8 +75,9 @@ const products: Product[] = [
     price: 449.99,
     rating: 4.6,
     reviewNumber: 312,
-    image: kitchenImages[3].src,
-    status: null
+    image: gardeningImages[3].src,
+    status: null,
+    handle: 'denim-jacket'
   },
   {
     id: 5,
@@ -79,8 +86,9 @@ const products: Product[] = [
     price: 199.99,
     rating: 4.5,
     reviewNumber: 278,
-    image: kitchenImages[4].src,
-    status: 'new'
+    image: gardeningImages[4].src,
+    status: 'new',
+    handle: 'denim-jacket'
   },
   {
     id: 6,
@@ -89,8 +97,9 @@ const products: Product[] = [
     price: 34.99,
     rating: 4.4,
     reviewNumber: 167,
-    image: kitchenImages[5].src,
-    status: null
+    image: gardeningImages[5].src,
+    status: null,
+    handle: 'cashmere-sweater'
   },
   {
     id: 7,
@@ -99,8 +108,9 @@ const products: Product[] = [
     price: 179.99,
     rating: 4.7,
     reviewNumber: 423,
-    image: kitchenImages[6].src,
-    status: 'sale'
+    image: gardeningImages[6].src,
+    status: 'sale',
+    handle: 'cashmere-sweater'
   },
   {
     id: 8,
@@ -109,8 +119,9 @@ const products: Product[] = [
     price: 24.99,
     rating: 4.3,
     reviewNumber: 198,
-    image: kitchenImages[7].src,
-    status: 'new'
+    image: gardeningImages[7].src,
+    status: 'new',
+    handle: 'denim-jacket'
   },
 ];
 
@@ -141,17 +152,17 @@ const Prices: React.FC<{ price: number }> = ({ price }) => {
   );
 };
 
-const LikeButton: React.FC<{ liked?: boolean; className?: string; onClick?: () => void }> = ({ 
-  liked = false, 
+const LikeButton: React.FC<{ liked?: boolean; className?: string; onClick?: () => void }> = ({
+  liked = false,
   className = '',
-  onClick 
+  onClick
 }) => {
   return (
     <button
       onClick={onClick}
       className={`z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 backdrop-blur-sm transition-all hover:scale-110 ${className}`}
     >
-      <HeartIcon 
+      <HeartIcon
         className={`h-5 w-5 ${liked ? 'fill-red-500 text-red-500' : 'text-gray-600'}`}
       />
     </button>
@@ -160,22 +171,34 @@ const LikeButton: React.FC<{ liked?: boolean; className?: string; onClick?: () =
 
 const ProductCard: React.FC<{ data: Product; isLiked?: boolean }> = ({ data, isLiked = false }) => {
   const [liked, setLiked] = useState(isLiked);
-  const { title, subtitle, price, rating, reviewNumber, image, status } = data;
+  const { open: openAside, setProductQuickViewHandle } = useAside();
+  const { title, subtitle, price, rating, reviewNumber, image, status, handle } = data;
+
+  const handleQuickView = (e?: React.MouseEvent) => {
+    if (e) e.preventDefault();
+    setProductQuickViewHandle(handle);
+    openAside('product-quick-view');
+  };
 
   const renderGroupButtons = () => {
     return (
       <div className="invisible absolute inset-x-1 bottom-0 flex justify-center gap-1.5 opacity-0 transition-all group-hover:visible group-hover:bottom-4 group-hover:opacity-100">
-        <button
+        <AddToCardButton
+          as={'button'}
           className="flex cursor-pointer items-center justify-center gap-2 rounded-full bg-neutral-900 px-4 py-2 text-xs text-white shadow-lg hover:bg-neutral-800"
-          type="button"
+          title={title}
+          imageUrl={image}
+          price={price}
+          quantity={1}
         >
           <ShoppingBagIcon className="-ml-1 h-3.5 w-3.5" />
           <span>Add to bag</span>
-        </button>
+        </AddToCardButton>
 
         <button
           className="flex cursor-pointer items-center justify-center gap-2 rounded-full bg-white px-4 py-2 text-xs text-neutral-950 shadow-lg hover:bg-neutral-50"
           type="button"
+          onClick={handleQuickView}
         >
           <ArrowsPointingOutIcon className="-ml-1 h-3.5 w-3.5" />
           <span>Quick view</span>
@@ -187,7 +210,7 @@ const ProductCard: React.FC<{ data: Product; isLiked?: boolean }> = ({ data, isL
   return (
     <div className="product-card relative flex flex-col bg-transparent">
       <div className="group relative z-1 shrink-0 overflow-hidden rounded-3xl bg-neutral-50">
-        <div className="relative aspect-11/12 w-full">
+        <div className="relative aspect-11/12 w-full cursor-pointer" onClick={handleQuickView}>
           <Image
             src={image}
             alt={title}
@@ -197,9 +220,9 @@ const ProductCard: React.FC<{ data: Product; isLiked?: boolean }> = ({ data, isL
           />
         </div>
         <ProductStatus status={status} />
-        <LikeButton 
-          liked={liked} 
-          className="absolute right-3 top-3" 
+        <LikeButton
+          liked={liked}
+          className="absolute right-3 top-3"
           onClick={() => setLiked(!liked)}
         />
         {renderGroupButtons()}
@@ -228,19 +251,19 @@ const ProductCard: React.FC<{ data: Product; isLiked?: boolean }> = ({ data, isL
 export default function GardeningPage() {
   return (
     <>
-    <HeroSection />
-    <div className="min-h-screen bg-white py-12 px-4 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl">
-       
-        
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {products.map((product) => (
-            <ProductCard key={product.id} data={product} />
-          ))}
+      <HeroSection />
+      <div className="min-h-screen bg-white py-12 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+
+
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {products.map((product) => (
+              <ProductCard key={product.id} data={product} />
+            ))}
+          </div>
         </div>
       </div>
-    </div>
-    <Footer />
+      <Footer />
     </>
   );
 }
