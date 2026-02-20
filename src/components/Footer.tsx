@@ -3,6 +3,13 @@ import Logo from '@/components/Logo'
 import SocialsList1 from '@/shared/SocialsList1/SocialsList1'
 import React, { useState } from 'react'
 import { toast } from 'react-hot-toast'
+import Link from 'next/link'
+const links = [
+  { name: 'Home', href: '/' },
+  { name: 'Shop', href: '/shop' },
+  { name: 'About Us', href: '/about' },
+  { name: 'Contact Us', href: '/contact' },
+]
 
 const Footer: React.FC = () => {
   const [email, setEmail] = useState('')
@@ -59,20 +66,24 @@ const Footer: React.FC = () => {
               Quick Links
             </h4>
             <ul className="flex flex-col gap-4">
-              {['Home', 'Shop', 'About Us', 'Contact Us', 'Our Blog'].map((item) => (
-                <li key={item}>
+              {links.map((link) => (
+                <li key={link.name}>
+                  <>
+                 
+                  
                   <a
-                    href="#"
+                    href={link.href}
                     className="text-sm text-neutral-600 hover:text-primary-600 dark:text-neutral-400 dark:hover:text-primary-500 transition-colors duration-200"
                   >
-                    {item}
+                    {link.name}
                   </a>
+                  </>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Customer Service */}
+          
           <div>
             <h4 className="text-sm font-bold uppercase tracking-wider text-neutral-900 dark:text-neutral-100 mb-8">
               Customer Support
