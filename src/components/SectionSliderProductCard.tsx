@@ -52,7 +52,7 @@ const SectionSliderProductCard: FC<SectionSliderProductCardProps> = ({
           {data.map((product) => (
             <div
               key={product.id}
-              className="embla__slide basis-[86%] ps-5 sm:ps-8 md:basis-1/2 lg:basis-1/3 xl:basis-1/3 2xl:basis-1/3"
+              className="embla__slide basis-1/4 ps-2 sm:ps-4"
             >
               <ProductCard data={product} />
             </div>
