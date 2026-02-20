@@ -9,6 +9,7 @@ import SectionPromo1 from '@/components/SectionPromo1'
 import SectionPromo2 from '@/components/SectionPromo2'
 import SectionSliderLargeProduct from '@/components/SectionSliderLargeProduct'
 import SectionSliderProductCard from '@/components/SectionSliderProductCard'
+import SectionGridProducts from '@/components/SectionGridProducts'
 import { getBlogPosts, getCollections, getGroupCollections, getProducts } from '@/data/data'
 import { Button } from '@/shared/Button/Button'
 import { ArrowRightIcon } from '@heroicons/react/24/solid'
@@ -42,7 +43,7 @@ async function PageHome() {
           <BackgroundSection />
           <SectionGridMoreExplore groupCollections={groupCollections} />
         </div>
-        <SectionSliderProductCard data={carouselProducts2} heading="Best Sellers" subHeading="Best selling of the month" />
+        <SectionGridProducts data={carouselProducts2} heading="Best Sellers" subHeading="Best selling of the month" />
         <SectionPromo2 />
         <SectionSliderLargeProduct products={carouselProducts3} />
         <Divider />
