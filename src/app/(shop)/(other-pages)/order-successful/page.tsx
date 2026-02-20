@@ -6,24 +6,26 @@ import Prices from '@/components/Prices'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import { HugeiconsIcon } from '@hugeicons/react'
 import { Link01Icon } from '@hugeicons/core-free-icons'
 
-export default function Page() {
+function OrderSuccessfulContent() {
   const searchParams = useSearchParams()
   const orderNumber = searchParams.get('orderNumber')
   const [order, setOrder] = useState<any>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    // Try to get order from sessionStorage (the actual order just placed)
     const savedOrder = sessionStorage.getItem('lastOrder')
     if (savedOrder) {
-      const parsedOrder = JSON.parse(savedOrder)
-      // Verify it matches the order number in URL
-      if (parsedOrder.number === orderNumber || !orderNumber) {
-        setOrder(parsedOrder)
+      try {
+        const parsedOrder = JSON.parse(savedOrder)
+        if (parsedOrder.number === orderNumber || !orderNumber) {
+          setOrder(parsedOrder)
+        }
+      } catch (e) {
+        console.error('Error parsing saved order:', e)
       }
     }
     setLoading(false)
@@ -168,5 +170,18 @@ export default function Page() {
         </div>
       </div>
     </main>
+  )
+}
+
+export default function Page() {
+  return (
+    <Suspense fallback={
+      <div className="container py-24 text-center italic">
+        <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]" />
+        <p className="mt-4">Preparing your receipt...</p>
+      </div>
+    }>
+      <OrderSuccessfulContent />
+    </Suspense>
   )
 }

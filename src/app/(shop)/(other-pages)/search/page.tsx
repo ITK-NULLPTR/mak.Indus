@@ -12,6 +12,7 @@ import {
   PaginationPrevious,
 } from '@/shared/Pagination/Pagination'
 import { Metadata } from 'next'
+import { Suspense } from 'react'
 import SearchInput from './SearchInput'
 
 export const metadata: Metadata = {
@@ -100,20 +101,24 @@ const PageSearch = async ({
       <div className={'h-24 w-full bg-primary-50 2xl:h-28 dark:bg-white/10'} />
       <div className="container">
         <header className="mx-auto -mt-10 flex max-w-2xl flex-col lg:-mt-7">
-          <SearchInput
-            allProducts={allProducts.map((p) => ({
-              id: p.id,
-              title: p.title,
-              handle: p.handle,
-            }))}
-          />
+          <Suspense fallback={null}>
+            <SearchInput
+              allProducts={allProducts.map((p) => ({
+                id: p.id,
+                title: p.title,
+                handle: p.handle,
+              }))}
+            />
+          </Suspense>
         </header>
       </div>
 
       <div className="container flex flex-col gap-y-16 py-16 lg:gap-y-28 lg:pt-20 lg:pb-28">
         <main>
           {/* FILTER SECTION */}
-          <HeaderFilterSection />
+          <Suspense fallback={null}>
+            <HeaderFilterSection />
+          </Suspense>
 
           {/* SEARCH & FILTER STATUS */}
           {(query || category || colors.length > 0 || sizes.length > 0 || searchCategories.length > 0) && (
