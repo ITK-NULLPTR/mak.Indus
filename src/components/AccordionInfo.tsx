@@ -61,7 +61,6 @@ const AccordionInfo: FC<Props> = ({
 }) => {
   return (
     <div className="w-full space-y-2.5 rounded-2xl">
-      {/* ============ */}
       {data.map((item, index) => {
         return (
           <Disclosure key={index} defaultOpen={index < 2}>
