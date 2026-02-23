@@ -1,6 +1,7 @@
 'use client'
 import Logo from '@/components/Logo'
 import SocialsList1 from '@/shared/SocialsList1/SocialsList1'
+import { Link } from '@/shared/link'
 import React, { useState } from 'react'
 import { toast } from 'react-hot-toast'
 
@@ -59,14 +60,20 @@ const Footer: React.FC = () => {
               Quick Links
             </h4>
             <ul className="flex flex-col gap-4">
-              {['Home', 'Shop', 'About Us', 'Contact Us', 'Our Blog'].map((item) => (
-                <li key={item}>
-                  <a
-                    href="#"
+              {[
+                { label: 'Home', href: '/' },
+                { label: 'Shop', href: '/collections/all' },
+                { label: 'About Us', href: '/about' },
+                { label: 'Contact Us', href: '/contact' },
+                { label: 'Our Blog', href: '/blog' },
+              ].map((item) => (
+                <li key={item.label}>
+                  <Link
+                    href={item.href}
                     className="text-sm text-neutral-600 hover:text-primary-600 dark:text-neutral-400 dark:hover:text-primary-500 transition-colors duration-200"
                   >
-                    {item}
-                  </a>
+                    {item.label}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -78,14 +85,19 @@ const Footer: React.FC = () => {
               Customer Support
             </h4>
             <ul className="flex flex-col gap-4">
-              {['My Account', 'Order History', 'Wishlist', 'Shipping Info', 'Returns & Exchanges'].map((item) => (
-                <li key={item}>
-                  <a
-                    href="#"
+              {[
+                                { label: 'Order History', href: '/order-history' },
+                { label: 'Wishlist', href: '/wishlist' },
+                { label: 'Shipping Info', href: '/shipping-info' },
+                { label: 'Returns & Exchanges', href: '/returns' },
+              ].map((item) => (
+                <li key={item.label}>
+                  <Link
+                    href={item.href}
                     className="text-sm text-neutral-600 hover:text-primary-600 dark:text-neutral-400 dark:hover:text-primary-500 transition-colors duration-200"
                   >
-                    {item}
-                  </a>
+                    {item.label}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -163,14 +175,18 @@ const Footer: React.FC = () => {
               </p>
             </div>
             <div className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-10">
-              {['Privacy Policy', 'Terms of Service', 'Refund Policy', 'Cookie Settings'].map((item) => (
-                <a
-                  key={item}
-                  href="#"
+              {[
+                { label: 'Privacy Policy', href: '/privacy-policy' },
+                { label: 'Terms of Service', href: '/terms' },
+                { label: 'Refund Policy', href: '/refund-policy' },
+                ].map((item) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
                   className="text-xs font-medium text-neutral-500 hover:text-primary-600 dark:hover:text-primary-400 transition-colors uppercase tracking-widest whitespace-nowrap"
                 >
-                  {item}
-                </a>
+                  {item.label}
+                </Link>
               ))}
             </div>
           </div>
