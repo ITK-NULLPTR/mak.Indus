@@ -20,7 +20,7 @@ interface Props {
 
 const ProductCard: FC<Props> = ({ className = '', data, isLiked }) => {
   const { title, price, status, rating, options, handle, selectedOptions, reviewNumber, images, featuredImage } = data
-  const color = selectedOptions?.find((option) => option.name === 'Color')?.value
+  // const color = selectedOptions?.find((option) => option.name === 'Color')?.value
 
   const { open: openAside, setProductQuickViewHandle } = useAside()
 
@@ -107,7 +107,7 @@ const ProductCard: FC<Props> = ({ className = '', data, isLiked }) => {
           {renderColorOptions()}
           <div>
             <h2 className="nc-ProductCard__title text-base font-semibold transition-colors">{title}</h2>
-            <p className={`mt-1 text-sm text-neutral-500 dark:text-neutral-400`}>{color}</p>
+            {/* <p className={`mt-1 text-sm text-neutral-500 dark:text-neutral-400`}>{color}</p> */}
           </div>
 
           <div className="flex items-end justify-between">

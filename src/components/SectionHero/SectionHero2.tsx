@@ -19,7 +19,7 @@ const data = [
   {
     id: 1,
     imageUrl: gardening1.src,
-    heading: 'Exclusive collection <br /> for everyone',
+    heading: 'Exclusive collection for everyone',
     subHeading: 'Grow smarter, cook better this season 🌱🍳',
     btnText: 'Start shopping now',
     btnHref: '/collections/gardening',
@@ -27,7 +27,7 @@ const data = [
   {
     id: 2,
     imageUrl: gardening2.src,
-    heading: 'Exclusive collection <br /> for everyone',
+    heading: 'Exclusive collection for everyone',
     subHeading: 'Grow smarter, cook better this season 🌱🍳',
     btnText: 'Start shopping now',
     btnHref: '/collections/gardening',
@@ -35,7 +35,7 @@ const data = [
   {
     id: 3,
     imageUrl: kitchen3.src,
-    heading: 'Exclusive collection <br /> for everyone',
+    heading: 'Exclusive collection for everyone',
     subHeading: 'Grow smarter, cook better this season 🌱🍳',
     btnText: 'Start shopping now',
     btnHref: '/collections/kitchen',

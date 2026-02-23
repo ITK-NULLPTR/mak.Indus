@@ -52,6 +52,7 @@ const CollectionCard3: FC<Props> = ({ className = '', collection }) => {
             <div className="mt-10">
               <Button color="light" size="smaller" className="shadow-sm border-neutral-200">
                 Show me all
+                
               </Button>
             </div>
           </div>
