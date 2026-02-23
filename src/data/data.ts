@@ -677,7 +677,7 @@ export async function getCollections() {
       id: 'gid://1',
       title: 'Gardening Tools',
       handle: 'gardening-tools',
-      href: '/collections/gardening',
+      href: '/collections/',
       sortDescription: 'Most popular tools',
       description: 'Durable gardening tools designed for planting, pruning, and maintaining healthy outdoor spaces.',
       color: 'bg-green-50',
@@ -693,7 +693,7 @@ export async function getCollections() {
       id: 'gid://2',
       title: 'Kitchen Tools',
       handle: 'kitchen-tools',
-      href: '/collections/kitchen',
+      href: '/collections/',
       sortDescription: 'Top kitchen tools',
       description: 'Essential kitchen tools crafted for cooking, baking, and everyday meal preparation.',
       image: {
@@ -709,7 +709,7 @@ export async function getCollections() {
       id: 'gid://3',
       title: 'Cookware',
       handle: 'cookware',
-      href: '/collections/cookware',
+      href: '/collections/',
       sortDescription: 'Premium cookware',
       description: 'High-quality cookware built for even heating, durability, and effortless cooking.',
       image: {
@@ -725,7 +725,7 @@ export async function getCollections() {
       id: 'gid://4',
       title: 'Garden Accessories',
       handle: 'garden-accessories',
-      href: '/collections/garden-accessories',
+      href: '/collections/',
       sortDescription: 'Plant care access',
       description: 'Practical garden accessories to support plant care, storage, and outdoor organization.',
       image: {

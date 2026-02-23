@@ -50,8 +50,10 @@ const CollectionCard3: FC<Props> = ({ className = '', collection }) => {
               )}
             </div>
             <div className="mt-10">
+           
               <Button color="light" size="smaller" className="shadow-sm border-neutral-200">
                 Show me all
+                <Link href={collection.href + collection.handle} className="absolute inset-0" />
               </Button>
             </div>
           </div>
