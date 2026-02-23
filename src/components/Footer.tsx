@@ -179,7 +179,7 @@ const Footer: React.FC = () => {
                 { label: 'Privacy Policy', href: '/privacy-policy' },
                 { label: 'Terms of Service', href: '/terms' },
                 { label: 'Refund Policy', href: '/refund-policy' },
-                ].map((item) => (
+                 ].map((item) => (
                 <Link
                   key={item.label}
                   href={item.href}
