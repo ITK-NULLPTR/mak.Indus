@@ -38,8 +38,8 @@ const ProductCard: FC<Props> = ({ className = '', data, isLiked }) => {
             <div
               className="absolute inset-0 z-0 rounded-full bg-cover ring-1 ring-neutral-900/20 dark:ring-white/20"
               style={{
-                backgroundColor: color.swatch?.color,
-                backgroundImage: color.swatch?.image ? `url(${color.swatch.image})` : undefined,
+                backgroundColor: (color as any).swatch?.color,
+                backgroundImage: (color as any).swatch?.image ? `url(${(color as any).swatch.image})` : undefined,
               }}
             />
           </div>

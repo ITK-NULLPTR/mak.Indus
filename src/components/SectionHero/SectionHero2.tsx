@@ -22,7 +22,7 @@ const data = [
     heading: 'Exclusive collection <br /> for everyone',
     subHeading: 'Grow smarter, cook better this season 🌱🍳',
     btnText: 'Start shopping now',
-    btnHref: '/gardening',
+    btnHref: '/collections/gardening',
   },
   {
     id: 2,
@@ -30,7 +30,7 @@ const data = [
     heading: 'Exclusive collection <br /> for everyone',
     subHeading: 'Grow smarter, cook better this season 🌱🍳',
     btnText: 'Start shopping now',
-    btnHref: '/gardening',
+    btnHref: '/collections/gardening',
   },
   {
     id: 3,
@@ -38,7 +38,7 @@ const data = [
     heading: 'Exclusive collection <br /> for everyone',
     subHeading: 'Grow smarter, cook better this season 🌱🍳',
     btnText: 'Start shopping now',
-    btnHref: '/kitchen',
+    btnHref: '/collections/kitchen',
   },
 ]
 
@@ -195,18 +195,6 @@ const SectionHero2: FC<Props> = ({ className = '' }) => {
         onClick={handleClickNext}
         aria-label="Next slide"
       >
-        {/* <div className="pointer-events-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 dark:bg-black/20 backdrop-blur-md border border-white/30 dark:border-white/10 text-neutral-800 dark:text-white transition-all hover:bg-primary-600 hover:text-white hover:scale-110">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="h-6 w-6"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-          </svg>
-        </div> */}
       </button>
       <button
         type="button"
@@ -214,18 +202,6 @@ const SectionHero2: FC<Props> = ({ className = '' }) => {
         onClick={handleClickPrev}
         aria-label="Previous slide"
       >
-        {/* <div className="pointer-events-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 dark:bg-black/20 backdrop-blur-md border border-white/30 dark:border-white/10 text-neutral-800 dark:text-white transition-all hover:bg-primary-600 hover:text-white hover:scale-110">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="h-6 w-6"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-          </svg>
-        </div> */}
       </button>
     </div>
   )
