@@ -84,7 +84,7 @@ const ProductCard: FC<Props> = ({ className = '', data, isLiked }) => {
       <div className={`product-card relative flex flex-col bg-transparent ${className}`}>
         <Link href={'/products/' + handle} className="absolute inset-0"></Link>
 
-        <div className="group relative z-1 shrink-0 overflow-hidden rounded-3xl bg-neutral-50 dark:bg-neutral-300">
+        <div className="group relative mx-4 z-1 shrink-0 overflow-hidden rounded-3xl bg-neutral-50 dark:bg-neutral-300">
           <Link href={'/products/' + handle} className="block">
             {featuredImage?.src && (
               <NcImage
@@ -102,8 +102,10 @@ const ProductCard: FC<Props> = ({ className = '', data, isLiked }) => {
           {renderGroupButtons()}
         </div>
 
-        <div className="space-y-4 px-2.5 pt-5 pb-2.5">
+        <div className="space-y-4 px-4.5 pb-2.5">
+          <div className="min-h-4">
           {renderColorOptions()}
+          </div>
           <div>
             <h2 className="nc-ProductCard__title text-base font-semibold transition-colors">{title}</h2>
             <p className={`mt-1 text-sm text-neutral-500 dark:text-neutral-400`}>{color}</p>
