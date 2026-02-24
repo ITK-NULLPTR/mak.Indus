@@ -37,7 +37,7 @@ const HeroSection = () => {
     }, { scope: containerRef });
 
     return (
-        <section ref={containerRef} className="relative w-full h-[60vh] md:h-[70vh] flex items-center justify-center overflow-hidden text-white">
+        <section ref={containerRef} className="relative w-full h-80 flex items-center justify-center overflow-hidden text-white">
             <div ref={imageRef} className="absolute inset-0 w-full h-full z-0">
                 <Image
                     src={gardeningHero}

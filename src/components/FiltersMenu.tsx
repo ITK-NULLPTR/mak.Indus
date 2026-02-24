@@ -34,32 +34,32 @@ type FilterOption = {
 }
 
 export const demo_filters_options: FilterOption[] = [
-  {
-    id: 'colors',
-    name: 'Colors',
-    type: 'checkbox',
-    hugeIcon: PaintBucketIcon,
-    options: [
-      { name: 'Beige', value: 'beige' },
-      { name: 'Blue', value: 'blue' },
-      { name: 'Black', value: 'black' },
-      { name: 'Brown', value: 'brown' },
-      { name: 'Green', value: 'green' },
-    ],
-  },
-  {
-    id: 'sizes',
-    name: 'Sizes',
-    type: 'checkbox',
-    hugeIcon: PackageDimensions01Icon,
-    options: [
-      { name: 'XS', value: 'xs' },
-      { name: 'S', value: 's' },
-      { name: 'M', value: 'm' },
-      { name: 'L', value: 'l' },
-      { name: 'XL', value: 'xl' },
-    ],
-  },
+  // {
+  //   id: 'colors',
+  //   name: 'Colors',
+  //   type: 'checkbox',
+  //   hugeIcon: PaintBucketIcon,
+  //   options: [
+  //     { name: 'Beige', value: 'beige' },
+  //     { name: 'Blue', value: 'blue' },
+  //     { name: 'Black', value: 'black' },
+  //     { name: 'Brown', value: 'brown' },
+  //     { name: 'Green', value: 'green' },
+  //   ],
+  // },
+  // {
+  //   id: 'sizes',
+  //   name: 'Sizes',
+  //   type: 'checkbox',
+  //   hugeIcon: PackageDimensions01Icon,
+  //   options: [
+  //     { name: 'XS', value: 'xs' },
+  //     { name: 'S', value: 's' },
+  //     { name: 'M', value: 'm' },
+  //     { name: 'L', value: 'l' },
+  //     { name: 'XL', value: 'xl' },
+  //   ],
+  // },
   {
     id: 'price',
     name: 'Price',
@@ -96,22 +96,15 @@ export const FiltersMenuTabs = ({
   const searchParams = useSearchParams()
 
   const [selectedOptions, setSelectedOptions] = useState<Record<string, string[]>>({
-    categories: [],
-    colors: [],
-    sizes: [],
+   
     price: [],
   })
 
   useEffect(() => {
-    const cats = searchParams.getAll('categories[]')
-    const cols = searchParams.getAll('colors[]')
-    const sizs = searchParams.getAll('sizes[]')
+    
     const p_active = (searchParams.get('price_min') || searchParams.get('price_max')) ? ['active'] : []
 
     setSelectedOptions({
-      categories: cats,
-      colors: cols,
-      sizes: sizs,
       price: p_active,
     })
   }, [searchParams])
@@ -260,22 +253,15 @@ export const FiltersMenuSidebar = ({ filterOptions = demo_filters_options, class
   const searchParams = useSearchParams()
 
   const [selectedOptions, setSelectedOptions] = useState<Record<string, string[]>>({
-    categories: [],
-    colors: [],
-    sizes: [],
+   
     price: [],
   })
 
   useEffect(() => {
-    const cats = searchParams.getAll('categories[]')
-    const cols = searchParams.getAll('colors[]')
-    const sizs = searchParams.getAll('sizes[]')
+    
     const p_active = (searchParams.get('price_min') || searchParams.get('price_max')) ? ['active'] : []
 
     setSelectedOptions({
-      categories: cats,
-      colors: cols,
-      sizes: sizs,
       price: p_active,
     })
   }, [searchParams])

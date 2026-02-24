@@ -50,7 +50,7 @@ const Footer: React.FC = () => {
           <div className="flex flex-col gap-8">
             <Logo />
             <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
-              mak.Indus is your premier destination for high-quality tools and equipment. We provide only the best for professionals and DIY enthusiasts alike.
+              Mak.Indus is your premier destination for high-quality tools and equipment. We provide only the best for professionals and DIY enthusiasts alike.
             </p>
             <div className="flex flex-col gap-2">
               <h4 className="text-sm font-bold uppercase tracking-wider text-neutral-900 dark:text-neutral-100">
@@ -89,7 +89,7 @@ const Footer: React.FC = () => {
               Customer Support
             </h4>
             <ul className="flex flex-col gap-4">
-              {['My Account', 'Order History', 'Wishlist', 'Shipping Info', 'Returns & Exchanges'].map((item) => (
+              {['Order History', 'Wishlist', 'Shipping Info', 'Returns & Exchanges'].map((item) => (
                 <li key={item}>
                   <a
                     href="#"
@@ -151,7 +151,7 @@ const Footer: React.FC = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className="h-12 px-8 rounded-full bg-neutral-900 text-white font-bold hover:bg-black transition-all disabled:bg-neutral-600 disabled:cursor-not-allowed flex items-center justify-center min-w-[130px]"
+              className="h-12 px-8 rounded-full bg-neutral-900 text-white font-bold hover:bg-black transition-all disabled:bg-neutral-600 disabled:cursor-not-allowed flex items-center justify-center min-w-32.5"
             >
               {isLoading ? (
                 <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">

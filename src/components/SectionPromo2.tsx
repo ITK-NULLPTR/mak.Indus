@@ -28,7 +28,7 @@ const SectionPromo2: FC<SectionPromo2Props> = ({ className }) => {
             Gardening tools support efficient, mindful, and productive gardening.
           </span>
           <div className="mt-6 flex space-x-2 sm:mt-12 sm:space-x-5">
-            <ButtonPrimary href="/search">Discover more</ButtonPrimary>
+            <ButtonPrimary href="/collections/gardening">Discover more</ButtonPrimary>
           </div>
         </div>
 

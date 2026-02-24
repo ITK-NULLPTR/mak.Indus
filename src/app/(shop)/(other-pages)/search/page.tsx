@@ -1,7 +1,7 @@
 import { Divider } from '@/components/Divider'
 import HeaderFilterSection from '@/components/HeaderFilterSection'
 import ProductCard from '@/components/ProductCard'
-import SectionPromo1 from '@/components/SectionPromo1'
+
 import SectionSliderLargeProduct from '@/components/SectionSliderLargeProduct'
 import { getProducts } from '@/data/data'
 import {
@@ -143,7 +143,7 @@ const PageSearch = async ({
               ))}
             </div>
           ) : (
-            <div className="mt-8 text-center py-24 bg-neutral-50/50 dark:bg-neutral-800/20 rounded-[2rem] border-2 border-dashed border-neutral-200 dark:border-neutral-700">
+            <div className="mt-8 text-center py-24 bg-neutral-50/50 dark:bg-neutral-800/20 rounded-4xl border-2 border-dashed border-neutral-200 dark:border-neutral-700">
               <div className="max-w-md mx-auto">
                 <div className="w-16 h-16 bg-neutral-100 dark:bg-neutral-800 rounded-2xl flex items-center justify-center mx-auto mb-6">
                   <svg className="w-8 h-8 text-neutral-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -157,7 +157,7 @@ const PageSearch = async ({
                 <div className="mt-8">
                   <a
                     href="/search"
-                    className="inline-flex items-center justify-center rounded-full bg-primary-600 px-8 py-4 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 transition-all active:scale-95"
+                    className="inline-flex items-center justify-center rounded-full bg-primary-600 px-8 py-4 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 transition-all active:scale-95"
                   >
                     Clear all filters
                   </a>
@@ -193,7 +193,7 @@ const PageSearch = async ({
           <SectionSliderLargeProduct products={featuredProducts} />
         </div>
         <Divider />
-        <SectionPromo1 />
+       
       </div>
     </div>
   )

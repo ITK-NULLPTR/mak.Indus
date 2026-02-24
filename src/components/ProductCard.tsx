@@ -2,7 +2,6 @@
 
 import { TProductItem } from '@/data/data'
 import NcImage from '@/shared/NcImage/NcImage'
-import { Link } from '@/shared/link'
 import { ArrowsPointingOutIcon, ShoppingBagIcon } from '@heroicons/react/24/outline'
 import { StarIcon } from '@heroicons/react/24/solid'
 import { FC } from 'react'
@@ -11,17 +10,21 @@ import LikeButton from './LikeButton'
 import Prices from './Prices'
 import ProductStatus from './ProductStatus'
 import { useAside } from './aside'
+import { useWishList } from '@/context/WishListContext'
+import clsx from 'clsx'
+import Link from 'next/link'
 
 interface Props {
   className?: string
   data: TProductItem
-  isLiked?: boolean
+  // isLiked?: boolean
 }
 
-const ProductCard: FC<Props> = ({ className = '', data, isLiked }) => {
+const ProductCard: FC<Props> = ({ className = '', data }) => {
   const { title, price, status, rating, options, handle, selectedOptions, reviewNumber, images, featuredImage } = data
   // const color = selectedOptions?.find((option) => option.name === 'Color')?.value
-
+  const { wishList, toggleWishListItem } = useWishList()
+  const isLiked = wishList.includes(data.id?.toString() || '')
   const { open: openAside, setProductQuickViewHandle } = useAside()
 
   const renderColorOptions = () => {
@@ -83,7 +86,7 @@ const ProductCard: FC<Props> = ({ className = '', data, isLiked }) => {
   return (
     <>
       <div className={`product-card relative flex flex-col bg-transparent ${className}`}>
-        <Link href={'/products/' + handle} className="absolute inset-0"></Link>
+        <Link href={'/products/' + (handle ?? '')} className="absolute inset-0"></Link>
 
         <div className="group relative z-1 shrink-0 overflow-hidden rounded-3xl bg-neutral-50 dark:bg-neutral-300">
           <Link href={'/products/' + handle} className="block">
@@ -99,7 +102,12 @@ const ProductCard: FC<Props> = ({ className = '', data, isLiked }) => {
             )}
           </Link>
           <ProductStatus status={status} />
-          <LikeButton liked={isLiked} className="absolute end-3 top-3 z-10" />
+          <LikeButton liked={isLiked} className="absolute end-3 top-3 z-10"
+          onClick={() => {
+            if (!data.id) return;
+            toggleWishListItem(data.id.toString())
+          }}
+          />
           {renderGroupButtons()}
         </div>
 

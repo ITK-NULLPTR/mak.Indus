@@ -3,6 +3,7 @@ import '@/styles/tailwind.css'
 import { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
 import GlobalClient from './GlobalClient'
+import { WishListProvider } from '@/context/WishListContext'
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -22,10 +23,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={poppins.className} suppressHydrationWarning>
       <body className="bg-white text-neutral-900 dark:bg-neutral-900 dark:text-neutral-200" suppressHydrationWarning>
-        <Aside.Provider>
-          {children}
-          <GlobalClient />
-        </Aside.Provider>
+        <WishListProvider>
+          <Aside.Provider>
+            {children}
+            <GlobalClient />
+          </Aside.Provider>
+        </WishListProvider>
       </body>
     </html>
   )

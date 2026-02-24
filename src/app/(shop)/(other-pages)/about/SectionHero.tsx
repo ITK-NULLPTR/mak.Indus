@@ -23,7 +23,7 @@ const SectionHero: FC<SectionHeroProps> = ({ className = '', rightImg, heading, 
         </div>
 
         <div className="flex-1">
-          <Image className="w-full" src={rightImg} alt="" priority />
+          <Image className="w-full h-80 " src={rightImg} alt="" priority />
         </div>
       </div>
     </div>

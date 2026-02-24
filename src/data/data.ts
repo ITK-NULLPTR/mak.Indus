@@ -2,45 +2,10 @@ import collectionImage1 from '@/images/collections/1.png'
 import collectionImage2 from '@/images/collections/2.png'
 import collectionImage3 from '@/images/collections/3.png'
 import collectionImage4 from '@/images/collections/4.png'
-import collectionImage5 from '@/images/collections/5.png'
-import productImage1_1 from '@/images/products/p1-1.jpg'
-import productImage1_2 from '@/images/products/p1-2.jpg'
-import productImage1_3 from '@/images/products/p1-3.jpg'
-import productImage1 from '@/images/products/p1.jpg'
-import productImage2_1 from '@/images/products/p2-1.jpg'
-import productImage2_2 from '@/images/products/p2-2.jpg'
-import productImage2_3 from '@/images/products/p2-3.jpg'
-import productImage2 from '@/images/products/p2.jpg'
-import productImage3_1 from '@/images/products/p3-1.jpg'
-import productImage3_2 from '@/images/products/p3-2.jpg'
-import productImage3_3 from '@/images/products/p3-3.jpg'
-import productImage3 from '@/images/products/p3.jpg'
-import productImage4_1 from '@/images/products/p4-1.jpg'
-import productImage4_2 from '@/images/products/p4-2.jpg'
-import productImage4_3 from '@/images/products/p4-3.jpg'
-import productImage4 from '@/images/products/p4.jpg'
-import productImage5_1 from '@/images/products/p5-1.jpg'
-import productImage5_2 from '@/images/products/p5-2.jpg'
-import productImage5_3 from '@/images/products/p5-3.jpg'
-import productImage5 from '@/images/products/p5.jpg'
-import productImage6_1 from '@/images/products/p6-1.jpg'
-import productImage6_2 from '@/images/products/p6-2.jpg'
-import productImage6_3 from '@/images/products/p6-3.jpg'
-import productImage6 from '@/images/products/p6.jpg'
-import productImage7_1 from '@/images/products/p7-1.jpg'
-import productImage7_2 from '@/images/products/p7-2.jpg'
-import productImage7_3 from '@/images/products/p7-3.jpg'
-import productImage7 from '@/images/products/p7.jpg'
-import productImage8_1 from '@/images/products/p8-1.jpg'
-import productImage8_2 from '@/images/products/p8-2.jpg'
-import productImage8_3 from '@/images/products/p8-3.jpg'
-import productImage8 from '@/images/products/p8.jpg'
 import avatarImage1 from '@/images/users/avatar1.jpg'
 import avatarImage2 from '@/images/users/avatar2.jpg'
 import avatarImage3 from '@/images/users/avatar3.jpg'
 import avatarImage4 from '@/images/users/avatar4.jpg'
-import { shuffleArray } from '@/utils/shuffleArray'
-
 import kitchenImage1 from '@/images/kitchen/1.webp'
 import kitchenImage2 from '@/images/kitchen/2.webp'
 import kitchenImage3 from '@/images/kitchen/3.webp'
@@ -49,129 +14,16 @@ import gardeningImage2 from '@/images/gardening/2.webp'
 import gardeningImage3 from '@/images/gardening/3.webp'
 
 export async function getOrder(number: string) {
-  const allOrders = await getOrders()
-  let order = allOrders.find((order) => order.number.toString() === number)
+  const products = await getProducts();
+  const favoriteProducts = products.filter(p => p.id);
 
-  if (!order) {
-    // throw new Error( `Order with number ${number} not found.` )
-
-    // for demo purposes, we can log a warning and return the first order
-    // If no order found, return the first order as a fallback
-    console.warn(`Order with number ${number} not found. Returning the first order as a fallback.`)
-    order = allOrders[0]
+  const order = {
+    number: number,
+    status: 'Delivered',
+    createdAt: '2025-01-06',
   }
 
   return order
-}
-export async function getOrders() {
-  return [
-    {
-      number: '4657',
-      date: 'March 22, 2025',
-      status: 'Delivered on January 11, 2025',
-      invoiceHref: '#',
-      totalQuantity: 4,
-      cost: {
-        subtotal: 199,
-        shipping: 0,
-        tax: 0,
-        total: 199,
-        discount: 0,
-      },
-      products: [
-        {
-          id: 'gid://2',
-          title: 'Nomad Tumbler',
-          handle: 'nomad-tumbler',
-          description:
-            'This durable and portable insulated tumbler will keep your beverage at the perfect temperature during your next adventure.',
-          href: '#',
-          price: 35,
-          status: 'Preparing to ship',
-          step: 1,
-          date: 'March 24, 2021',
-          datetime: '2021-03-24',
-          address: ['Floyd Miles', '7363 Cynthia Pass', 'Toronto, ON N3Y 4H8'],
-          email: 'f•••@example.com',
-          phone: '1•••••••••40',
-          featuredImage: {
-            src: productImage2.src,
-            width: productImage2.width,
-            height: productImage2.height,
-            alt: 'Insulated bottle with white base and black snap lid.',
-          },
-          quantity: 1,
-          size: 'XS',
-          color: 'Black Brown',
-        },
-        {
-          id: 'gid://3',
-          title: 'Minimalist Wristwatch',
-          handle: 'minimalist-wristwatch',
-          description: 'This contemporary wristwatch has a clean, minimalist look and high quality components.',
-          href: '#',
-          price: 149,
-          status: 'Shipped',
-          step: 0,
-          date: 'March 23, 2021',
-          datetime: '2021-03-23',
-          address: ['Floyd Miles', '7363 Cynthia Pass', 'Toronto, ON N3Y 4H8'],
-          email: 'f•••@example.com',
-          phone: '1•••••••••40',
-          featuredImage: {
-            src: productImage4.src,
-            width: productImage4.width,
-            height: productImage4.height,
-            alt: 'Insulated bottle with white base and black snap lid.',
-          },
-          quantity: 1,
-          size: 'XL',
-          color: 'White',
-        },
-      ],
-    },
-    {
-      number: '4376',
-      status: 'Delivered on January 08, 2028',
-      invoiceHref: '#',
-      date: 'March 22, 2025',
-      totalQuantity: 4,
-      cost: {
-        subtotal: 199,
-        shipping: 0,
-        tax: 0,
-        total: 199,
-        discount: 0,
-      },
-      products: [
-        {
-          id: 'gid://1',
-          title: 'Nomad Tumbler',
-          handle: 'nomad-tumbler',
-          description:
-            'This durable and portable insulated tumbler will keep your beverage at the perfect temperature during your next adventure.',
-          href: '#',
-          price: 99,
-          status: 'Preparing to ship',
-          step: 1,
-          date: 'March 24, 2021',
-          datetime: '2021-03-24',
-          address: ['Floyd Miles', '7363 Cynthia Pass', 'Toronto, ON N3Y 4H8'],
-          email: 'f•••@example.com',
-          phone: '1•••••••••40',
-          featuredImage: {
-            src: productImage1.src,
-            width: productImage1.width,
-            height: productImage1.height,
-            alt: 'Insulated bottle with white base and black snap lid.',
-          },
-          quantity: 1,
-          size: 'M',
-          color: 'Black',
-        },
-      ],
-    },
-  ]
 }
 
 export async function getCountries() {
@@ -603,74 +455,7 @@ export async function getBlogPostsByHandle(handle: string) {
   }
 }
 
-export function getCart(id: string) {
-  return {
-    id: 'gid://shopify/Cart/1',
-    note: 'This is a note',
-    createdAt: '2025-01-06',
-    totalQuantity: 4,
-    cost: {
-      subtotal: 199,
-      shipping: 0,
-      tax: 0,
-      total: 199,
-      discount: 0,
-    },
-    lines: [
-      {
-        id: '1',
-        name: 'Basic Tee',
-        handle: 'basic-tee',
-        price: 199,
-        color: 'Sienna',
-        inStock: true,
-        size: 'L',
-        quantity: 1,
-        image: {
-          src: productImage1.src,
-          width: productImage1.width,
-          height: productImage1.height,
-          alt: 'Front of Basic Tee in black.',
-        },
-      },
-      {
-        id: '2',
-        name: 'Basic Coahuila',
-        handle: 'basic-coahuila',
-        price: 99,
-        color: 'Black',
-        inStock: false,
-        leadTime: '3–4 weeks',
-        size: 'XL',
-        quantity: 2,
-        image: {
-          src: productImage2.src,
-          width: productImage2.width,
-          height: productImage2.height,
-          alt: 'Front of Basic Coahuila in black.',
-        },
-      },
-      {
-        id: '3',
-        name: 'Nomad Tumbler',
-        handle: 'nomad-tumbler',
-        price: 119,
-        color: 'White',
-        inStock: true,
-        size: 'M',
-        quantity: 1,
-        image: {
-          src: productImage3.src,
-          width: productImage3.width,
-          height: productImage3.height,
-          alt: 'Front of Nomad Tumbler in white.',
-        },
-      },
-    ],
-  }
-}
 
-// ------------------------  DATA ------------------------
 export async function getCollections() {
   return [
     {
@@ -1105,7 +890,6 @@ export async function getProductDetailByHandle(handle: string) {
 export type TCollection = Partial<Awaited<ReturnType<typeof getCollections>>[number]> & { href?: string }
 export type TProductItem = Partial<Awaited<ReturnType<typeof getProducts>>[number]>
 export type TProductDetail = Partial<Awaited<ReturnType<typeof getProductDetailByHandle>>>
-export type TCardProduct = Partial<Awaited<ReturnType<typeof getCart>['lines'][number]>>
+export type TCardProduct = Partial<TProductItem & { quantity?: number }>
 export type TBlogPost = Partial<Awaited<ReturnType<typeof getBlogPosts>>[number]>
 export type TReview = Partial<Awaited<ReturnType<typeof getProductReviews>>[number]>
-export type TOrder = Partial<Awaited<ReturnType<typeof getOrders>>[number]>

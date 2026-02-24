@@ -5,7 +5,7 @@ import SectionClientSay from '@/components/SectionClientSay'
 import SectionCollectionSlider from '@/components/SectionCollectionSlider'
 import SectionGridMoreExplore from '@/components/SectionGridMoreExplore/SectionGridMoreExplore'
 import SectionHero2 from '@/components/SectionHero/SectionHero2'
-import SectionPromo1 from '@/components/SectionPromo1'
+
 import SectionPromo2 from '@/components/SectionPromo2'
 import SectionSliderLargeProduct from '@/components/SectionSliderLargeProduct'
 import SectionSliderProductCard from '@/components/SectionSliderProductCard'

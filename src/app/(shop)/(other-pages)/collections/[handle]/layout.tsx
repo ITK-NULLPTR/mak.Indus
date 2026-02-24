@@ -1,5 +1,4 @@
 import { Divider } from '@/components/Divider'
-import SectionPromo1 from '@/components/SectionPromo1'
 import SectionSliderLargeProduct from '@/components/SectionSliderLargeProduct'
 import { getCollectionByHandle, getProducts } from '@/data/data'
 import { Metadata } from 'next'
@@ -47,7 +46,6 @@ const Layout = async ({ children, params }: { children: React.ReactNode; params:
       <Divider />
       <SectionSliderLargeProduct products={products.slice(0, 4)} />
       <Divider />
-      <SectionPromo1 />
     </div>
   )
 }

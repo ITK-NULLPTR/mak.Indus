@@ -1,7 +1,6 @@
 import BgGlassmorphism from '@/components/BgGlassmorphism/BgGlassmorphism'
 import { Divider } from '@/components/Divider'
 import SectionClientSay from '@/components/SectionClientSay'
-import SectionPromo1 from '@/components/SectionPromo1'
 import rightImg from '@/images/hero-right1.png'
 import { Metadata } from 'next'
 import SectionFounder from './SectionFounder'
@@ -32,7 +31,7 @@ const PageAbout = () => {
         <SectionClientSay />
 
         <Divider />
-        <SectionPromo1 />
+        
       </div>
     </div>
   )
