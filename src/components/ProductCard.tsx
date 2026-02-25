@@ -11,28 +11,27 @@ import Prices from './Prices'
 import ProductStatus from './ProductStatus'
 import { useAside } from './aside'
 import { useWishList } from '@/context/WishListContext'
-import clsx from 'clsx'
 import Link from 'next/link'
 
 interface Props {
   className?: string
   data: TProductItem
-  // isLiked?: boolean
 }
 
 const ProductCard: FC<Props> = ({ className = '', data }) => {
-  const { title, price, status, rating, options, handle, selectedOptions, reviewNumber, images, featuredImage } = data
-  // const color = selectedOptions?.find((option) => option.name === 'Color')?.value
-  const { wishList, toggleWishListItem } = useWishList()
-  const isLiked = wishList.includes(data.id?.toString() || '')
+  const { title, price, status, rating, options, handle, selectedOptions, reviewNumber, featuredImage } = data
+  
+  // Hooks hamesha component ke andar aur top par hone chahiye
+  const { wishList, toggleWishListItem, isLiked } = useWishList()
   const { open: openAside, setProductQuickViewHandle } = useAside()
+
+  // Id ko string mein convert karne ka safe tareeka
+  const productId = data.id?.toString() || ''
+  const activeLike = isLiked(productId)
 
   const renderColorOptions = () => {
     const optionColorValues = options?.find((option) => option.name === 'Color')?.optionValues
-
-    if (!optionColorValues?.length) {
-      return null
-    }
+    if (!optionColorValues?.length) return null
 
     return (
       <div className="flex gap-2">
@@ -84,52 +83,53 @@ const ProductCard: FC<Props> = ({ className = '', data }) => {
   }
 
   return (
-    <>
-      <div className={`product-card relative flex flex-col bg-transparent ${className}`}>
-        <Link href={'/products/' + (handle ?? '')} className="absolute inset-0"></Link>
+    <div className={`product-card relative flex flex-col bg-transparent ${className}`}>
+      <Link href={'/products/' + (handle ?? '')} className="absolute inset-0 z-0"></Link>
 
-        <div className="group relative z-1 shrink-0 overflow-hidden rounded-3xl bg-neutral-50 dark:bg-neutral-300">
-          <Link href={'/products/' + handle} className="block">
-            {featuredImage?.src && (
-              <NcImage
-                containerClassName="flex aspect-w-11 aspect-h-12 w-full h-0"
-                src={featuredImage}
-                className="h-full w-full object-cover"
-                fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1200px) 50vw, 40vw"
-                alt={handle}
-              />
-            )}
-          </Link>
-          <ProductStatus status={status} />
-          <LikeButton liked={isLiked} className="absolute end-3 top-3 z-10"
-          onClick={() => {
-            if (!data.id) return;
-            toggleWishListItem(data.id.toString())
-          }}
-          />
-          {renderGroupButtons()}
+      <div className="group relative z-1 shrink-0 overflow-hidden rounded-3xl bg-neutral-50 dark:bg-neutral-300">
+        <Link href={'/products/' + handle} className="block">
+          {featuredImage?.src && (
+            <NcImage
+              containerClassName="flex aspect-w-11 aspect-h-12 w-full h-0"
+              src={featuredImage}
+              className="h-full w-full object-cover"
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1200px) 50vw, 40vw"
+              alt={handle || 'product'}
+            />
+          )}
+        </Link>
+        
+        <ProductStatus status={status} />
+
+        {/* Like Button Implementation */}
+        <LikeButton 
+          liked={isLiked(data.id?.toString() || '')} // Ye check karega ki current product wishlist mein hai ya nahi
+          className="absolute end-3 top-3 z-10"
+          // count={wishList.length} // Ye puri wishlist ka count dikhayega
+          onClick={() => toggleWishListItem(data.id?.toString() || '')} // Ye product ko wishlist mein add/remove karega
+        />
+
+        {renderGroupButtons()}
+      </div>
+
+      <div className="space-y-4 px-2.5 pt-5 pb-2.5">
+        {renderColorOptions()}
+        <div>
+          <h2 className="nc-ProductCard__title text-base font-semibold transition-colors">{title}</h2>
         </div>
 
-        <div className="space-y-4 px-2.5 pt-5 pb-2.5">
-          {renderColorOptions()}
-          <div>
-            <h2 className="nc-ProductCard__title text-base font-semibold transition-colors">{title}</h2>
-            {/* <p className={`mt-1 text-sm text-neutral-500 dark:text-neutral-400`}>{color}</p> */}
-          </div>
-
-          <div className="flex items-end justify-between">
-            <Prices price={price ?? 1} />
-            <div className="mb-0.5 flex items-center">
-              <StarIcon className="h-5 w-5 pb-px text-amber-400" />
-              <span className="ms-1 text-sm text-neutral-500 dark:text-neutral-400">
-                {rating || ''} ({reviewNumber || 0} reviews)
-              </span>
-            </div>
+        <div className="flex items-end justify-between">
+          <Prices price={price ?? 1} />
+          <div className="mb-0.5 flex items-center">
+            <StarIcon className="h-5 w-5 pb-px text-amber-400" />
+            <span className="ms-1 text-sm text-neutral-500 dark:text-neutral-400">
+              {rating || ''} ({reviewNumber || 0} reviews)
+            </span>
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

@@ -5,11 +5,12 @@ import SectionClientSay from '@/components/SectionClientSay'
 import SectionCollectionSlider from '@/components/SectionCollectionSlider'
 import SectionGridMoreExplore from '@/components/SectionGridMoreExplore/SectionGridMoreExplore'
 import SectionHero2 from '@/components/SectionHero/SectionHero2'
+import { getCollections, getGroupCollections, getProducts } from '@/data/data'
 
 import SectionPromo2 from '@/components/SectionPromo2'
 import SectionSliderLargeProduct from '@/components/SectionSliderLargeProduct'
 import SectionSliderProductCard from '@/components/SectionSliderProductCard'
-import { getBlogPosts, getCollections, getGroupCollections, getProducts } from '@/data/data'
+
 import { Button } from '@/shared/Button/Button'
 import { ArrowRightIcon } from '@heroicons/react/24/solid'
 import { Metadata } from 'next'
@@ -29,7 +30,7 @@ async function PageHome() {
   const carouselProducts1 = products.slice(0, 8)
   const carouselProducts2 = products.slice(0, 8)
   const carouselProducts3 = products.slice(0, 8)
-  const blogPosts = await getBlogPosts()
+
 
   return (
     <div className="nc-PageHome relative overflow-hidden">
