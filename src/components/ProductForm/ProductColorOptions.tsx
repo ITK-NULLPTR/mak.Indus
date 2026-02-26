@@ -40,13 +40,8 @@ const ProductColorOptions = ({
                   isActive && 'ring-2 ring-neutral-900 dark:ring-neutral-300'
                 )}
               >
-                <div
-                  className="absolute inset-0.5 z-0 overflow-hidden rounded-full bg-cover ring-1 ring-neutral-900/10 dark:ring-white/15"
-                  style={{
-                    backgroundColor: value.swatch?.color,
-                    backgroundImage: value.swatch?.image ? `url(${value.swatch.image})` : undefined,
-                  }}
-                />
+                 
+                
               </Headless.Radio>
             )
           })}

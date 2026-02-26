@@ -9,11 +9,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
-
+import { TCardProduct } from '@/data/data'
 import { useCheckout } from './CheckoutContext'
-
-// ... (other imports remain, but I'll need to specify them if I use replace_file_content on a block that includes imports. 
-// Since CheckoutSummary.tsx is relatively small, I can replace the whole logic part or imports + component.)
 
 export default function CheckoutSummary() {
     const { items, getTotalPrice, removeItem, clearCart } = useCartStore()
@@ -125,8 +122,8 @@ export default function CheckoutSummary() {
         }
     }
 
-    const renderProduct = (product: any) => {
-        const { image, price, name, handle, id, size, color, quantity } = product
+    const renderProduct = (item: TCardProduct) => {
+        const { image, price, name, handle, id, size, color, quantity } = item
 
         return (
             <div key={id} className="relative flex py-8 first:pt-0 last:pb-0 sm:py-10 xl:py-12">
@@ -135,7 +132,7 @@ export default function CheckoutSummary() {
                         <Image
                             fill
                             src={image.src}
-                            alt={image.alt || name}
+                            alt={image.alt || name || ''}
                             sizes="300px"
                             className="object-contain object-center"
                         />
@@ -169,7 +166,7 @@ export default function CheckoutSummary() {
                             </div>
 
                             <div className="hidden flex-1 justify-end sm:flex">
-                                <Prices price={price * quantity || 0} className="mt-0.5" />
+                                <Prices price={(price || 0) * (quantity || 1) || 0} className="mt-0.5" />
                             </div>
                         </div>
                     </div>
@@ -178,15 +175,6 @@ export default function CheckoutSummary() {
                         <div className="hidden sm:block">
                             <span className="text-sm">Qty: {quantity}</span>
                         </div>
-
-                        {/* 
-            <button 
-                onClick={() => removeItem(id)}
-                className="relative z-10 mt-3 flex items-center text-sm font-medium text-primary-600 hover:text-primary-500"
-            >
-              <span>Remove</span>
-            </button> 
-            */}
                     </div>
                 </div>
             </div>
@@ -205,9 +193,6 @@ export default function CheckoutSummary() {
             </div>
 
             <div className="mt-10 border-t border-neutral-200/70 pt-6 text-sm text-neutral-500 dark:border-neutral-700 dark:text-neutral-400">
-
-                {/* Discount code form could go here */}
-
                 <div className="mt-4 flex justify-between py-2.5">
                     <span>Subtotal</span>
                     <span className="font-semibold text-neutral-900 dark:text-neutral-200">

@@ -698,6 +698,14 @@ export async function getProductDetailByHandle(handle: string) {
 export type TCollection = Partial<Awaited<ReturnType<typeof getCollections>>[number]> & { href?: string }
 export type TProductItem = Partial<Awaited<ReturnType<typeof getProducts>>[number]>
 export type TProductDetail = Partial<Awaited<ReturnType<typeof getProductDetailByHandle>>>
-export type TCardProduct = Partial<TProductItem & { quantity?: number }>
+export type TCardProduct = Partial<
+  TProductItem & {
+    quantity?: number
+    name?: string
+    image?: TProductItem['featuredImage']
+    size?: string
+    color?: string
+  }
+>
 // export type TBlogPost = Partial<Awaited<ReturnType<typeof getBlogPosts>>[number]>
 export type TReview = Partial<Awaited<ReturnType<typeof getProductReviews>>[number]>
