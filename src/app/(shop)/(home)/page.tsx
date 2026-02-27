@@ -1,6 +1,5 @@
 import BackgroundSection from '@/components/BackgroundSection/BackgroundSection'
 import { Divider } from '@/components/Divider'
-import Heading from '@/components/Heading/Heading'
 import SectionClientSay from '@/components/SectionClientSay'
 import SectionCollectionSlider from '@/components/SectionCollectionSlider'
 import SectionGridMoreExplore from '@/components/SectionGridMoreExplore/SectionGridMoreExplore'
@@ -11,8 +10,6 @@ import SectionPromo2 from '@/components/SectionPromo2'
 import SectionSliderLargeProduct from '@/components/SectionSliderLargeProduct'
 import SectionSliderProductCard from '@/components/SectionSliderProductCard'
 
-import { Button } from '@/shared/Button/Button'
-import { ArrowRightIcon } from '@heroicons/react/24/solid'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {

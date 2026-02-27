@@ -24,7 +24,7 @@ const PageAbout = () => {
           heading="👋 About Us."
           subHeading="We are dedicated to providing the finest kitchen and gardening tools. Our mission is to empower home cooks and garden enthusiasts with high-quality, durable equipment that makes every task a pleasure."
         />
-        <SectionFounder />
+        {/* <SectionFounder /> */}
         <Divider />
         <SectionStatistic />
         <Divider />

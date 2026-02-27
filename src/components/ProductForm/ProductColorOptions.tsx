@@ -27,7 +27,7 @@ const ProductColorOptions = ({
       <Headless.RadioGroup value={colorSelected} name="color" onChange={setColorSelected} aria-label="Color">
         <Headless.Label className="block text-sm font-medium rtl:text-right">Color</Headless.Label>
         <div className="mt-2.5 flex gap-x-2.5">
-          {colorOptionValues.map((value) => {
+          {(colorOptionValues as NonNullable<TProductItem['options']>[number]['optionValues']).map((value) => {
             const isActive = value.name === colorSelected
 
             return (
@@ -40,8 +40,15 @@ const ProductColorOptions = ({
                   isActive && 'ring-2 ring-neutral-900 dark:ring-neutral-300'
                 )}
               >
-                 
-                
+                <div
+                  className="absolute inset-0 rounded-full border border-neutral-200 bg-cover bg-center dark:border-neutral-700"
+                  style={{
+                    backgroundColor: value.swatch?.color,
+                    backgroundImage: value.swatch?.image ? `url(${value.swatch.image})` : undefined,
+                  }}
+                  title={value.name}
+                />
+
               </Headless.Radio>
             )
           })}

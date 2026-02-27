@@ -1,8 +1,7 @@
 'use client';
 import React from 'react';
 import ContactForm from './ContactForm';
-import GoogleMap from './GoogleMap';
-import QASection from './QASection';
+ import QASection from './QASection';
 import HeroSection from './HeroSection';
 import { EnvelopeIcon, MapPinIcon, PhoneIcon } from '@heroicons/react/24/outline';
 
@@ -27,23 +26,24 @@ const ContactUs = () => {
                                         <MapPinIcon className="w-6 h-6 text-green-700" />
                                     </div>
                                     <div>
-                                        <p className="font-semibold text-gray-900">Our Office</p>
+                                        <p className="font-semibold text-gray-900">Address</p>
                                         <p className="text-gray-600 mt-1">
-                                            1234 Street Name, City Name<br />
-                                            Country 12345
+                                            Small Industrial Estate, Sialkot 51310, Pakistan
+
+
                                         </p>
                                     </div>
                                 </div>
 
-                                <div className="flex items-start space-x-4">
+                                {/* <div className="flex items-start space-x-4">
                                     <div className="bg-green-100 p-3 rounded-full shrink-0">
                                         <EnvelopeIcon className="w-6 h-6 text-green-700" />
                                     </div>
                                     <div>
                                         <p className="font-semibold text-gray-900">Email Us</p>
-                                        <p className="text-gray-600 mt-1">contact@example.com</p>
+                                        <p className="text-gray-600 mt-1">sales@makindus.com</p>
                                     </div>
-                                </div>
+                                </div> */}
 
                                 <div className="flex items-start space-x-4">
                                     <div className="bg-green-100 p-3 rounded-full shrink-0">
@@ -51,13 +51,12 @@ const ContactUs = () => {
                                     </div>
                                     <div>
                                         <p className="font-semibold text-gray-900">Call Us</p>
-                                        <p className="text-gray-600 mt-1">+1 (555) 123-4567</p>
+                                        <p className="text-gray-600 mt-1">03081417272</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <GoogleMap />
-                    </div>
+                     </div>
                 </div>
 
                 <div className="pt-16 border-t border-gray-200">

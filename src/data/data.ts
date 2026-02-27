@@ -416,7 +416,16 @@ export async function getProducts() {
       reviewNumber: 234,
       rating: 4.8,
       status: 'New in',
-      options: [{ name: 'Size', optionValues: [{ name: '8 inch' }, { name: '10 inch' }] }, { name: 'Color', optionValues: [{ name: 'Silver' }] }],
+      options: [
+        { name: 'Size', optionValues: [{ name: '8 inch' }, { name: '10 inch' }] },
+        {
+          name: 'Color',
+          optionValues: [
+            { name: 'Silver', swatch: { color: '#C0C0C0' } },
+            { name: 'Black', swatch: { color: '#000000' } }
+          ]
+        }
+      ],
       selectedOptions: [{ name: 'Size', value: '8 inch' }],
     },
     {
@@ -696,7 +705,20 @@ export async function getProductDetailByHandle(handle: string) {
 
 // COMMON Types ------------------------------------------------------------------------
 export type TCollection = Partial<Awaited<ReturnType<typeof getCollections>>[number]> & { href?: string }
-export type TProductItem = Partial<Awaited<ReturnType<typeof getProducts>>[number]>
+export type TProductItem = Partial<
+  Awaited<ReturnType<typeof getProducts>>[number] & {
+    options: {
+      name: string
+      optionValues: {
+        name: string
+        swatch?: {
+          color?: string
+          image?: string
+        }
+      }[]
+    }[]
+  }
+>
 export type TProductDetail = Partial<Awaited<ReturnType<typeof getProductDetailByHandle>>>
 export type TCardProduct = Partial<
   TProductItem & {
