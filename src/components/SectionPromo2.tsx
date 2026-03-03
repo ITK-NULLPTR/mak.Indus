@@ -13,7 +13,7 @@ export interface SectionPromo2Props {
 
 const SectionPromo2: FC<SectionPromo2Props> = ({ className }) => {
   return (
-    <div className={clsx(className, 'xl:pt-10 2xl:pt-24')}>
+    <div className={clsx(className, 'py-24 lg:py-32')}>
       <div className="relative flex flex-col rounded-2xl bg-yellow-50 p-4 pb-0 sm:rounded-[40px] sm:p-5 sm:pb-0 lg:flex-row lg:justify-end lg:p-14 xl:px-20 2xl:py-32 dark:bg-neutral-800">
         <div className="absolute inset-5">
           <Image fill className="object-contain dark:opacity-5" src={backgroundLineSvg} alt="backgroundLineSvg" />
@@ -22,7 +22,7 @@ const SectionPromo2: FC<SectionPromo2Props> = ({ className }) => {
         <div className="relative max-w-lg lg:w-[45%]">
           <Logo className="w-28" />
           <h2 className="mt-6 text-3xl leading-[1.13]! font-semibold tracking-tight sm:mt-10 sm:text-4xl xl:text-5xl 2xl:text-6xl">
-            Advanced Tools<br /> for Gardening 
+            Advanced Tools<br /> for Gardening
           </h2>
           <span className="mt-6 block text-neutral-500 dark:text-neutral-400">
             Gardening tools support efficient, mindful, and productive gardening.

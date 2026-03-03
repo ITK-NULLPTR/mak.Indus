@@ -163,7 +163,7 @@ export default async function Page({ params }: { params: Promise<{ handle: strin
       </div>
 
       {/* DETAIL AND REVIEW */}
-      <div className="mt-12 flex flex-col gap-y-10 sm:mt-16 sm:gap-y-16">
+      <div className="mt-24 flex flex-col gap-y-24 lg:mt-32 lg:gap-y-32">
         <div className="block xl:hidden">
           <Policy />
         </div>
@@ -177,12 +177,10 @@ export default async function Page({ params }: { params: Promise<{ handle: strin
           heading="Customers also purchased"
           subHeading=""
           headingFontClassName="text-3xl font-semibold"
-          headingClassName="mb-12 text-neutral-900 dark:text-neutral-50"
+          headingClassName="mb-12 text-neutral-900 dark:text-neutral-50 lg:mb-14"
         />
         {/* SECTION */}
-        <div className="pb-20 lg:pt-16 xl:pb-28">
-          <SectionPromo2 />
-        </div>
+        <SectionPromo2 />
       </div>
     </main>
   )

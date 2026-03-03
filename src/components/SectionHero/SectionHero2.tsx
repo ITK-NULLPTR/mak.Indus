@@ -62,7 +62,7 @@ const SectionHero2: FC<Props> = ({ className = '' }) => {
     },
     trackMouse: true,
   })
-    const handleAutoNext = () => {
+  const handleAutoNext = () => {
     setIndexActive((state) => {
       if (state >= data.length - 1) {
         return 0
@@ -118,7 +118,7 @@ const SectionHero2: FC<Props> = ({ className = '' }) => {
     return (
       <div
         className={clsx(
-          'fade--animation relative flex flex-col gap-10 overflow-hidden py-14 pl-container sm:py-20 lg:flex-row lg:items-center',
+          'fade--animation relative flex flex-col gap-10 overflow-hidden py-24 pl-container lg:flex-row lg:items-center lg:py-32',
           isActive ? 'flex' : 'hidden'
         )}
         key={index}

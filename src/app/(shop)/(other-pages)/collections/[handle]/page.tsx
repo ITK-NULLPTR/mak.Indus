@@ -111,7 +111,7 @@ export default async function Page({
   }
 
   return (
-    <main>
+    <main className="container py-24 lg:py-32">
       {/* TABS FILTER */}
       <div className="flex flex-wrap items-center gap-2.5">
         <FiltersMenuTabs />
@@ -121,8 +121,10 @@ export default async function Page({
       <Divider className="mt-8" />
 
       {/* LOOP ITEMS */}
-      <div className="mt-8 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-8 lg:mt-10 lg:grid-cols-3 xl:grid-cols-4">
-        {products?.map((produc) => <ProductCard data={produc} key={produc.id} />)}
+      <div className="mt-12 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-8 lg:mt-16 lg:grid-cols-3 xl:grid-cols-4">
+        {products?.map((produc) => (
+          <ProductCard data={produc} key={produc.id} />
+        ))}
       </div>
 
       {/* PAGINATION */}

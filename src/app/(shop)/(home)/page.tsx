@@ -32,11 +32,11 @@ async function PageHome() {
   return (
     <div className="nc-PageHome relative overflow-hidden">
       <SectionHero2 />
-      <SectionCollectionSlider className="mt-24 lg:mt-32" collections={featuredCollections} />
+      <SectionCollectionSlider className="my-24 lg:my-32" collections={featuredCollections} />
 
       <div className="relative container my-24 flex flex-col gap-y-24 lg:my-32 lg:gap-y-32">
         <SectionSliderProductCard data={carouselProducts1} />
-        <div className="relative pt-24 pb-20 lg:pt-28">
+        <div className="relative py-24 lg:py-32">
           <BackgroundSection />
           <SectionGridMoreExplore groupCollections={groupCollections} />
         </div>
@@ -44,7 +44,7 @@ async function PageHome() {
         <SectionPromo2 />
         <SectionSliderLargeProduct products={carouselProducts3} />
         <Divider />
-        <SectionClientSay />
+        <SectionClientSay className="py-24 lg:py-32" />
       </div>
     </div>
   )

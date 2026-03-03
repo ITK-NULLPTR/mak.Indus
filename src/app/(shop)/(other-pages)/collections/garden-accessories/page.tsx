@@ -49,15 +49,15 @@ export default async function GardenAccessoriesPage({
         <>
             <HeroSection />
 
-            <div className="min-h-screen bg-white py-12 px-4 sm:px-6 lg:px-8">
+            <div className="min-h-screen bg-white py-24 px-4 sm:px-6 lg:py-32 lg:px-8">
                 <div className="mx-auto max-w-7xl">
                     {/* TABS FILTER */}
-                    <div className="flex flex-wrap items-center gap-2.5 mb-8 text-start">
+                    <div className="flex flex-wrap items-center gap-2.5 mb-12 text-start lg:mb-16">
                         <FiltersMenuTabs />
                         <FilterSortByMenuListBox className="ml-auto" />
                     </div>
 
-                    <Divider className="mb-10" />
+                    <Divider className="mb-12 lg:mb-16" />
 
                     {filteredProducts.length > 0 ? (
                         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -66,7 +66,7 @@ export default async function GardenAccessoriesPage({
                             ))}
                         </div>
                     ) : (
-                        <div className="text-center py-20 bg-neutral-50 rounded-3xl border-2 border-dashed border-neutral-200">
+                        <div className="text-center py-24 bg-neutral-50 rounded-3xl border-2 border-dashed border-neutral-200 lg:py-32">
                             <p className="text-neutral-500">No garden accessories found.</p>
                         </div>
                     )}

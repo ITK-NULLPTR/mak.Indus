@@ -18,7 +18,7 @@ const PageAbout = () => {
     <div>
       {/* ======== BG GLASS ======== */}
       <BgGlassmorphism />
-      <div className="container flex flex-col gap-y-16 py-16 lg:gap-y-28 lg:py-28 lg:pt-20">
+      <div className="container flex flex-col gap-y-24 py-24 lg:gap-y-32 lg:py-32">
         <SectionHero
           rightImg={rightImg}
           heading="👋 About Us."
@@ -31,7 +31,7 @@ const PageAbout = () => {
         <SectionClientSay />
 
         <Divider />
-        
+
       </div>
     </div>
   )
