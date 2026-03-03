@@ -132,13 +132,19 @@ const Footer: React.FC = () => {
         </div>
       </div>
 
-      <div className="bg-primary-600 py-6 dark:bg-primary-900/20">
-        <div className="container flex flex-col lg:flex-row items-center justify-between gap-8">
+      <div className="bg-primary-600 py-10 dark:bg-primary-900/20 transition-all">
+        <div className="container grid grid-cols-1 lg:grid-cols-2 sm:flex-row lg:flex-row items-center" style={{ gap: 'clamp(2rem, 5vw, 4rem)' }}>
           <div className="text-white">
-            <h3 className="text-2xl font-bold mb-2">Subscribe to our newsletter</h3>
-            <p className="text-primary-100 opacity-90">Get special offers, free giveaways, and deals delivered to your inbox.</p>
+            <h3 
+            style={{fontSize:'clamp(1.25rem, 3vw, 2.2rem)'}}
+            className="font-bold mb-3 tracking-tight">Subscribe to our newsletter</h3>
+            <p 
+            style={{fontSize:'clamp(0.9rem, 1.5vw, 1.1rem)'}}
+            className="text-primary-100 opacity-90 mx-w-lg mx-auto lg:mx-0">Get special offers, free giveaways, and deals delivered to your inbox.</p>
           </div>
-          <form className="flex w-full max-w-md gap-2" onSubmit={handleSubscribe}>
+          <form className="flex flex-col sm:flex-row  items-center w-full max-w-xl ml-auto mr-auto lg:mr-0 
+          style={{gap:'clamp(0.75rem, 1.5vw, 1.25rem)'}}
+          " onSubmit={handleSubscribe}>
             <input
               type="email"
               placeholder="Enter your email"
@@ -146,15 +152,19 @@ const Footer: React.FC = () => {
               onChange={(e) => setEmail(e.target.value)}
               disabled={isLoading}
               required
-              className="flex-1 h-12 px-6 rounded-full bg-white dark:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-white/50 text-neutral-900 dark:text-white disabled:opacity-50"
+              style={{fontSize:'clamp(0.85rem, 1.2vw, 1rem)'}}
+              className="w-full h-12 px-6 rounded-full bg-white dark:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-white/50 text-neutral-900 dark:text-white disabled:opacity-50"
             />
             <button
               type="submit"
               disabled={isLoading}
-              className="h-12 px-8 rounded-full bg-neutral-900 text-white font-bold hover:bg-black transition-all disabled:bg-neutral-600 disabled:cursor-not-allowed flex items-center justify-center min-w-32.5"
+              style={{fontSize:'clamp(0.85rem, 1vw, 1rem)',
+              paddingInline:'clamp(1.2rem, 2.5vw, 3rem)',
+              width: 'clamp(140px, auto, 220px)'}}
+              className=" h-12 m-4 rounded-full bg-neutral-900 text-white font-bold hover:bg-black transition-all disabled:bg-neutral-600 disabled:cursor-not-allowed flex items-center justify-around ml-0 sm:ml-4 shrink-0"
             >
               {isLoading ? (
-                <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <svg className="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
