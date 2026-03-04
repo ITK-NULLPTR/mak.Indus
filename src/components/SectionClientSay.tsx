@@ -52,7 +52,7 @@ const SectionClientSay: FC<SectionClientSayProps> = ({
     loop: true,
   },
   heading = 'Good news from far away 🥇',
-  subHeading = "Let's see what people think of Ciseco",
+  subHeading = "Let's see what people think of Mak Indus",
 }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel(emblaOptions, [Autoplay({ playOnInit: true, delay: 2000 })])
   const { prevBtnDisabled, nextBtnDisabled, onPrevButtonClick, onNextButtonClick } = useCarouselArrowButtons(emblaApi)
@@ -78,7 +78,7 @@ const SectionClientSay: FC<SectionClientSayProps> = ({
             sizes="100px"
             width={60}
             height={60}
-            className="absolute right-full bottom-[100px] mr-40"
+            className="absolute right-full bottom-25 mr-40"
             src={userImage3}
             alt=""
           />
@@ -86,7 +86,7 @@ const SectionClientSay: FC<SectionClientSayProps> = ({
             sizes="100px"
             width={60}
             height={60}
-            className="absolute top-full left-[140px]"
+            className="absolute top-full left-35"
             src={userImage4}
             alt=""
           />
@@ -94,7 +94,7 @@ const SectionClientSay: FC<SectionClientSayProps> = ({
             sizes="100px"
             width={60}
             height={60}
-            className="absolute right-[140px] -bottom-10"
+            className="absolute right-35 -bottom-10"
             src={userImage5}
             alt=""
           />
@@ -102,7 +102,7 @@ const SectionClientSay: FC<SectionClientSayProps> = ({
             sizes="100px"
             width={60}
             height={60}
-            className="absolute bottom-[80px] left-full ml-32"
+            className="absolute bottom-20 left-full ml-32"
             src={userImage6}
             alt=""
           />

@@ -21,34 +21,13 @@ interface Props {
 const ProductCard: FC<Props> = ({ className = '', data }) => {
   const { title, price, status, rating, options, handle, selectedOptions, reviewNumber, featuredImage } = data
   
-  // Hooks hamesha component ke andar aur top par hone chahiye
+
   const { wishList, toggleWishListItem, isLiked } = useWishList()
   const { open: openAside, setProductQuickViewHandle } = useAside()
 
-  // Id ko string mein convert karne ka safe tareeka
+  
   const productId = data.id?.toString() || ''
   const activeLike = isLiked(productId)
-
-  const renderColorOptions = () => {
-    const optionColorValues = options?.find((option) => option.name === 'Color')?.optionValues
-    if (!optionColorValues?.length) return null
-
-    return (
-      <div className="flex gap-2">
-        {optionColorValues.map((color) => (
-          <div key={color.name} className="relative size-4 cursor-pointer overflow-hidden rounded-full">
-            <div
-              className="absolute inset-0 z-0 rounded-full bg-cover ring-1 ring-neutral-900/20 dark:ring-white/20"
-              style={{
-                backgroundColor: (color as any).swatch?.color,
-                backgroundImage: (color as any).swatch?.image ? `url(${(color as any).swatch.image})` : undefined,
-              }}
-            />
-          </div>
-        ))}
-      </div>
-    )
-  }
 
   const renderGroupButtons = () => {
     return (
@@ -102,21 +81,23 @@ const ProductCard: FC<Props> = ({ className = '', data }) => {
         
         <ProductStatus status={status} />
 
-        {/* Like Button Implementation */}
+        
         <LikeButton 
-          liked={isLiked(data.id?.toString() || '')} // Ye check karega ki current product wishlist mein hai ya nahi
+          liked={isLiked(data.id?.toString() || '')} 
           className="absolute end-3 top-3 z-10"
-          // count={wishList.length} // Ye puri wishlist ka count dikhayega
-          onClick={() => toggleWishListItem(data.id?.toString() || '')} // Ye product ko wishlist mein add/remove karega
+        
+          onClick={() => toggleWishListItem(data.id?.toString() || '')} 
         />
 
         {renderGroupButtons()}
       </div>
 
       <div className="space-y-4 px-2.5 pt-5 pb-2.5">
-        {renderColorOptions()}
-        <div>
-          <h2 className="nc-ProductCard__title text-base font-semibold transition-colors">{title}</h2>
+        
+        <div className='mt-1'>
+          <h2 className="nc-ProductCard__title text-base font-semibold transition-colors line-clamp-2 min-h-12 leading-tight"
+          title={title}
+          >{title}</h2>
         </div>
 
         <div className="flex items-end justify-between">

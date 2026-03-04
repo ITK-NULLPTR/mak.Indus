@@ -21,10 +21,10 @@ const CollectionCard3: FC<Props> = ({ className = '', collection }) => {
       <div
         className={`aspect-w-16 relative overflow-hidden rounded-2xl aspect-h-14 sm:aspect-h-9 ${collection.color}`}
       >
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute inset-5 sm:inset-8">
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute inset-4 sm:inset-8">
             {collection.image && (
-              <div className="absolute end-0 top-0 bottom-0 w-[55%]">
+              <div className="absolute -right-4 top-1/2 w-[40%] h-[60%] -translate-y-1/2 sm:w-[65%] sm:h-[85%]"> 
                 <Image
                   alt={collection.image.alt || ''}
                   src={collection.image}
@@ -40,11 +40,11 @@ const CollectionCard3: FC<Props> = ({ className = '', collection }) => {
 
         <div className="relative z-10 h-full">
           <div className="absolute inset-5 flex flex-col sm:inset-8">
-            <div className="max-w-[45%]">
-              <span className={`mb-2 block text-sm text-neutral-700 font-medium`}>{collection.title}</span>
+            <div className="max-w-[55%]">
+              <span className={`mb-1 block text-sm text-neutral-600`}>{collection.title}</span>
               {collection.sortDescription && (
                 <h2
-                  className={`text-xl font-bold text-neutral-900 md:text-2xl leading-tight drop-shadow-sm`}
+                  className={`text-xl font-bold text-neutral-900 md:text-2xl leading-tight line-clamp-2 min-h-14 drop-shadow-sm`}
                   dangerouslySetInnerHTML={{ __html: collection.sortDescription || '' }}
                 ></h2>
               )}

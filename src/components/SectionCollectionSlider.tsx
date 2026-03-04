@@ -28,9 +28,9 @@ const SectionCollectionSlider = ({
   const { prevBtnDisabled, nextBtnDisabled, onPrevButtonClick, onNextButtonClick } = useCarouselArrowButtons(emblaApi)
 
   return (
-    <div className={className}>
+    <div className={'w-full ' + className}>
       <Heading
-        className="container mb-12 text-neutral-900 lg:mb-14 dark:text-neutral-50"
+        className="max-w-350 mx-auto px-4 md:px-10 container mb-12 text-neutral-900 lg:mb-14 dark:text-neutral-50"
         headingDim={headingDim}
         hasNextPrev
         prevBtnDisabled={prevBtnDisabled}
@@ -41,8 +41,10 @@ const SectionCollectionSlider = ({
         {heading}
       </Heading>
 
-      <div className="embla pl-container" ref={emblaRef}>
-        <div className="-ms-5 embla__container">
+      <div className="overflow-hidden" ref={emblaRef}>
+        <div className="embla__container flex -ml-5">
+          <div className="w-full px-4 md:px-8>" />
+           <div className="max-w-350 mx-auto"></div>
           {collections.map((collection) => (
             <div
               key={collection.id}

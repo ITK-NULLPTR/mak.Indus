@@ -34,7 +34,7 @@ async function PageHome() {
       <SectionHero2 />
       <SectionCollectionSlider className="my-24 lg:my-32" collections={featuredCollections} />
 
-      <div className="relative container my-24 flex flex-col gap-y-24 lg:my-32 lg:gap-y-32">
+      <div className="relative container my-24 flex flex-col gap-y-18 lg:my-32 lg:gap-y-32">
         <SectionSliderProductCard data={carouselProducts1} />
         <div className="relative py-24 lg:py-32">
           <BackgroundSection />
@@ -43,8 +43,8 @@ async function PageHome() {
         <SectionSliderProductCard data={carouselProducts2} heading="Best Sellers" subHeading="Best selling of the month" />
         <SectionPromo2 />
         <SectionSliderLargeProduct products={carouselProducts3} />
-        <Divider />
-        <SectionClientSay className="py-24 lg:py-32" />
+        {/* <Divider /> */}
+        <SectionClientSay className="lg:py-4" />
       </div>
     </div>
   )

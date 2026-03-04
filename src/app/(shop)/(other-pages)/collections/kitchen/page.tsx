@@ -16,17 +16,16 @@ export default async function KitchenPage({
   const sort = (sParams.sort as string) || 'newest';
 
   const allProducts = await getProducts();
-  // Strictly filter by kitchen category first
+ 
   let filteredProducts = allProducts.filter(p => p.categories?.includes('kitchen'));
 
-  // Filter by price if search params are present
+  
   if (price_min || price_max) {
     const min = price_min ? Number(price_min) : 0;
     const max = price_max ? Number(price_max) : Infinity;
     filteredProducts = filteredProducts.filter((p) => (p.price || 0) >= min && (p.price || 0) <= max);
   }
 
-  // Apply Sorting
   filteredProducts.sort((a, b) => {
     switch (sort) {
       case 'price-low-to-high':
@@ -49,9 +48,9 @@ export default async function KitchenPage({
     <>
       <HeroSection />
 
-      <div className="min-h-screen bg-white py-24 px-4 sm:px-6 lg:py-32 lg:px-8">
+      <div className="min-h-screen bg-white py-16 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          {/* TABS FILTER */}
+        
           <div className="flex flex-wrap items-center gap-2.5 mb-12 text-start lg:mb-16">
             <FiltersMenuTabs />
             <FilterSortByMenuListBox className="ml-auto" />

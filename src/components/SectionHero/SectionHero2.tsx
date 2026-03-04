@@ -48,7 +48,7 @@ interface Props {
 
 let TIME_OUT: NodeJS.Timeout | null = null
 const SectionHero2: FC<Props> = ({ className = '' }) => {
-  // =================
+  
 
   const [indexActive, setIndexActive] = useState(0)
   const [isRunning, toggleIsRunning] = useState(true)
@@ -109,7 +109,7 @@ const SectionHero2: FC<Props> = ({ className = '' }) => {
     }, 1000)
   }
 
-  // ===================================================
+
 
   const renderItem = (index: number) => {
     const isActive = indexActive === index
@@ -118,7 +118,7 @@ const SectionHero2: FC<Props> = ({ className = '' }) => {
     return (
       <div
         className={clsx(
-          'fade--animation relative flex flex-col gap-10 overflow-hidden py-24 pl-container lg:flex-row lg:items-center lg:py-32',
+          'fade--animation relative flex flex-col gap-10 overflow-hidden py-16 pl-container lg:flex-row lg:items-center lg:py-24 px-[clamp(1rem,3vw,2.5rem)]',
           isActive ? 'flex' : 'hidden'
         )}
         key={index}
@@ -134,7 +134,7 @@ const SectionHero2: FC<Props> = ({ className = '' }) => {
           />
         </div>
 
-        {/* DOTS */}
+        
         <div className="absolute start-1/2 bottom-4 flex -translate-x-1/2 justify-center rtl:translate-x-1/2 z-20">
           {data.map((_, index) => {
             const isActive = indexActive === index

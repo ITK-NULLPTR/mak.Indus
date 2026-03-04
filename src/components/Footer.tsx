@@ -6,7 +6,7 @@ import { toast } from 'react-hot-toast'
 import Link from 'next/link'
 const links = [
   { name: 'Home', href: '/' },
-  { name: 'Shop', href: '/shop' },
+  { name: 'Shop', href: '/collections' },
   { name: 'About Us', href: '/about' },
   { name: 'Contact Us', href: '/contact' },
 ]
