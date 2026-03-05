@@ -4,12 +4,15 @@ import SocialsList1 from '@/shared/SocialsList1/SocialsList1'
 import React, { useState } from 'react'
 import { toast } from 'react-hot-toast'
 import Link from 'next/link'
+import { link } from 'fs'
 const links = [
   { name: 'Home', href: '/' },
   { name: 'Shop', href: '/collections' },
   { name: 'About Us', href: '/about' },
   { name: 'Contact Us', href: '/contact' },
+  { name: 'Privacy Policy', href: '/privacy-policy' },
 ]
+
 
 const Footer: React.FC = () => {
   const [email, setEmail] = useState('')
@@ -86,23 +89,27 @@ const Footer: React.FC = () => {
 
           <div>
             <h4 className="text-sm font-bold uppercase tracking-wider text-neutral-900 dark:text-neutral-100 mb-8">
-              Customer Support
+              Categories
             </h4>
             <ul className="flex flex-col gap-4">
-              {['Order History', 'Wishlist', 'Shipping Info', 'Returns & Exchanges'].map((item) => (
-                <li key={item}>
+              {[
+                {name: 'Kitchen Tools', href: '/collections/kitchen'},
+                {name: 'Gardening Tools', href: '/collections/gardening'},
+                {name: 'Cookware', href: '/collections/cookware'},
+                {name: 'Garden Accessories', href: '/collections/garden-accessories'},  
+              ].map((link) => (
+                <li key={link.name}>
                   <a
-                    href="#"
+                    href={link.href}
                     className="text-sm text-neutral-600 hover:text-primary-600 dark:text-neutral-400 dark:hover:text-primary-500 transition-colors duration-200"
                   >
-                    {item}
+                    {link.name}
                   </a>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Contact Info */}
           <div className="flex flex-col gap-8">
             <h4 className="text-sm font-bold uppercase tracking-wider text-neutral-900 dark:text-neutral-100 mb-0">
               Get in Touch
@@ -180,15 +187,20 @@ const Footer: React.FC = () => {
               &copy; {new Date().getFullYear()} <span className="font-semibold text-neutral-800 dark:text-neutral-200">mak.Indus</span>. Engineered for Excellence.
             </p>
           </div>
-          <div className="flex flex-wrap justify-center gap-6 md:gap-10">
-            {['Privacy Policy', 'Terms of Service', 'Refund Policy', 'Cookie Settings'].map((item) => (
+          <div className="flex flex-wrap justify-center gap-4 md:gap-10">
+            {[
+              { name: 'Privacy Policy', href: '/privacy-policy' },
+              { name: 'Shipping Policy', href: '/shipping-policy' },
+              { name: 'Return Policy', href: '/return-policy' },
+              { name: 'FAQs', href: '/faqs' }
+            ].map((link, index) => (
               <a
-                key={item}
-                href="#"
-                className="text-xs font-medium text-neutral-500 hover:text-primary-600 dark:hover:text-primary-400 transition-colors uppercase tracking-widest"
-              >
-                {item}
-              </a>
+                      key={index}
+                      href={link.href}
+                      className="text-sm text-neutral-600 hover:text-primary-600 dark:text-neutral-400 dark:hover:text-primary-500 transition-colors duration-200"
+                    >
+                      {link.name}
+             </a>
             ))}
           </div>
         </div>
