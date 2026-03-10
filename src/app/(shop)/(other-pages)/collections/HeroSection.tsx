@@ -41,7 +41,7 @@ const HeroSection = () => {
             <div ref={imageRef} className="absolute inset-0 w-full h-full z-0">
                 <Image
                     src={kitchenHero}
-                    alt="Cookware Background"
+                    alt="Collections Background"
                     fill
                     className="object-cover"
                     priority
