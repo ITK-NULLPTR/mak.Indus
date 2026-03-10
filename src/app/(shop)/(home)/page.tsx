@@ -10,15 +10,25 @@ import SectionPromo2 from '@/components/SectionPromo2'
 import SectionSliderLargeProduct from '@/components/SectionSliderLargeProduct'
 import SectionSliderProductCard from '@/components/SectionSliderProductCard'
 
-import { Metadata } from 'next'
+ import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'Mak Indus - Premium Gardening & Kitchen Tools',
+  title: "Mak Indus - Premium Gardening & Kitchen Tools",
   description:
-    'Mak Indus is a premier online store for high-quality gardening and kitchen tools, featuring a modern, fast, and accessible shopping experience.',
-  keywords: ['Gardening tools', 'Kitchen tools', 'Mak Indus', 'Online tool store', 'Tools', 'E-commerce'],
-}
-
+    "Mak Indus is a premier online store for high-quality gardening and kitchen tools, featuring a modern, fast, and accessible shopping experience.",
+  keywords: [
+    "Gardening tools",
+    "Kitchen tools",
+    "Mak Indus",
+    "Online tool store",
+    "Tools",
+    "E-commerce",
+  ],
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 async function PageHome() {
   const allCollections = await getCollections()
   const featuredCollections = allCollections.slice(0, 4)
