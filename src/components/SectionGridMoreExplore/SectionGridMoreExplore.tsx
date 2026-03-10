@@ -27,7 +27,7 @@ export interface SectionGridMoreExploreProps {
   heading?: string
 }
 
-const svgImages = [svgs1, svgs2, svgs3, svgs4, svgs5, svgs6, svgs7, svgs8, svgs9]
+const svgImages = [svgs1, svgs2, ]
 
 const SectionGridMoreExplore: FC<SectionGridMoreExploreProps> = ({
   className,

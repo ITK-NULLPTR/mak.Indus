@@ -5,12 +5,10 @@ import SectionCollectionSlider from '@/components/SectionCollectionSlider'
 import SectionGridMoreExplore from '@/components/SectionGridMoreExplore/SectionGridMoreExplore'
 import SectionHero2 from '@/components/SectionHero/SectionHero2'
 import { getCollections, getGroupCollections, getProducts } from '@/data/data'
-
 import SectionPromo2 from '@/components/SectionPromo2'
 import SectionSliderLargeProduct from '@/components/SectionSliderLargeProduct'
 import SectionSliderProductCard from '@/components/SectionSliderProductCard'
-
- import { Metadata } from "next";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Mak Indus - Premium Gardening & Kitchen Tools",

@@ -13,6 +13,7 @@ interface Props {
   collections: TCollection[]
   headingDim?: string
   heading?: string
+  categoryHref?: string
 }
 
 const SectionCollectionSlider = ({
